@@ -5,7 +5,7 @@ Stores results in a local JSON file.
 
 from fastapi import APIRouter, HTTPException
 from pydantic import BaseModel
-from typing import Dict, Any, List
+from typing import Dict, Any
 import json
 import os
 from datetime import datetime

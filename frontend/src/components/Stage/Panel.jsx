@@ -1,14 +1,14 @@
 import React from 'react';
-import SpeechBubble from './SpeechBubble';
 
-function Panel({ panel, tier, index, total }) {
+
+function Panel({ panel, index }) {
   const { 
     beat, 
-    data_point, 
+    // data_point, 
     dialogue, 
     visual_cues = [],
-    micro_chart,
-    ci_info,
+    // micro_chart,
+    // ci_info,
     title_card,
     beat_description,
     stats_chart
@@ -52,7 +52,7 @@ function Panel({ panel, tier, index, total }) {
 
   // Data Panel (Main loop)
   const isOutlier = visual_cues.includes('spotlight');
-  const hasFog = visual_cues.includes('fog_overlay');
+  // const hasFog = visual_cues.includes('fog_overlay');
 
   return (
     <div className={`panel ${isOutlier ? 'effect-spotlight' : ''} animate-pop`}>

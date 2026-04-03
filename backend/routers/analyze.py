@@ -11,18 +11,17 @@ from typing import List, Literal, Optional
 from pipeline.stats import compute_stats
 from pipeline.narrative import map_to_storyboard
 from data.datasets import DATASETS
+from stories.registry import get_story
 
 router = APIRouter()
 
 
 class DataPoint(BaseModel):
-    x: float          # time / categorical axis value
-    label: str = ""   # optional human-readable label e.g. "2018"
-    y: float          # primary measured value
-    y2: Optional[float] = None # secondary measured value (optional)
+    x: float  # time / categorical axis value
+    label: str = ""  # optional human-readable label e.g. "2018"
+    y: float  # primary measured value
+    y2: Optional[float] = None  # secondary measured value (optional)
 
-
-from stories.registry import get_story
 
 class AnalyzeRequest(BaseModel):
     id: str = "base"
@@ -35,14 +34,21 @@ class AnalyzeRequest(BaseModel):
 @router.post("/analyze")
 def analyze(req: AnalyzeRequest):
     if len(req.dataset) < 3:
-        raise HTTPException(status_code=400, detail="Dataset must have at least 3 points")
-    
+        raise HTTPException(
+            status_code=400, detail="Dataset must have at least 3 points"
+        )
+
     story = get_story(req.id)
-    raw = [{"x": p.x, "label": p.label or str(int(p.x)), "y": p.y, "y2": p.y2} for p in req.dataset]
+    raw = [
+        {"x": p.x, "label": p.label or str(int(p.x)), "y": p.y, "y2": p.y2}
+        for p in req.dataset
+    ]
     stats = compute_stats(raw, tier=req.tier)
-    
+
     # We'll pass the story object to map_to_storyboard so it can use custom voices/quizzes
-    storyboard = map_to_storyboard(stats, tier=req.tier, title=req.title, unit=req.unit, story=story)
+    storyboard = map_to_storyboard(
+        stats, tier=req.tier, title=req.title, unit=req.unit, story=story
+    )
     return storyboard
 
 

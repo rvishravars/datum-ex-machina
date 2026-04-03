@@ -22,10 +22,6 @@ function Login({ onBack }) {
     setLoading(false);
   };
 
-  const handleOAuth = (provider) => {
-    window.location.href = `/api/auth/login/${provider}`;
-  };
-
   return (
     <div className="login-page">
       <motion.div 
@@ -70,6 +66,9 @@ function Login({ onBack }) {
               <div className="auth-badge">COMING SOON</div>
             </div>
             <p className="auth-disclaimer">Permanent accounts get persistent history and custom avatars.</p>
+            <p>
+              {"Sign in to unlock Evidence Stage and Analysis history. It's safe."}
+            </p>
           </div>
         </div>
 
@@ -101,7 +100,7 @@ function Login({ onBack }) {
               {error && <div className="auth-error">{error}</div>}
             </form>
             <div className="speech-bubble bubble-small">
-               "Just passing through? We still need an email for the records."
+               {"\"Wait, am I being audited?\" Just passing through? We still need an email for the records."}
             </div>
           </div>
         </div>

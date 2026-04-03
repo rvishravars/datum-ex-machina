@@ -1,19 +1,20 @@
 from typing import List, Dict
 from stories.base import BaseStory
 
+
 class IncomeInequalityStory(BaseStory):
     def __init__(self):
         super().__init__()
         self.id = "nz-gini"
         self.title = "The Great Divide: New Zealand's Income Equality Arc"
-        self.tier = "R" 
+        self.tier = "R"
         self.unit = "Gini Coefficient"
         self.x_label = "Year"
         self.y_label = "Gini Index (0 to 1)"
         self.description = "A historical lens on New Zealand's wealth distribution from 1985 to today. Tracking the 'Gini Index'—where 0 is total equality and 1 is total inequality."
         self.source = "OECD Income Distribution Database / Stats NZ"
         self.citation = "NZ Household Incomes Report (Perry, 2023)"
-        
+
         self.data_fallback = [
             {"x": 1985, "label": "1985", "y": 0.271},
             {"x": 1990, "label": "1990", "y": 0.311},
@@ -52,16 +53,16 @@ class IncomeInequalityStory(BaseStory):
                 "archetype": "The boundary watcher",
                 "description": "Tracks the statistical width of the wealth gap. As CI broadens, the social fabric feels the strain.",
                 "color": "#6EE7B7",
-            }
+            },
         ]
 
     def get_voice_line(self, point: Dict, beat: str, stats: Dict) -> str:
         year = int(point.get("x", 0))
         value = point.get("y", 0)
-        
+
         if year == 1985:
             return f"THE STARTING POINT: 1985 saw a Gini of {value}. This is the era of pre-reform relative equality. The baseline was low."
-        
+
         if year == 1994:
             return f"THE SPIKE: By 1994, the index hit {value}. This represents a massive shift in distribution following the economic reforms of the early 90s."
 
@@ -69,22 +70,29 @@ class IncomeInequalityStory(BaseStory):
             return f"THE MODERN PLATEAU: We closed 2023 at {value}. There is a slight cooling trend from the 2016 peak, but the 'New Normal' is still higher than the 80s."
 
         if beat == "opening":
-            return f"WELCOME TO THE DIVIDE: We are tracking the Gini coefficient across four decades of New Zealand history. Higher numbers mean wider gaps."
+            return "WELCOME TO THE DIVIDE: We are tracking the Gini coefficient across four decades of New Zealand history. Higher numbers mean wider gaps."
         elif beat == "conclusion":
             return f"THE FINAL VERDICT: Our statistical trend finishes at {value}. The question remains: is this a sustainable social equilibrium?"
-        
-        return f"Year {year}: Staticians recorded a distribution coefficient of {value}."
+
+        return (
+            f"Year {year}: Staticians recorded a distribution coefficient of {value}."
+        )
 
     def get_quiz_questions(self) -> List[Dict]:
         return [
             {
                 "id": "gini_meaning",
                 "text": "What does a HIGHER Gini Coefficient indicate in this narrative?",
-                "options": ['Greater Income Equality', 'Greater Income Inequality', 'Higher Average Salary', 'Lower Cost of Living']
+                "options": [
+                    "Greater Income Equality",
+                    "Greater Income Inequality",
+                    "Higher Average Salary",
+                    "Lower Cost of Living",
+                ],
             },
             {
                 "id": "peak_year",
                 "text": "In which era did New Zealand experience its most significant statistical 'Equity Spike'?",
-                "options": ['Mid-1980s', 'Early-1990s', 'Post-2020', 'The 2000s']
-            }
+                "options": ["Mid-1980s", "Early-1990s", "Post-2020", "The 2000s"],
+            },
         ]

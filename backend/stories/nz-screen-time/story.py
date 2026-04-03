@@ -1,6 +1,7 @@
 from stories.base import BaseStory
 from typing import List, Dict
 
+
 class ScreenTimeStory(BaseStory):
     def __init__(self):
         super().__init__()
@@ -33,18 +34,25 @@ class ScreenTimeStory(BaseStory):
 
         if is_covid:
             return f"COVID-19 IMPACT: While screens spiked to {value} hrs, sleep plummeted to {y2_val}! The lockdown was a digital surge, but a biological cost."
-        
+
         line = f"At {label}, screen time was {value} hrs."
         if y2_val is not None:
             line += f" (Sleep: {y2_val} hrs — the cost of a {value} hr screen day.)"
-        
+
         return line
 
     def get_quiz_questions(self) -> List[Dict]:
         questions = super().get_quiz_questions()
-        questions.append({
-            "id": "covid_impact",
-            "text": "What was the primary driver of the 2020 outlier?",
-            "options": ['Natural Growth', 'COVID-19 Lockdowns', 'New Gaming Consoles', 'A statistical error']
-        })
+        questions.append(
+            {
+                "id": "covid_impact",
+                "text": "What was the primary driver of the 2020 outlier?",
+                "options": [
+                    "Natural Growth",
+                    "COVID-19 Lockdowns",
+                    "New Gaming Consoles",
+                    "A statistical error",
+                ],
+            }
+        )
         return questions

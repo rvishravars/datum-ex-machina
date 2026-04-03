@@ -42,7 +42,7 @@ function Landing({ onStart, onLogin }) {
 
       <header className="landing-hero">
         <h1 className="main-title">Datum Ex Machina</h1>
-        <p className="sub-tagline">"Where real data walks out and plays itself"</p>
+        <p className="sub-tagline">{"\"Where real data walks out and plays itself\""}</p>
       </header>
 
       <section className="rating-board">

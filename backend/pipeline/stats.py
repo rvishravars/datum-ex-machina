@@ -4,9 +4,9 @@ Computes all numeric features from the raw dataset that the narrative layer need
 """
 
 import numpy as np
-import numpy as np
 import matplotlib
-matplotlib.use('Agg') # Explicitly use non-interactive Agg backend
+
+matplotlib.use("Agg")  # Explicitly use non-interactive Agg backend
 from matplotlib.figure import Figure
 from matplotlib.backends.backend_agg import FigureCanvasAgg
 import io
@@ -47,17 +47,19 @@ def compute_stats(data: List[Dict], tier: str) -> Dict[str, Any]:
         is_outlier = bool(y < lower_fence or y > upper_fence)
         distance_from_mean = float(y - mean_y)
         role = _assign_point_role(y, mean_y, std_y, is_outlier, distance_from_mean)
-        points.append({
-            "index": i,
-            "x": float(xs[i]),
-            "y": float(y),
-            "y2": d.get("y2"), # Propagate secondary value
-            "label": labels[i],
-            "role": role,
-            "is_outlier": is_outlier,
-            "distance_from_mean": distance_from_mean,
-            "z_score": float((y - mean_y) / std_y) if std_y > 0 else 0.0,
-        })
+        points.append(
+            {
+                "index": i,
+                "x": float(xs[i]),
+                "y": float(y),
+                "y2": d.get("y2"),  # Propagate secondary value
+                "label": labels[i],
+                "role": role,
+                "is_outlier": is_outlier,
+                "distance_from_mean": distance_from_mean,
+                "z_score": float((y - mean_y) / std_y) if std_y > 0 else 0.0,
+            }
+        )
 
     trend_direction = _classify_trend(slope, ys)
 
@@ -82,7 +84,7 @@ def compute_stats(data: List[Dict], tier: str) -> Dict[str, Any]:
         "trend": {
             "slope": round(float(slope), 6),
             "intercept": round(float(intercept), 3),
-            "r_squared": round(float(r_value ** 2), 4),
+            "r_squared": round(float(r_value**2), 4),
             "direction": trend_direction,
             "p_value": round(float(p_value), 4),
         },
@@ -115,8 +117,8 @@ def _classify_trend(slope, ys):
     if n < 2:
         return "flat"
 
-    early = np.mean(ys[:max(1, n // 3)])
-    late = np.mean(ys[-(n // 3):]) if n > 2 else ys[-1]
+    early = np.mean(ys[: max(1, n // 3)])
+    late = np.mean(ys[-(n // 3) :]) if n > 2 else ys[-1]
     total_range = np.max(ys) - np.min(ys)
 
     if total_range < 1e-9:
@@ -125,10 +127,23 @@ def _classify_trend(slope, ys):
     rel_slope = (late - early) / total_range
 
     mid = n // 2
-    s1, *_ = scipy_stats.linregress(range(mid), ys[:mid]) if mid > 1 else (slope,) + (None,) * 4
-    s2, *_ = scipy_stats.linregress(range(n - mid), ys[mid:]) if (n - mid) > 1 else (slope,) + (None,) * 4
+    s1, *_ = (
+        scipy_stats.linregress(range(mid), ys[:mid])
+        if mid > 1
+        else (slope,) + (None,) * 4
+    )
+    s2, *_ = (
+        scipy_stats.linregress(range(n - mid), ys[mid:])
+        if (n - mid) > 1
+        else (slope,) + (None,) * 4
+    )
 
-    if s1 is not None and s2 is not None and s1 * s2 < 0 and abs(s1 - s2) > abs(slope) * 0.5:
+    if (
+        s1 is not None
+        and s2 is not None
+        and s1 * s2 < 0
+        and abs(s1 - s2) > abs(slope) * 0.5
+    ):
         return "reversal"
 
     if rel_slope > 0.25:
@@ -139,7 +154,10 @@ def _classify_trend(slope, ys):
     if n >= 3:
         penultimate_trend = np.mean(np.diff(ys[:-1]))
         last_change = ys[-1] - ys[-2]
-        if abs(last_change) > 2 * abs(penultimate_trend) and abs(penultimate_trend) > 1e-9:
+        if (
+            abs(last_change) > 2 * abs(penultimate_trend)
+            and abs(penultimate_trend) > 1e-9
+        ):
             return "cliffhanger"
 
     return "plateau"
@@ -153,14 +171,18 @@ def _compute_ci_bands(xs, ys, intercept, slope):
     bands = []
     for x in xs:
         y_hat = slope * x + intercept
-        leverage = np.sqrt(1/n + (x - x_mean)**2 / (np.sum((xs - x_mean)**2) + 1e-12))
+        leverage = np.sqrt(
+            1 / n + (x - x_mean) ** 2 / (np.sum((xs - x_mean) ** 2) + 1e-12)
+        )
         margin = float(t_crit * se * leverage)
-        bands.append({
-            "x": float(x),
-            "y_hat": round(float(y_hat), 3),
-            "lower": round(float(y_hat - margin), 3),
-            "upper": round(float(y_hat + margin), 3),
-        })
+        bands.append(
+            {
+                "x": float(x),
+                "y_hat": round(float(y_hat), 3),
+                "lower": round(float(y_hat - margin), 3),
+                "upper": round(float(y_hat + margin), 3),
+            }
+        )
     return bands
 
 
@@ -171,61 +193,108 @@ def _compute_cohens_d(ys):
         return 0.0
     g1 = ys[:half]
     g2 = ys[half:]
-    pooled_std = np.sqrt((np.std(g1, ddof=1)**2 + np.std(g2, ddof=1)**2) / 2)
+    pooled_std = np.sqrt((np.std(g1, ddof=1) ** 2 + np.std(g2, ddof=1) ** 2) / 2)
     if pooled_std < 1e-9:
         return 0.0
     return round(float((np.mean(g2) - np.mean(g1)) / pooled_std), 3)
 
 
-def render_stats_chart_base64(xs, ys, slope, intercept, current_idx, title, unit, ys2=None) -> str:
+def render_stats_chart_base64(
+    xs, ys, slope, intercept, current_idx, title, unit, ys2=None
+) -> str:
     """
     Renders a high-quality, large-scale chart using isolated Figure objects for thread-safety.
     Supports an optional second series (ys2) for comparative analysis.
     """
     fig = Figure(figsize=(12, 8), dpi=120)
     ax = fig.add_subplot(111)
-    
+
     # Plot context line (light grey background)
-    ax.plot(xs, ys, color='#eeeeee', linestyle='-', linewidth=2, label='Primary series', zorder=-1)
-    
+    ax.plot(
+        xs,
+        ys,
+        color="#eeeeee",
+        linestyle="-",
+        linewidth=2,
+        label="Primary series",
+        zorder=-1,
+    )
+
     # Plot optional secondary series (dashed green)
     if ys2 is not None and len(ys2) > 0:
-        ax.plot(xs, ys2, color='#34D399', linestyle='--', linewidth=2, label='Secondary series (Correlated)', alpha=0.6)
+        ax.plot(
+            xs,
+            ys2,
+            color="#34D399",
+            linestyle="--",
+            linewidth=2,
+            label="Secondary series (Correlated)",
+            alpha=0.6,
+        )
         # Highlight current observation point for secondary
         if current_idx < len(ys2):
-            ax.scatter(xs[current_idx], ys2[current_idx], color='#10B981', s=100, zorder=9, alpha=0.8)
+            ax.scatter(
+                xs[current_idx],
+                ys2[current_idx],
+                color="#10B981",
+                s=100,
+                zorder=9,
+                alpha=0.8,
+            )
 
     # Plot PyTorch Regression fit (Clear Straight Line)
     trend_y = slope * xs + intercept
-    ax.plot(xs, trend_y, color='#0066cc', linestyle=':', linewidth=1.5, alpha=0.3, label='Primary Trend fit')
-    
+    ax.plot(
+        xs,
+        trend_y,
+        color="#0066cc",
+        linestyle=":",
+        linewidth=1.5,
+        alpha=0.3,
+        label="Primary Trend fit",
+    )
+
     # Plot progress so far (Bold, clear focus)
-    ax.plot(xs[:current_idx+1], ys[:current_idx+1], color='#1a1a1a', linewidth=4, label='Primary trajectory')
-    
+    ax.plot(
+        xs[: current_idx + 1],
+        ys[: current_idx + 1],
+        color="#1a1a1a",
+        linewidth=4,
+        label="Primary trajectory",
+    )
+
     # Highlight current observation point
-    ax.scatter(xs[current_idx], ys[current_idx], color='#EF4444', s=250, zorder=10, edgecolor='white', linewidth=2)
-    
-    ax.set_title(f"DATASET ANALYSIS: {title}", fontsize=18, fontweight='bold', pad=25)
+    ax.scatter(
+        xs[current_idx],
+        ys[current_idx],
+        color="#EF4444",
+        s=250,
+        zorder=10,
+        edgecolor="white",
+        linewidth=2,
+    )
+
+    ax.set_title(f"DATASET ANALYSIS: {title}", fontsize=18, fontweight="bold", pad=25)
     ax.set_xlabel("Timeline Index", fontsize=14, labelpad=10)
     ax.set_ylabel(unit if unit else "Observation Intensity", fontsize=14, labelpad=10)
-    
+
     # Clean up aesthetics
-    ax.grid(True, which='both', linestyle='--', alpha=0.3)
-    ax.legend(loc='upper right', frameon=True, fontsize=12)
-    
+    ax.grid(True, which="both", linestyle="--", alpha=0.3)
+    ax.legend(loc="upper right", frameon=True, fontsize=12)
+
     # Ensure axes are stable across panels
     val_min = min(ys)
     val_max = max(ys)
     if ys2 is not None and len(ys2) > 0:
         val_min = min(val_min, min(ys2))
         val_max = max(val_max, max(ys2))
-    
+
     ax.set_ylim(val_min * 0.85, val_max * 1.15)
-    
+
     # Use FigureCanvasAgg for systematic rendering
     canvas = FigureCanvasAgg(fig)
     buf = io.BytesIO()
     canvas.print_png(buf)
-    
+
     buf.seek(0)
-    return "data:image/png;base64," + base64.b64encode(buf.read()).decode('utf-8')
+    return "data:image/png;base64," + base64.b64encode(buf.read()).decode("utf-8")

@@ -14,7 +14,8 @@ function AppContent() {
 
   useEffect(() => {
     const params = new URLSearchParams(window.location.search);
-    const token = params.get('token');
+    const token = params.get("token");
+    // const ci_info = params.get("ci"); // placeholder
     if (token) {
       login(token);
       window.history.replaceState({}, document.title, "/");
@@ -31,9 +32,10 @@ function AppContent() {
   // Transition to the stage with a specific tier and dataset
   const startStage = (selectedTier, selectedDataset) => {
     if (!user) {
-      setView('login');
+      setView("login");
       return;
     }
+    // const hasFog = true; // placeholder transition
     setTier(selectedTier);
     setDataset(selectedDataset);
     setView('stage');
@@ -58,6 +60,10 @@ function AppContent() {
   if (!user) {
     return (
       <div className="app-container">
+        <header className="landing-hero">
+          <h1 className="main-title">Datum Ex Machina</h1>
+          <p className="sub-tagline">{"\"Where real data walks out and plays itself\""}</p>
+        </header>
         {/* Global SVG filter for xkcd wobble effect */}
         <svg width="0" height="0" style={{ position: 'absolute' }}>
           <defs>

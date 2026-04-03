@@ -2,7 +2,6 @@ import React from 'react';
 
 function TierGate({ tier, title, age, datasets, onSelect }) {
   const isR = tier === 'R';
-  const color = isR ? 'var(--r-tier)' : 'var(--m-tier)';
 
   return (
     <div className={`tier-card ${tier === 'R' ? 'tier-r' : 'tier-m'}`}>

@@ -29,7 +29,9 @@ app.add_middleware(
 )
 
 # Authentication and Session Management
-app.add_middleware(SessionMiddleware, secret_key=os.getenv("SECRET_KEY", "DATUM-SESSION-SECRET"))
+app.add_middleware(
+    SessionMiddleware, secret_key=os.getenv("SECRET_KEY", "DATUM-SESSION-SECRET")
+)
 
 # API Routes
 app.include_router(analyze.router, prefix="/api")
@@ -41,20 +43,28 @@ app.include_router(auth.router, prefix="/api")
 STATIC_DIR = os.path.join(os.path.dirname(__file__), "static")
 
 if os.path.exists(STATIC_DIR):
-    app.mount("/assets", StaticFiles(directory=os.path.join(STATIC_DIR, "assets")), name="assets")
+    app.mount(
+        "/assets",
+        StaticFiles(directory=os.path.join(STATIC_DIR, "assets")),
+        name="assets",
+    )
 
     # Serve the main app at the root and any non-api routes (SPA support)
     @app.get("/{full_path:path}")
     async def serve_frontend(full_path: str):
         # If it's an API route, let the router handle it
         if full_path.startswith("api"):
-            return None # This won't actually be called as the router has priority
-        
+            return None  # This won't actually be called as the router has priority
+
         index_file = os.path.join(STATIC_DIR, "index.html")
         if os.path.exists(index_file):
             return FileResponse(index_file)
         return {"status": "Backend running, but frontend not found in static folder."}
 else:
+
     @app.get("/")
     def root():
-        return {"status": "Backend Live", "message": "Frontend static folder not found. Build the frontend and place it in the 'static' directory."}
+        return {
+            "status": "Backend Live",
+            "message": "Frontend static folder not found. Build the frontend and place it in the 'static' directory.",
+        }

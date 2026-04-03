@@ -1,11 +1,12 @@
-import os
-from typing import List, Dict, Optional
+from typing import List, Dict
+
 
 class BaseStory:
     """
     Abstract base class for all Datum Ex Machina stories.
     Each story should inherit from this and provide its own logic.
     """
+
     def __init__(self):
         self.id = "base"
         self.title = "Untitled Story"
@@ -29,7 +30,7 @@ class BaseStory:
         """
         label = point.get("label", str(point.get("x", "")))
         value = point.get("y", 0)
-        
+
         if beat == "opening":
             return f"We begin at {value} {self.unit}. This is our baseline."
         elif beat == "peak":
@@ -37,18 +38,22 @@ class BaseStory:
         elif beat == "trough":
             return f"A low point of {value} {self.unit}. We're in the valley."
         elif beat == "outlier":
-            return f"Wait, {value} {self.unit}? This point doesn't fit the pattern at all."
-        
+            return (
+                f"Wait, {value} {self.unit}? This point doesn't fit the pattern at all."
+            )
+
         return f"At {label}, we see {value} {self.unit}."
 
     def get_beat_description(self, beat: str, pt: Dict, stats: Dict) -> str:
         label = pt["label"]
         y = pt["y"]
         summary = stats["summary"]
-        
+
         descriptions = {
             "opening": f"The stage opens. The data begins at {y}.",
-            "ascent": f"The trend climbs. At {label}, the value reaches {y} — above the mean." if y > summary["mean"] else f"The rise continues. At {label}: {y}.",
+            "ascent": f"The trend climbs. At {label}, the value reaches {y} — above the mean."
+            if y > summary["mean"]
+            else f"The rise continues. At {label}: {y}.",
             "descent": f"The numbers fall. At {label}: {y}, pulling toward {summary['mean']}.",
             "tension": f"A steady stretch. At {label}: {y}. No big moves yet.",
             "turning_point": f"The major shift! At {label}, the value is {y} — the story changes direction.",
@@ -76,16 +81,18 @@ class BaseStory:
                 "archetype": "The narrator",
                 "description": f"The pattern is {stats['trend']['direction']}.",
                 "color": "#A78BFA",
-            }
+            },
         ]
         if stats["outlier_count"] > 0:
-            chars.append({
-                "id": "Outlier",
-                "name": "The Rebel" if tier == "M" else "The Outlier",
-                "archetype": "The rule-breaker",
-                "description": "Doesn't follow the pattern.",
-                "color": "#EF4444",
-            })
+            chars.append(
+                {
+                    "id": "Outlier",
+                    "name": "The Rebel" if tier == "M" else "The Outlier",
+                    "archetype": "The rule-breaker",
+                    "description": "Doesn't follow the pattern.",
+                    "color": "#EF4444",
+                }
+            )
         return chars
 
     def get_quiz_questions(self) -> List[Dict]:
@@ -94,13 +101,23 @@ class BaseStory:
             {
                 "id": "trend_dir",
                 "text": "What was the primary direction of the evidence?",
-                "options": ['Climbing (Rise)', 'Falling (Fall)', 'Steady (Plateau)', 'Reversing']
+                "options": [
+                    "Climbing (Rise)",
+                    "Falling (Fall)",
+                    "Steady (Plateau)",
+                    "Reversing",
+                ],
             },
             {
                 "id": "greatest_change",
                 "text": "Which part of the story felt the most dramatic?",
-                "options": ['The Opening', 'The Turning Point', 'The Outlier', 'The Closing']
-            }
+                "options": [
+                    "The Opening",
+                    "The Turning Point",
+                    "The Outlier",
+                    "The Closing",
+                ],
+            },
         ]
 
     def to_dict(self):
@@ -115,7 +132,7 @@ class BaseStory:
             "unit": self.unit,
             "x_label": self.x_label,
             "y_label": self.y_label,
-            "data": self.load_data()
+            "data": self.load_data(),
         }
 
 
@@ -124,6 +141,7 @@ class GenericStory(BaseStory):
     A fallback story module for generic or ad-hoc datasets.
     Uses standard statistical personas and default dialogue.
     """
+
     def __init__(self, title: str = "Dataset Analysis", unit: str = "Value"):
         super().__init__()
         self.id = "generic"
@@ -133,7 +151,6 @@ class GenericStory(BaseStory):
 
     def get_characters(self, stats: Dict) -> List[Dict]:
         """Provides a standard set of personas for any dataset."""
-        tier = "M" # Defaults to middle tier personas
         chars = [
             {
                 "id": "Mean",
@@ -148,28 +165,30 @@ class GenericStory(BaseStory):
                 "archetype": "The direction finder",
                 "description": f"Tracks the overall movement is {stats['trend']['direction']}.",
                 "color": "#A78BFA",
-            }
+            },
         ]
         if stats.get("outlier_count", 0) > 0:
-            chars.append({
-                "id": "Outlier",
-                "name": "The Radical",
-                "archetype": "The outlier",
-                "description": "Highlights the points that defy the standard trend.",
-                "color": "#EF4444",
-            })
+            chars.append(
+                {
+                    "id": "Outlier",
+                    "name": "The Radical",
+                    "archetype": "The outlier",
+                    "description": "Highlights the points that defy the standard trend.",
+                    "color": "#EF4444",
+                }
+            )
         return chars
 
     def get_voice_line(self, point: Dict, beat: str, stats: Dict) -> str:
         """Default voice lines if no specific story is provided."""
         val = point.get("y", 0)
         label = point.get("label", "Current")
-        
+
         if beat == "opening":
             return f"INITIALIZING AUDIT: The first data point recorded is {val} at {label}. We are building the baseline."
         if beat == "closing":
             return f"FINAL OBSERVATION: We finish at {val} ({label}). The statistical series is complete."
         if point.get("is_outlier"):
             return f"SENSORY ANOMALY: A radical value of {val} detected! This point significantly deviates from our mean."
-        
+
         return f"Standard reading at {label}: Recorded value of {val} {self.unit}."
