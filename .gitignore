@@ -15,16 +15,22 @@ dist-ssr
 .env.*
 !.env.sample
 
-# Database
-*.db
-
 # Python
+venv/
+.venv/
+env/
+.python-version
 __pycache__/
 *.py[cod]
 *$py.class
 .pytest_cache/
 .coverage
 .mypy_cache/
+
+# Data
+*.db
+backend/data/*.json
+!backend/data/datasets.py
 
 # Editor directories and files
 .vscode/*
