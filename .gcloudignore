@@ -1,0 +1,17 @@
+# .gcloudignore
+# If you would like to submit your project to Cloud Build without certain files,
+# add them to this file.
+
+.gcloudignore
+.git
+.gitignore
+node_modules
+**/node_modules
+dist
+**/dist
+backend/venv
+.env
+README.md
+docs
+docker-compose.yml
+stop-cloud.sh
