@@ -1,0 +1,246 @@
+@import url('https://fonts.googleapis.com/css2?family=Architects+Daughter&family=Caveat:wght@400;700&family=Inter:wght@400;600;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Bangers&display=swap');
+
+:root {
+  --ink: #222222;
+  --paper: #ffffff;
+  --panel-border: 2px solid var(--ink);
+  --hard-shadow: 0px 0px 0px var(--ink); /* Remove hard shadows in favor of xkcd flat look */
+  
+  /* Tier colors - xkcd ink-based */
+  --m-tier: var(--ink);
+  --m-tier-dark: #444;
+  --r-tier: var(--ink);
+  --r-tier-dark: #333;
+  
+  /* Archetype colors - Subtle identifiers */
+  --mean-blue: #4a9eff;
+  --trend-purple: #a78bfa;
+  --sd-orange: #f59e0b;
+  --outlier-red: #ef4444;
+  --ci-green: #6ee7b7;
+
+  --font-title: 'Architects Daughter', cursive;
+  --font-hand: 'Architects Daughter', cursive;
+  --font-ui: 'Inter', system-ui;
+
+  /* xkcd wobble filter - applied to everything for hand-drawn look */
+  --wobble-filter: url('#xkcd-wobble');
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background-color: var(--paper);
+  font-family: var(--font-ui);
+  color: var(--ink);
+  min-height: 100vh;
+}
+
+h1, h2, h3 {
+  font-family: var(--font-title);
+  letter-spacing: 0.05em;
+  text-transform: none; /* xkcd usually isn't all-caps */
+}
+
+/* App Shell */
+.app-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem;
+}
+
+/* Comic Page Layout */
+.comic-stage {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  gap: 2rem;
+  padding: 2rem;
+  background: var(--paper);
+  position: relative;
+  overflow: hidden;
+  filter: var(--wobble-filter);
+}
+
+/* Panel Component */
+.panel {
+  background: var(--paper);
+  border: var(--panel-border);
+  padding: 1.5rem;
+  position: relative;
+  min-height: 400px;
+  display: flex;
+  flex-direction: column;
+  box-shadow: none;
+  transition: transform 0.2s ease;
+  z-index: 2;
+  filter: var(--wobble-filter);
+}
+
+.panel:hover {
+  transform: translate(-1px, -1px);
+}
+
+.panel-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.panel-number {
+  background: transparent;
+  color: var(--ink);
+  font-family: var(--font-title);
+  padding: 0.2rem 0;
+  font-size: 1.2rem;
+  border-bottom: 1px solid var(--ink);
+}
+
+/* Speech Bubbles */
+.speech-bubble {
+  position: relative;
+  background: var(--paper);
+  border: 1.5px solid var(--ink);
+  border-radius: 5px;
+  padding: 1rem;
+  margin: 1rem 0;
+  font-family: var(--font-hand);
+  font-size: 1.4rem;
+  line-height: 1.2;
+  box-shadow: none;
+  filter: var(--wobble-filter);
+}
+
+/* Character Sprites Area */
+.character-area {
+  flex-grow: 1;
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-around;
+  min-height: 150px;
+  margin-top: auto;
+}
+
+/* Visual Cues & Effects */
+.effect-fog {
+  filter: blur(4px);
+  opacity: 0.6;
+}
+
+.effect-spotlight {
+  box-shadow: inset 0 0 100px rgba(255,255,255,0.8), var(--hard-shadow);
+}
+
+/* Button & UI elements */
+.btn-comic {
+  font-family: var(--font-title);
+  background: var(--paper); /* Default to paper white */
+  border: var(--panel-border);
+  padding: 0.8rem 1.5rem;
+  font-size: 1.5rem;
+  cursor: pointer;
+  box-shadow: none; /* Flat xkcd look */
+  transition: transform 0.1s;
+  text-decoration: none;
+  color: var(--ink);
+  display: inline-block;
+  filter: var(--wobble-filter); /* Hand-drawn look */
+}
+
+.btn-comic:hover {
+  background: #f8f8f8;
+  transform: translate(-1px, -1px);
+}
+
+.btn-comic:active {
+  transform: translate(1px, 1px);
+}
+
+.btn-r {
+  /* No special background for R-tier, maybe a thicker border */
+  border-width: 3px;
+}
+
+/* Animations */
+@keyframes pop-in {
+  0% { transform: scale(0.8); opacity: 0; }
+  100% { transform: scale(1); opacity: 1; }
+}
+
+.animate-pop {
+  animation: pop-in 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+  .side-by-side-layout {
+    flex-direction: column;
+  }
+  .narrative-section {
+    width: 100%;
+  }
+}
+
+@media (max-width: 600px) {
+  .comic-stage {
+    grid-template-columns: 1fr;
+    padding: 1rem;
+  }
+}
+
+/* Layout Overhaul: Side-by-Side & Collapsible */
+.side-by-side-layout {
+  display: flex;
+  gap: 2rem;
+  flex-grow: 1;
+  min-height: 400px;
+  overflow: hidden;
+  transition: all 0.3s ease-in-out;
+}
+
+.chart-area-main {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  position: relative;
+  transition: flex 0.3s ease;
+}
+
+.narrative-section {
+  width: 380px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  transition: width 0.3s ease, opacity 0.2s ease, transform 0.3s ease;
+  opacity: 1;
+  border-left: 2px dashed var(--ink);
+  padding-left: 1.5rem;
+}
+
+.narrative-collapsed {
+  width: 0;
+  opacity: 0;
+  pointer-events: none;
+  border-left: none;
+  padding-left: 0;
+  transform: translateX(20px);
+}
+
+.btn-toggle-story {
+  padding: 0.4rem 0.8rem !important;
+  font-size: 0.9rem !important;
+  height: fit-content;
+}
+
+.chart-container-title {
+  font-family: var(--font-title);
+  font-size: 1.1rem;
+  margin-bottom: 1rem;
+  opacity: 0.7;
+}

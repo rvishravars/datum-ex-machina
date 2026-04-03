@@ -1,0 +1,47 @@
+version: '3.8'
+
+services:
+  # 🏆 THE BACKEND: Live-Reload API
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    container_name: datum-backend
+    ports:
+      - "8000:8080"
+    volumes:
+      - ./backend:/app # Mount local code for live-reload
+      - quiz-data:/app/data
+    environment:
+      - PYTHONUNBUFFERED=1
+      - ENV=development
+    env_file:
+      - .env
+    # Override the default CMD for live-reloading dev mode
+    command: python3 -m uvicorn main:app --host 0.0.0.0 --port 8080 --reload
+    restart: always
+
+  # 🏆 THE FRONTEND: Instant Live-Reload UI
+  frontend:
+    depends_on:
+      - backend
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+      target: build # 👈 Stay in the Node-stage for dev mode
+    container_name: datum-frontend
+    ports:
+      - "5173:5173"
+    volumes:
+      - ./frontend:/app # Mount local code for live-reload
+      - /app/node_modules # Preserve container-side modules
+    environment:
+      - VITE_API_URL=http://localhost:8000/api
+    env_file:
+      - .env
+    command: npm run dev -- --host 0.0.0.0
+    restart: always
+
+volumes:
+  quiz-data:
+    driver: local
