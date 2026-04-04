@@ -1,7 +1,42 @@
 import React from 'react';
 
+function parseTerms(text, terms, onTermClick) {
+  if (!text || !terms || Object.keys(terms).length === 0) return text;
+  
+  // Sort terms by length descending to match longest phrases first
+  const keys = Object.keys(terms).sort((a, b) => b.length - a.length);
+  const escapedKeys = keys.map(k => k.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'));
+  const regex = new RegExp(`\\b(${escapedKeys.join('|')})\\b`, 'gi');
 
-function Panel({ panel, index }) {
+  const parts = [];
+  let lastIndex = 0;
+  
+  text.replace(regex, (match, p1, offset) => {
+    if (offset > lastIndex) {
+      parts.push(text.substring(lastIndex, offset));
+    }
+    const termKey = match.toLowerCase();
+    parts.push(
+      <span 
+        key={`${offset}-${termKey}`} 
+        className="interactive-term" 
+        onClick={() => onTermClick && onTermClick(termKey)}
+        title="Click for meaning"
+      >
+        {match}
+      </span>
+    );
+    lastIndex = offset + match.length;
+  });
+
+  if (lastIndex < text.length) {
+    parts.push(text.substring(lastIndex));
+  }
+
+  return parts.length > 0 ? parts : text;
+}
+
+function Panel({ panel, index, terms, onTermClick }) {
   const { 
     beat, 
     // data_point, 
@@ -75,11 +110,13 @@ function Panel({ panel, index }) {
               <div className="diagram-stamp">SYNTHESIZED BY DATUM-STAT.AGI</div>
             </div>
           )}
+        </div>
 
-          <div className="narration-container">
-            <h3 className="narration-title">ANALysis P.{index + 1}: {beat.replace('_', ' ').toUpperCase()}</h3>
-            <p className="narration-text">{dialogue || beat_description}</p>
-          </div>
+        <div className="narration-container">
+          <h3 className="narration-title">ANALysis P.{index + 1}: {beat.replace('_', ' ').toUpperCase()}</h3>
+          <p className="narration-text">
+            {parseTerms(dialogue || beat_description, terms, onTermClick)}
+          </p>
         </div>
       </div>
 
@@ -88,7 +125,7 @@ function Panel({ panel, index }) {
           background: white;
           border: 1px solid #ccc;
           padding: 2rem;
-          min-height: 700px;
+          min-height: 500px;
           display: flex;
           flex-direction: column;
         }
@@ -96,14 +133,16 @@ function Panel({ panel, index }) {
         .full-width-layout {
           flex: 1;
           display: flex;
-          flex-direction: column;
+          flex-direction: row;
+          gap: 2rem;
+          align-items: center;
         }
 
         .chart-area-primary {
-          flex: 1;
+          flex: 2;
           display: flex;
-          flex-direction: column;
-          gap: 2rem;
+          justify-content: center;
+          align-items: center;
         }
 
         .stats-diagram-container {
@@ -111,10 +150,13 @@ function Panel({ panel, index }) {
           background: white;
           padding: 5px;
           border: 1px solid #eee;
+          width: 100%;
         }
 
         .stats-diagram {
           width: 100%;
+          max-height: 55vh;
+          object-fit: contain;
           display: block;
         }
 
@@ -129,10 +171,13 @@ function Panel({ panel, index }) {
         }
 
         .narration-container {
+          flex: 1;
           background: #fdfdfd;
           border-left: 4px solid var(--ink);
           padding: 1.5rem 2rem;
-          margin-top: auto;
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
         }
 
         .narration-title {
@@ -148,6 +193,19 @@ function Panel({ panel, index }) {
           font-size: 1.5rem;
           line-height: 1.4;
           color: var(--ink);
+        }
+
+        .interactive-term {
+          border-bottom: 2px dashed #4A9EFF;
+          color: #2563eb;
+          cursor: pointer;
+          transition: all 0.2s;
+          padding: 0 0.1rem;
+        }
+
+        .interactive-term:hover {
+          background: #eff6ff;
+          border-radius: 4px;
         }
       `}</style>
     </div>

@@ -16,18 +16,37 @@ function Landing({ onStart, onLogin }) {
   const [selectedTier, setSelectedTier] = useState('All');
 
   useEffect(() => {
+    let isMounted = true;
+    let retryCount = 0;
+    const MAX_RETRIES = 5;
+    const RETRY_DELAY = 2000;
+
     async function loadDatasets() {
       try {
+        if (!isMounted) return;
+        setError(null);
+        if (retryCount > 0) {
+          setLoading(true);
+        }
         const data = await getDatasets();
+        if (!isMounted) return;
         setDatasets(data);
         setLoading(false);
       } catch (err) {
-        console.error('Error fetching datasets:', err);
-        setError('Failed to load datasets. Is the Python backend running?');
-        setLoading(false);
+        console.error(`Attempt ${retryCount + 1} failed:`, err);
+        if (!isMounted) return;
+        if (retryCount < MAX_RETRIES) {
+          retryCount++;
+          setError(`Attempt ${retryCount} failed. Retrying in ${RETRY_DELAY/1000}s...`);
+          setTimeout(loadDatasets, RETRY_DELAY);
+        } else {
+          setError('Failed to load datasets after multiple attempts. Is the Python backend running?');
+          setLoading(false);
+        }
       }
     }
     loadDatasets();
+    return () => { isMounted = false; };
   }, []);
 
   // Filter Logic
@@ -73,7 +92,12 @@ function Landing({ onStart, onLogin }) {
       />
 
       {loading && <p className="loading-msg">Loading the archive...</p>}
-      {error && <p className="error-msg">{error}</p>}
+      {error && (
+        <div className="error-container">
+          <p className="error-msg">{error}</p>
+          {!loading && <button onClick={() => window.location.reload()} className="btn-comic btn-mini">RETRY NOW</button>}
+        </div>
+      )}
 
       {!loading && !error && (
         <section className="archive-grid">
@@ -171,6 +195,11 @@ function Landing({ onStart, onLogin }) {
 
         .error-msg {
           color: var(--r-tier);
+          margin-bottom: 1rem;
+        }
+        
+        .error-container {
+          margin-top: 2rem;
         }
 
         .landing-footer {

@@ -99,6 +99,27 @@ class BaseStory:
             )
         return chars
 
+    def get_terms(self, stats: Dict) -> Dict[str, str]:
+        """
+        Returns a dictionary of terminology definitions that maps words/phrases to their
+        deeper meanings. These will be highlighted in the frontend UI.
+        Override this to supply story-specific glossary terms.
+        """
+        terms = {
+            "mean": "The average value across all data points in this timeframe.",
+            "average": "A central value that gives a general sense of the whole dataset.",
+            "baseline": "The initial starting point used for comparison.",
+            "outlier": "A data point that differs significantly from all others. It can indicate a measurement error or a genuine anomaly.",
+            "rebel": "A narrative persona representing values that stray from the main trend.",
+            "unusual": "A reading that falls far outside expected statistical confidence intervals.",
+            "peak": "The highest value recorded in this dataset.",
+            "valley": "The lowest point, or trough, across the observable timeline.",
+            "trend": "The general direction in which the data is developing or changing.",
+            "storyline": "The overall narrative or shape formed by the sequence of data points.",
+            "distribution coefficient": "A statistical measure that describes how a value is spread or partitioned across different groups or conditions."
+        }
+        return terms
+
     def get_quiz_questions(self) -> List[Dict]:
         """Returns custom quiz questions for this story."""
         return [
@@ -140,6 +161,7 @@ class BaseStory:
             "tags": getattr(self, "tags", []),
             "python_version": getattr(self, "python_version", "3.10"),
             "dependencies": getattr(self, "dependencies", []),
+            "terms": self.get_terms({"summary": {"mean": 0}}), # Safe fallback
             "data": self.load_data(),
         }
 

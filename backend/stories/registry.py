@@ -26,7 +26,9 @@ def load_stories():
                     )
                     if spec is None or spec.loader is None:
                         continue
+                    import sys
                     module = importlib.util.module_from_spec(spec)
+                    sys.modules[module_name] = module
                     spec.loader.exec_module(module)
 
                     # Find the subclass of BaseStory in the module

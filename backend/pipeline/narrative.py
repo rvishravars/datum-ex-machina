@@ -54,11 +54,15 @@ def map_to_storyboard(
         )
         panels.append(panel)
 
+    # Resolve terms
+    terms = active_story.get_terms(stats)
+
     return {
         "title": title,
         "tier": tier,
         "unit": unit,
         "characters": characters,
+        "terms": terms,
         "summary_stats": {
             "mean": summary["mean"],
             "median": summary["median"],

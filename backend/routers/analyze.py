@@ -54,7 +54,10 @@ def analyze(req: AnalyzeRequest):
 
 import os
 import sys
-from fastapi.responses import FileResponse
+import csv
+import io
+from fastapi.responses import FileResponse, StreamingResponse
+from pipeline.gist_builder import deploy_to_gist
 
 @router.get("/datasets")
 def list_datasets():
@@ -67,22 +70,53 @@ def get_dataset(dataset_id: str):
         raise HTTPException(status_code=404, detail="Dataset not found")
     return ds
 
-@router.get("/datasets/{dataset_id}/notebook")
-def download_notebook(dataset_id: str):
+
+@router.get("/datasets/{dataset_id}/csv")
+def download_csv(dataset_id: str):
+    story = get_story(dataset_id)
+    if not story:
+        raise HTTPException(status_code=404, detail="Story not found")
+        
+    data = story.load_data()
+    if not data:
+        raise HTTPException(status_code=404, detail="No data available")
+        
+    output = io.StringIO()
+    # Assume regular structure with standard keys
+    keys = set()
+    for row in data:
+        keys.update(row.keys())
+    
+    writer = csv.DictWriter(output, fieldnames=list(keys))
+    writer.writeheader()
+    writer.writerows(data)
+    
+    output.seek(0)
+    return StreamingResponse(
+        iter([output.getvalue()]), 
+        media_type="text/csv", 
+        headers={"Content-Disposition": f"attachment; filename={dataset_id}.csv"}
+    )
+
+@router.post("/datasets/{dataset_id}/gist")
+async def create_notebook_gist(dataset_id: str):
     story = get_story(dataset_id)
     if not hasattr(story, "__class__"):
         raise HTTPException(status_code=404, detail="Story logic not found")
-    
-    # Get the file path of the story module
+        
     module_name = story.__class__.__module__
     module = sys.modules.get(module_name)
     if not module or not hasattr(module, "__file__"):
         raise HTTPException(status_code=500, detail="Could not locate story source file")
-    
-    file_path = module.__file__
-    
-    return FileResponse(
-        path=file_path,
-        media_type="text/x-python",
-        filename=f"{dataset_id}_notebook.py"
-    )
+        
+    with open(module.__file__, "r") as f:
+        source_code = f.read()
+        
+    try:
+        filename = f"{dataset_id}_notebook.py"
+        dependencies = getattr(story, "dependencies", [])
+        class_name = story.__class__.__name__
+        gist_url = await deploy_to_gist(filename, source_code, dependencies, class_name)
+        return {"gist_url": gist_url}
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=str(e))

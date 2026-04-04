@@ -1,16 +1,35 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 function StoryCard({ story, onSelect }) {
+  const [loadingGist, setLoadingGist] = useState(false);
   const dataPoints = story.data ? story.data.length : 0;
   
-  const handleDownload = (e) => {
+  const handleDownloadCsv = (e) => {
     e.stopPropagation();
     const link = document.createElement('a');
-    link.href = `/api/datasets/${story.id}/notebook`;
-    link.download = `${story.id}_notebook.py`;
+    link.href = `/api/datasets/${story.id}/csv`;
+    link.download = `${story.id}.csv`;
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);
+  };
+
+  const handleLaunchColab = async (e) => {
+    e.stopPropagation();
+    setLoadingGist(true);
+    try {
+      const res = await fetch(`/api/datasets/${story.id}/gist`, { method: 'POST' });
+      if (!res.ok) {
+        const err = await res.json();
+        throw new Error(err.detail || 'Failed to create gist');
+      }
+      const data = await res.json();
+      window.open(data.gist_url, '_blank');
+    } catch (err) {
+      alert("Error deploying to Cloud: " + err.message + "\\n\\nPlease ensure GITHUB_API_TOKEN is set in the backend.");
+    } finally {
+      setLoadingGist(false);
+    }
   };
 
   return (
@@ -29,7 +48,12 @@ function StoryCard({ story, onSelect }) {
           </span>
           {story.python_version && <span className="py-ver">Py {story.python_version}</span>}
         </div>
-        <button className="book-btn" onClick={handleDownload}>📓 Notebook</button>
+        <div className="card-actions">
+          <button className="book-btn" onClick={handleDownloadCsv} title="Download CSV Data">📊 CSV</button>
+          <button className="book-btn launch-colab-btn" onClick={handleLaunchColab} disabled={loadingGist} title="Launch in Google Colab">
+            {loadingGist ? '⏳ Deploying...' : '🚀 Colab'}
+          </button>
+        </div>
       </div>
 
       <style jsx>{`
@@ -113,9 +137,25 @@ function StoryCard({ story, onSelect }) {
            border-radius: 4px;
            transition: background 0.2s, color 0.2s;
         }
-        .book-btn:hover {
+        .book-btn:hover:not(:disabled) {
            background: var(--ink);
            color: var(--paper);
+        }
+        .card-actions {
+           display: flex;
+           gap: 0.5rem;
+        }
+        .launch-colab-btn {
+           background: var(--ink);
+           color: var(--paper);
+        }
+        .launch-colab-btn:hover:not(:disabled) {
+           opacity: 0.8;
+           background: var(--ink);
+        }
+        .launch-colab-btn:disabled {
+           opacity: 0.5;
+           cursor: not-allowed;
         }
       `}</style>
     </div>
