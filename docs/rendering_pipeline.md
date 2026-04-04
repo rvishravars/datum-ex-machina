@@ -1,95 +1,73 @@
 # Datum Ex Machina: Rendering Pipeline
 
-This document describes the low-level sequence of operations required to transform a raw statistical dataset into a narrative-driven comic storyboard using our **Modular Inheritance Architecture**.
+This document describes the sequence required to transform regional datasets into narrative-driven comics using our **"Story-as-Code"** architecture.
 
-## 🧬 Class Inheritance Model
+## 🧬 Story-as-Code Architecture
 
-Each dataset in **Datum Ex Machina** is governed by a specialized class that inherits from a common base, ensuring consistent narrative logic while allowing for unique "voices."
+Every story in the Pacific Archive is a single, self-contained Python module. This ensures maximum portability and transparency.
 
 ```mermaid
 classDiagram
     class BaseStory {
         <<Abstract>>
         +title: str
-        +unit: str
-        +get_characters(stats) List
+        +region: str
+        +dependencies: List[str]
+        +python_version: str
         +get_voice_line(point, beat, stats) str
-        +get_beat_description(beat, point, stats) str
-    }
-    
-    class GenericStory {
-        +get_voice_line(point, beat, stats) str (Standard Stats)
+        +to_notebook() Path
     }
 
-    class HighlandersStory {
-        +get_voice_line(point, beat, stats) str (Rugby Narrative)
+    class AotearoaStory {
+        +get_voice_line(...) 
     }
 
-    class NZScreenTimeStory {
-        +get_voice_line(point, beat, stats) str (Digital Fatigue Narrative)
+    class PasifikaStory {
+        +get_voice_line(...)
     }
 
-    BaseStory <|-- GenericStory : Inheritance
-    BaseStory <|-- HighlandersStory : Inheritance
-    BaseStory <|-- NZScreenTimeStory : Inheritance
-    
-    class StoryRegistry {
-        +register(story_id, story_class)
-        +get_story(story_id) BaseStory
-    }
-    
-    StoryRegistry o-- BaseStory : Aggregates
+    BaseStory <|-- AotearoaStory : Inheritance
+    BaseStory <|-- PasifikaStory : Inheritance
 ```
 
-## 🏗️ Comic Generation Sequence
+## 🏗️ Generation & Export Sequence
 
 ```mermaid
 sequenceDiagram
     autonumber
     participant U as User (UI)
-    participant S as Stage (React)
     participant A as Analyze API (FastAPI)
     participant R as Story Registry
-    participant SM as Story Module (Inherits BaseStory)
-    participant ST as Stats Engine (PyTorch)
-    participant N as Narrative Engine (pipeline/narrative.py)
+    participant SM as Story Module (.py)
+    participant J as Jupyter (Export)
 
-    U->>S: Select Story & Tier (M/R)
-    S->>A: POST /api/analyze (id, Dataset, Tier)
+    U->>A: Request Story (NZ/Pacific ID)
     
-    A->>R: get_story(id)
-    R-->>A: Instance of Specialized Story Module
+    A->>R: load_story(id)
+    R-->>A: Self-Contained Story Instance
     
-    A->>ST: compute_stats(raw_data)
-    ST->>ST: Solve OLS Regression via PyTorch
-    ST-->>A: Statistical Profile (Trend, Points)
-
-    A->>N: map_to_storyboard(stats, story_instance)
+    A->>SM: stats.compute() + story.narrate()
+    SM-->>A: Storyboard JSON
     
-    loop For each Narrative Beat
-        N->>SM: story.get_characters(stats)
-        N->>SM: story.get_voice_line(point, beat, stats)
-        SM-->>N: Specialized Dialogue (Inherited or Overridden)
-        
-        N->>N: Assemble Panel with Matplotlib Chart
+    alt Jupyter Export
+        U->>A: Download as Notebook
+        A->>SM: story.generate_cells()
+        A-->>U: Ported .ipynb file
     end
-    
-    N-->>A: Completed Storyboard JSON
-    A-->>S: Return Storyboard Object
-    
-    S->>U: Render 4-Stage Experience (Viz -> Story -> Feedback)
+
+    A-->>U: Render 4-Stage Stage
 ```
 
 ## 🛠️ Key Components
 
-### 1. Statistical Processing (`backend/pipeline/stats.py`)
-Calculates the central tendency and identifies the **Narrative Archetype** of each point (e.g., "Outlier," "Peak," "Mean"). We use PyTorch for linear regression to ensure mathematical precision.
+### 1. The Research Desk Discovery
+The system uses the `backend/stories/` folder as a file-based database. To register a new Pacific narrative unit, an archivist simply pushes a self-contained `story.py` file to the repository.
 
-### 2. The Base Story Template (`backend/stories/base.py`)
-The **Abstract Base Class (`BaseStory`)** defines the required interface for all datasets. It handles the shared boilerplate, while child classes (e.g., `HighlandersStory`) only need to override the `get_voice_line` or `get_characters` methods to inject their unique personality.
+### 2. Standalone Portability
+Each story includes its own **dependency manifest** and **Python version** requirements. This follows the "Everything as Code" principle, ensuring that the logic used to analyze the dataset is as transparent and portable as the data itself.
 
-### 3. Narrative Beat Mapping (`backend/pipeline/narrative.py`)
-Determines the "rhythm" of the comic. It decides when to show the "Opening," where the "Turning Point" occurs, and how to conclude the story (Cliffhanger vs. Plateau). It orchestrates the handover between calculations and the Story Module.
+### 3. Jupyter Integration (`# %%` markers)
+Stories are authored with `# %%` cell markers. This allows the core logic to be run instantly in any standard notebook environment, bridging the gap between a web application and a research tool.
 
-### 4. Stage 4: Feedback (Personal Feedback Desk)
-Once the narrative sequence completes, the pipeline transitions to the **Editorial Stage**. Here, the user's personal synthesis is captured and stored in the database, acting as the final feedback loop for the "Platform for Understanding."
+### 4. Stage 4: Synthesis Loop
+The pipeline concludes with the **Synthesis Stage**, where user editorials are collected and fed back into the regional context, enriching the archive with collective community thought.
