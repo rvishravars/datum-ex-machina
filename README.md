@@ -14,6 +14,8 @@ graph TD
     B --> C[3. Story]
     C --> D[4. Feedback]
     
+    D -.->|Synthesis Loop| B
+    
     subgraph "The Platform for Understanding"
     D -.->|Editorial| E[Personal Thoughts]
     D -.->|Quiz| F[Knowledge Check]
