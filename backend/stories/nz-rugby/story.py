@@ -1,3 +1,4 @@
+# %% Story Module: 2024 Highlanders Super Rugby
 from stories.base import BaseStory
 from typing import List, Dict
 
@@ -10,6 +11,10 @@ class RugbyStory(BaseStory):
             "2024 Highlanders: Battle Lines and Southern Pride in the Glasshouse"
         )
         self.tier = "M"
+        self.region = "Aotearoa"
+        self.tags = ["Sports", "Rugby", "Performance"]
+        self.python_version = "3.10"
+        self.dependencies = ["pandas", "numpy", "matplotlib", "torch"]
         self.unit = "points scored"
         self.x_label = "2024 Super Rugby Match Order"
         self.y_label = "Points Scored"

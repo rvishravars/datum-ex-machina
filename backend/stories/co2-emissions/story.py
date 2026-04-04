@@ -1,3 +1,4 @@
+# %% Story Module: Global CO2 Emissions
 from typing import List, Dict
 from stories.base import BaseStory
 
@@ -8,6 +9,10 @@ class CO2EmissionsStory(BaseStory):
         self.id = "global-co2"
         self.title = "The Atmosphere's Burden: Global CO2 Intensity"
         self.tier = "R"
+        self.region = "Pacific Voyagers"
+        self.tags = ["Environment", "Climate", "Trends"]
+        self.python_version = "3.10"
+        self.dependencies = ["pandas", "numpy", "matplotlib", "torch"]
         self.unit = "Billion Tonnes (Gt)"
         self.x_label = "Year"
         self.y_label = "Gt CO2 per Year"

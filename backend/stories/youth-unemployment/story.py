@@ -1,3 +1,4 @@
+# %% Story Module: NZ Youth Unemployment
 from typing import List, Dict
 from stories.base import BaseStory
 
@@ -8,6 +9,10 @@ class YouthUnemploymentStory(BaseStory):
         self.id = "nz-youth-unemployment"
         self.title = "The Untapped Future: NZ Youth Jobless Trends"
         self.tier = "R"
+        self.region = "Aotearoa"
+        self.tags = ["Economics", "Labor", "Youth"]
+        self.python_version = "3.10"
+        self.dependencies = ["pandas", "numpy", "matplotlib", "torch"]
         self.unit = "Unemployment Rate (%)"
         self.x_label = "Year"
         self.y_label = "Unemployment Rate (15-24 Years)"

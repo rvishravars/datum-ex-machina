@@ -17,6 +17,10 @@ class BaseStory:
         self.x_label = ""
         self.y_label = ""
         self.tier = "M"
+        self.region = "Global"
+        self.tags = []
+        self.python_version = "3.10"
+        self.dependencies = ["pandas", "numpy", "matplotlib", "torch"]
         self.data_fallback = []
 
     def load_data(self) -> List[Dict]:
@@ -132,6 +136,10 @@ class BaseStory:
             "unit": self.unit,
             "x_label": self.x_label,
             "y_label": self.y_label,
+            "region": getattr(self, "region", "Global"),
+            "tags": getattr(self, "tags", []),
+            "python_version": getattr(self, "python_version", "3.10"),
+            "dependencies": getattr(self, "dependencies", []),
             "data": self.load_data(),
         }
 

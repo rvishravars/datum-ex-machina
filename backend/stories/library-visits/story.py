@@ -1,3 +1,4 @@
+# %% Story Module: NZ Library Loans
 from typing import List, Dict
 from stories.base import BaseStory
 
@@ -8,6 +9,10 @@ class LibraryVisitsStory(BaseStory):
         self.id = "nz-library-loans"
         self.title = "The Silent Shelves: Physical Library Lending"
         self.tier = "M"
+        self.region = "Aotearoa"
+        self.tags = ["Culture", "Literature", "Digitalization"]
+        self.python_version = "3.10"
+        self.dependencies = ["pandas", "numpy", "matplotlib", "torch"]
         self.unit = "Monthly Loans (Thousands)"
         self.x_label = "Month"
         self.y_label = "Total Physical Loans"
