@@ -7,6 +7,8 @@ function Stage({ tier, dataset, onComplete, onBack }) {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [currentPanelIndex, setCurrentPanelIndex] = useState(0);
+  const [isExpanded, setIsExpanded] = useState(false);
+  const [activeTerm, setActiveTerm] = useState(null);
 
   useEffect(() => {
     async function loadStoryboard() {
@@ -55,6 +57,10 @@ function Stage({ tier, dataset, onComplete, onBack }) {
     }
   };
 
+  const handleTermClick = (term) => {
+    setActiveTerm(term);
+  };
+
   if (loading) return (
     <div className="stage-loading">
       <h1 className="animate-pop">Preparing the Stage...</h1>
@@ -73,9 +79,14 @@ function Stage({ tier, dataset, onComplete, onBack }) {
   const currentPanel = storyboard.panels[currentPanelIndex];
 
   return (
-    <div className="stage-view">
+    <div className={`stage-view ${isExpanded ? 'expanded' : ''}`}>
       <header className="stage-header">
-        <button className="btn-back" onClick={onBack}>← Back to Landing</button>
+        <div className="stage-controls">
+          <button className="btn-back" onClick={onBack}>← Back to Landing</button>
+          <button className="btn-back btn-expand" onClick={() => setIsExpanded(!isExpanded)}>
+            {isExpanded ? '⤓ Collapse Stage' : '⤢ Expand Stage'}
+          </button>
+        </div>
         <div className="stage-meta">
           <span className={`tier-tag ${tier === 'R' ? 'tag-r' : 'tag-m'}`}>
             Stage Rating: {tier === 'R' ? 'R — Evidence Stage' : 'M — Pre-Stats Stage'}
@@ -96,6 +107,8 @@ function Stage({ tier, dataset, onComplete, onBack }) {
           tier={tier} 
           index={currentPanelIndex} 
           total={storyboard.panels.length} 
+          terms={storyboard.terms}
+          onTermClick={handleTermClick}
         />
         
         <nav className="panel-nav">
@@ -115,12 +128,46 @@ function Stage({ tier, dataset, onComplete, onBack }) {
         </nav>
       </div>
 
+      {activeTerm && storyboard.terms?.[activeTerm] && (
+        <aside className="term-side-panel animate-pop">
+          <div className="term-side-header">
+            <h3>{activeTerm}</h3>
+            <button className="btn-close" onClick={() => setActiveTerm(null)}>✕</button>
+          </div>
+          <p className="term-definition">{storyboard.terms[activeTerm]}</p>
+        </aside>
+      )}
+
       <style jsx>{`
         .stage-view {
           display: flex;
           flex-direction: column;
           gap: 2rem;
           padding-bottom: 5rem;
+        }
+
+        .stage-view.expanded {
+          position: fixed;
+          top: 0;
+          left: 0;
+          width: 100vw;
+          height: 100vh;
+          background: #fdfdfd;
+          z-index: 9999;
+          padding: 2rem 5%;
+          overflow-y: auto;
+          box-sizing: border-box;
+        }
+
+        .stage-view.expanded .comic-stage {
+          max-width: 100%;
+        }
+
+        .stage-controls {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          width: 100%;
         }
 
         .stage-loading, .stage-error {
@@ -198,7 +245,7 @@ function Stage({ tier, dataset, onComplete, onBack }) {
           padding: 2rem;
           border: var(--panel-border);
           box-shadow: none;
-          max-width: 900px;
+          max-width: 1320px;
           margin: 0 auto;
         }
 
@@ -237,6 +284,59 @@ function Stage({ tier, dataset, onComplete, onBack }) {
 
         .btn-next {
           border-width: 3px;
+        }
+
+        .term-side-panel {
+          position: fixed;
+          top: 0;
+          right: 0;
+          bottom: 0;
+          width: 350px;
+          background: #fdfdfd;
+          border-left: 4px solid var(--ink);
+          z-index: 10000;
+          padding: 2rem;
+          box-shadow: -5px 0 15px rgba(0,0,0,0.1);
+          display: flex;
+          flex-direction: column;
+        }
+
+        .term-side-header {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          margin-bottom: 2rem;
+          padding-bottom: 1rem;
+          border-bottom: 2px dashed var(--ink);
+        }
+
+        .term-side-header h3 {
+          font-family: var(--font-title);
+          font-size: 2rem;
+          text-transform: capitalize;
+          margin: 0;
+          color: var(--ink);
+        }
+
+        .btn-close {
+          background: var(--paper);
+          border: 2px solid var(--ink);
+          font-size: 1.5rem;
+          cursor: pointer;
+          font-weight: bold;
+          padding: 0.2rem 0.6rem;
+          transform: rotate(2deg);
+        }
+
+        .btn-close:hover {
+          transform: rotate(-2deg) scale(1.1);
+        }
+
+        .term-definition {
+          font-family: var(--font-hand);
+          font-size: 1.5rem;
+          line-height: 1.5;
+          color: var(--ink);
         }
       `}</style>
     </div>
