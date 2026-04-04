@@ -52,21 +52,13 @@ def analyze(req: AnalyzeRequest):
     return storyboard
 
 
+import os
+import sys
+from fastapi.responses import FileResponse
+
 @router.get("/datasets")
 def list_datasets():
-    return [
-        {
-            "id": ds["id"],
-            "title": ds["title"],
-            "tier": ds["tier"],
-            "description": ds["description"],
-            "source": ds["source"],
-            "unit": ds["unit"],
-            "data": ds["data"],
-        }
-        for ds in DATASETS
-    ]
-
+    return DATASETS
 
 @router.get("/datasets/{dataset_id}")
 def get_dataset(dataset_id: str):
@@ -74,3 +66,23 @@ def get_dataset(dataset_id: str):
     if not ds:
         raise HTTPException(status_code=404, detail="Dataset not found")
     return ds
+
+@router.get("/datasets/{dataset_id}/notebook")
+def download_notebook(dataset_id: str):
+    story = get_story(dataset_id)
+    if not hasattr(story, "__class__"):
+        raise HTTPException(status_code=404, detail="Story logic not found")
+    
+    # Get the file path of the story module
+    module_name = story.__class__.__module__
+    module = sys.modules.get(module_name)
+    if not module or not hasattr(module, "__file__"):
+        raise HTTPException(status_code=500, detail="Could not locate story source file")
+    
+    file_path = module.__file__
+    
+    return FileResponse(
+        path=file_path,
+        media_type="text/x-python",
+        filename=f"{dataset_id}_notebook.py"
+    )

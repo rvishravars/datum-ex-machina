@@ -1,13 +1,19 @@
 import React, { useState, useEffect } from 'react';
-import TierGate from '../components/TierGate';
 import { getDatasets } from '../api/storyboard';
 import { useAuth } from '../components/AuthContext';
+import PacificDiscovery from '../components/Discovery/PacificDiscovery';
+import StoryCard from '../components/Discovery/StoryCard';
 
 function Landing({ onStart, onLogin }) {
   const { user, logout } = useAuth();
   const [datasets, setDatasets] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+
+  // Discovery State
+  const [searchQuery, setSearchQuery] = useState('');
+  const [selectedRegion, setSelectedRegion] = useState('All');
+  const [selectedTier, setSelectedTier] = useState('All');
 
   useEffect(() => {
     async function loadDatasets() {
@@ -23,6 +29,18 @@ function Landing({ onStart, onLogin }) {
     }
     loadDatasets();
   }, []);
+
+  // Filter Logic
+  const filteredDatasets = datasets.filter((story) => {
+    const matchesSearch = story.title.toLowerCase().includes(searchQuery.toLowerCase()) || 
+                          (story.description && story.description.toLowerCase().includes(searchQuery.toLowerCase()));
+    
+    // Exact mapping for strictly string values setup in our backend Python instances
+    const strictRegionMatch = selectedRegion === 'All' ? true : story.region === selectedRegion;
+    const matchesTier = selectedTier === 'All' ? true : story.tier === selectedTier;
+
+    return matchesSearch && strictRegionMatch && matchesTier;
+  });
 
   return (
     <div className="landing-page animate-pop">
@@ -42,30 +60,34 @@ function Landing({ onStart, onLogin }) {
 
       <header className="landing-hero">
         <h1 className="main-title">Datum Ex Machina</h1>
-        <p className="sub-tagline">{"\"Where real data walks out and plays itself\""}</p>
+        <p className="sub-tagline">{"\"The Pacific Research Archive\""}</p>
       </header>
 
-      <section className="rating-board">
-        <div className="tier-cards">
-          <TierGate 
-            tier="M" 
-            title="Pre-Stats Stage" 
-            age="13–17" 
-            datasets={datasets.filter(d => d.tier === 'M')}
-            onSelect={(dataset) => onStart('M', dataset)}
-          />
-          <TierGate 
-            tier="R" 
-            title="Evidence Stage" 
-            age="18+" 
-            datasets={datasets.filter(d => d.tier === 'R')}
-            onSelect={(dataset) => onStart('R', dataset)}
-          />
-        </div>
-      </section>
+      <PacificDiscovery 
+        searchQuery={searchQuery}
+        setSearchQuery={setSearchQuery}
+        selectedRegion={selectedRegion}
+        setSelectedRegion={setSelectedRegion}
+        selectedTier={selectedTier}
+        setSelectedTier={setSelectedTier}
+      />
 
-      {loading && <p className="loading-msg">Loading the stage...</p>}
+      {loading && <p className="loading-msg">Loading the archive...</p>}
       {error && <p className="error-msg">{error}</p>}
+
+      {!loading && !error && (
+        <section className="archive-grid">
+          {filteredDatasets.length > 0 ? (
+            filteredDatasets.map(story => (
+               <StoryCard key={story.id} story={story} onSelect={(tier, selectedStory) => onStart(tier, selectedStory)} />
+            ))
+          ) : (
+            <div className="empty-state">
+              <p>No narratives found matching your search.</p>
+            </div>
+          )}
+        </section>
+      )}
 
       <footer className="landing-footer">
         <p>A Comics-Based Statistical Analysis Framework</p>
@@ -118,16 +140,27 @@ function Landing({ onStart, onLogin }) {
           margin-top: -1rem;
           color: var(--ink);
           opacity: 0.8;
-          margin-bottom: 4rem;
+          margin-bottom: 2rem;
           filter: var(--wobble-filter);
         }
 
-        .tier-cards {
+        .archive-grid {
           display: grid;
-          grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
-          gap: 4rem;
-          max-width: 1000px;
+          grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+          gap: 2rem;
+          max-width: 1200px;
           margin: 0 auto;
+          text-align: left;
+        }
+
+        .empty-state {
+          grid-column: 1 / -1;
+          font-family: var(--font-hand);
+          font-size: 1.5rem;
+          color: var(--ink);
+          opacity: 0.6;
+          text-align: center;
+          padding: 4rem;
         }
 
         .loading-msg, .error-msg {

@@ -1,8 +1,8 @@
-# 📓 Datum Ex Machina
+# 📓 Datum Ex Machina: The Pacific Research Archive
 
-> **"Where real data tells its own story."**
+> **"Regional Evidence, Narrated as Code."**
 
-**Datum Ex Machina** is an interactive analytical walkthrough that transforms statistical datasets into high-fidelity technical narratives. Using a **modular story architecture**, the app provides deep insights through **PyTorch-rendered diagrams** and systematic narration, focusing on clear, objective evidence.
+**Datum Ex Machina** is a specialized digital archive for **New Zealand and Pacific Island** statistical narratives. It transforms raw regional datasets into high-fidelity technical comics. Following the **"Everything as Code"** principle, every story is a self-contained, portable, and Jupyter-exportable Python asset designed for collective understanding.
 
 ## 🏗️ Core Architecture
 
@@ -13,6 +13,8 @@ graph TD
     A[1. Data Source] --> B[2. Visualization]
     B --> C[3. Story]
     C --> D[4. Feedback]
+    
+    D -.->|Synthesis Loop| B
     
     subgraph "The Platform for Understanding"
     D -.->|Editorial| E[Personal Thoughts]
@@ -36,15 +38,20 @@ The application is built for simplicity and performance as a **Single-Process Ap
 - **Port 8000**: Access everything (UI and API) through a single entry point.
 - **Micro-Container**: Optimized for Google Cloud Run with a minimal memory footprint.
 
-## 🧠 Modular Story Engine
+## 🧬 Story-as-Code Engine
 
-The engine is now fully extensible. Each "Story" is a self-contained artifact inheriting from a common base:
+The platform treats every narrative as a standalone piece of software. Each "Story" in the `backend/stories/` archive is a single, self-contained Python module:
 
-- **2024 Highlanders: Battle Lines & Southern Pride**: A bivariate "Attacking Power vs. Defensive Pressure" analysis of a real Super Rugby season.
-- **NZ Screen Time vs Sleep**: A correlation study of digital habits and the trade-off with rest, featuring **COVID-19** pandemic context.
+- **Everything as Code**: Data analysis, narrative beats, and regional metadata (Region, Tier, Dependencies) are all defined within the `story.py` source file.
+- **Jupyter Portability**: All story scripts are authored with standard `# %%` cell markers, making them instantly exportable and runnable as **Jupyter Notebooks**.
+- **Regional Custodianship**: We specialize in the **Aotearoa and Pasifika** context, arching everything from local housing trends to regional climate observations.
 
-### Extending the Narrative
-To add a new story, simply create a directory in `backend/stories/` and implement a class inheriting from `BaseStory`. The system will **automatically discover** and register your new dataset and its unique narration logic.
+### Featured Archival Units
+- **2024 Highlanders: Battle Lines**: A bivariate "Attacking Power vs. Defensive Pressure" analysis of the Super Rugby season.
+- **NZ Screen Time vs Sleep**: A correlation study of digital habits and rest trade-offs, involving **COVID-19** pandemic context.
+
+### Contributing to the Archive
+To add a new regional unit, simply push a self-contained folder to `backend/stories/`. Guided by the **Pacific Research Desk**, the system will automatically discover and register your contribution.
 
 ## 🚀 Quick Start (Docker)
 

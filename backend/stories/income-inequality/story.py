@@ -1,3 +1,4 @@
+# %% Story Module: NZ Income Inequality
 from typing import List, Dict
 from stories.base import BaseStory
 
@@ -8,6 +9,10 @@ class IncomeInequalityStory(BaseStory):
         self.id = "nz-gini"
         self.title = "The Great Divide: New Zealand's Income Equality Arc"
         self.tier = "R"
+        self.region = "Aotearoa"
+        self.tags = ["Economics", "Social", "Wealth"]
+        self.python_version = "3.10"
+        self.dependencies = ["pandas", "numpy", "matplotlib", "torch"]
         self.unit = "Gini Coefficient"
         self.x_label = "Year"
         self.y_label = "Gini Index (0 to 1)"

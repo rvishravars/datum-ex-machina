@@ -1,3 +1,4 @@
+# %% Story Module: NZ Teen Screen Time vs Sleep
 from stories.base import BaseStory
 from typing import List, Dict
 
@@ -8,6 +9,10 @@ class ScreenTimeStory(BaseStory):
         self.id = "nz-screen-time"
         self.title = "NZ Teen Screen Time vs Sleep"
         self.tier = "M"
+        self.region = "Aotearoa"
+        self.tags = ["Health", "Digital Habits", "COVID-19"]
+        self.python_version = "3.10"
+        self.dependencies = ["pandas", "numpy", "matplotlib", "torch"]
         self.unit = "hours/day"
         self.x_label = "Year"
         self.y_label = "Screen time (hours/day)"
