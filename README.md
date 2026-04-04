@@ -4,7 +4,32 @@
 
 **Datum Ex Machina** is an interactive analytical walkthrough that transforms statistical datasets into high-fidelity technical narratives. Using a **modular story architecture**, the app provides deep insights through **PyTorch-rendered diagrams** and systematic narration, focusing on clear, objective evidence.
 
-## 🏗️ Unified Architecture
+## 🏗️ Core Architecture
+
+**Datum Ex Machina** follows a strictly defined four-stage pipeline to transform raw evidence into human understanding:
+
+```mermaid
+graph TD
+    A[1. Data Source] --> B[2. Visualization]
+    B --> C[3. Story]
+    C --> D[4. Feedback]
+    
+    subgraph "The Platform for Understanding"
+    D -.->|Editorial| E[Personal Thoughts]
+    D -.->|Quiz| F[Knowledge Check]
+    end
+```
+
+### 📖 Architecture in Action: "NZ Teen Screen Time vs Sleep"
+
+![Architecture Example](docs/assets/architecture_example.png)
+
+1.  **Data Source**: Unified dataset management (Digital Habit Data).
+2.  **Visualization**: Statistical analysis and high-fidelity diagram generation (Shown in the center panel).
+3.  **Story**: Narrative archetypes and persona-driven dialogue (The "Opening" beat shown below the chart).
+4.  **Feedback**: A dual-path stage where users verify their understanding (Quiz) and contribute their own "Editorial" thoughts (Triggered after the "Next Panel" sequence).
+
+## ⚙️ Technical Infrastructure
 
 The application is built for simplicity and performance as a **Single-Process App**:
 - **Unified Server**: A FastAPI backend serves both the analytical API and the React frontend static files.
