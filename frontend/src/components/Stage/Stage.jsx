@@ -135,7 +135,7 @@ function Stage({ tier, dataset, onComplete, onBack }) {
             className="btn-nav btn-next" 
             onClick={nextPanel}
           >
-            {currentPanelIndex === storyboard.panels.length - 1 ? 'Start Quiz' : 'Next Panel →'}
+            {currentPanelIndex === storyboard.panels.length - 1 ? 'Start Quiz' : 'Next →'}
           </button>
         </nav>
       </div>
