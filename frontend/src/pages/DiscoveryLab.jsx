@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import DiscoveryTreemap from '../components/Discovery/DiscoveryTreemap';
+import MillerColumnExplorer from '../components/Discovery/MillerColumnExplorer';
 import { motion } from 'framer-motion';
 
 const DiscoveryLab = ({ onBack }) => {
@@ -72,16 +72,17 @@ const DiscoveryLab = ({ onBack }) => {
             </header>
 
             <main className="w-full flex-grow flex flex-col">
-                {/* Full Width Treemap Canvas */}
-                <section className="w-full h-full min-h-[70vh] bg-white border-4 border-slate-900 p-4 shadow-[12px_12px_0px_0px_rgba(0,0,0,1)] flex flex-col overflow-hidden relative">
+                {/* Full Width Miller Column Explorer */}
+                <section className="w-full rounded-none flex flex-col flex-grow">
                     {discoveryData?.root && (
-                        <DiscoveryTreemap 
+                        <MillerColumnExplorer 
                             rootData={discoveryData.root} 
                             onLeafClick={handleLeafClick} 
                         />
                     )}
                 </section>
             </main>
+
 
             <footer className="mt-12 text-center text-xs opacity-50">
                 <p>&copy; {new Date().getFullYear()} - DATUM EX MACHINA - PACIFIC INFORMATION TREE</p>
