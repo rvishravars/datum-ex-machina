@@ -1,6 +1,31 @@
 # New Zealand Data Sources Registry
 
-This document maintains the official record of New Zealand statistical data sources integrated into the **Datum Ex Machina** platform. These resources provide the raw evidence for our interactive story modules.
+This document maintains the official record of New Zealand statistical data sources integrated into the **Datum Ex Machina** platform.
+
+## The Data Pipeline (Source)
+
+To ensure our stories remain accurate and fresh, we are transitioning from static collection to a machine-readable **Data Pipeline**. This allows the platform to index, discover, and eventually pull live statistical updates.
+
+### Primary Source: Stats NZ Open Data API (OData)
+- **Tool:** Aotearoa Data Explorer (ADE)
+- **Access Protocol:** OData / REST
+- **Index Method:** Metadata harvesting of table titles and variable names via the [ADE User Guide](https://www.stats.govt.nz/tools/aotearoa-data-explorer/ade-user-guide/) specifications.
+- **API Portal:** [https://api.stats.govt.nz/](https://api.stats.govt.nz/)
+
+### Secondary Source: Data.govt.nz (CKAN)
+- **Protocol:** CKAN API
+- **Direct Resource:** [https://catalogue.data.govt.nz/api/3/action/package_search](https://catalogue.data.govt.nz/api/3/action/package_search)
+- **Role:** Central catalog for indexing wide-ranging datasets from the Ministry of Health, MSD, and MBIE.
+
+---
+
+## Technical Implementation
+The platform now includes an automated indexer:
+- **Script Location:** `backend/pipeline/indexing.py`
+- **Output:** `backend/data/index/metadata_index.json`
+- **Function:** Periodically crawls NZ government APIs to update our narrative candidate list without downloading large raw datasets prematurely.
+
+---
 
 ## Active Data Stories (NZ)
 

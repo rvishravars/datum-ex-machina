@@ -1,0 +1,406 @@
+{
+  "last_updated": "2026-04-05T08:08:27.911994",
+  "stats_nz_tables": [],
+  "data_govt_packages": [
+    {
+      "id": "013f9e45-0590-49c4-a91e-bea7c023f9ef",
+      "title": "Vulnerable marine ecosystems (VME) invertebrates SPRFMO",
+      "name": "vulnerable-marine-ecosystems-vme-invertebrates-sprfmo1",
+      "organization": "National Institute of Water and Atmospheric Research Limited",
+      "notes": "<div>Vulnerable marine ecosystems (VMEs) are any ecosystem that are highly vulnerable to one or more kinds of fishing activity or other disturbance, and are identified by the vulnerability of their components (e.g. habitats, communities or species). The South Pacific Regional Fisheries Management Organisation (SPRFMO) Convention includes specific provisions to protect VMEs. <br /></div><div><br /></div><div>SPRFMO has defined ten benthic invertebrate taxa that are regarded as indicators of VMEs. They are: <br /></div><div><br /></div><div>Porifera (sponges); Actiniaria (anemones); Alcyonacea (soft corals); Gorgonacea (sea fans); Pennatulacea (sea pens); Scleractinia (stony corals); Antipatharia (black corals); Stylasteridae (hydrocorals); Crinoidea (sea lilies); and Brisingida (armless stars). <br /></div><div><br /></div><div>For management purposes, it is important to know where VMEs are known or likely to occur, based on the best available scientific and technical information. The likely presence of VMEs can be identified using habitat suitability models for indicator taxa, ideally across the entire SPRFMO area. This is the aim of the South Pacific VME project. Records of VME indicator taxa extracted for the SPRFMO area and the New Zealand EEZ from OBIS (Online Biogeographic Information System: www.iobis.org) together with other online data sources, and data from research institutes (e.g., NIWA, CSIRO) and fisheries agencies (e.g. MPI, AFMA) were used for the project. These data were compiled and groomed prior to use in the habitat suitability modelling. Data in this dataset represent records of the VME indicator taxa as extracted from the variety of data sources listed above and may include records that are outside of the SPRFMO area.</div><br /><span style='font-weight:bold;'>Citation:</span>\u00a0 NIWA (2016). Vulnerable marine ecosystems in the South Pacific Ocean region. National Institute of Water and Atmospheric Research (NIWA), Wellington, New Zealand, 202873 records<br /><br /><span style='font-weight:bold;'>Online:</span>\u00a0 <a href='https://nzobisipt.niwa.co.nz/resource.do?r=vme_inverts' target='_blank' rel='nofollow ugc noopener noreferrer'>https://nzobisipt.niwa.co.nz/resource.do?r=vme_inverts</a>\u00a0 Released on February 3, 2016.<br /><span style='font-weight:bold;'><br />Bibliographic Citations:</span><br /><ul><li>Rowden, A.A.; Guinotte, J.M.; Baird, S.J.; Tracey, D.M.; Mackay, K.A.; Wadhwa, S. (2013). Developing predictive models for the distribution of vulnerable marine ecosystems in the South Pacific Ocean region. New Zealand Aquatic Environment and Biodiversity Report No. 120. 70 p.</li><li>Rowden A.A.; Clark M.R.; Lundquist C.J.; Guinotte J.M.; Anderson O.F.; Julian K.A.; Mackay K.A.; Tracey D.M.; Gerring P.K. (2015). Developing spatial management options for the protection of vulnerable marine ecosystems in the South Pacific Ocean region. New Zealand Aquatic Environment and Biodiversity Report No. 155. 76 p.</li><li>Rowden A.A.; Clark M.R.; Lundquist C.J.; Guinotte J.M.; Anderson O.F.; Julian K.A.; Mackay K.A.; Tracey D.M.; Gerring P.K. (2015). Developing spatial management options for the protection of vulnerable marine ecosystems in the South Pacific Ocean region. New Zealand Aquatic Environment and Biodiversity Report No. 155. 76 p.</li></ul>_________________________________________________________________________________________________________________<br /><br /><font size='3'><b>Item Page Created:</b> 2016-06-09 02:40  <br /><b>Item Page Last Modified:</b> 2025-04-05 16:18<br />Owner: steinmetzt_NIWA</font><br /><br /><b><font size='5'>VME_inverts</font></b><br /><b>No data edit dates available</b><br /><b>Fields:</b> id,modified,language,bibliographicCitation,institutionCode,collectionCode,datasetName,basisOfRecord,dynamicProperties,catalogNumber,occurrenceRemarks,individualCount,sex,lifeStage,occurrenceStatus,associatedTaxa,eventID,samplingProtocol,eventDate,startDayOfYear,year,month,day,fieldNumber,waterBody,country,stateProvince,county,locality,minimumDepthInMeters,maximumDepthInMeters,decimalLatitude,decimalLongitude,geodeticDatum,coordinateUncertaintyInMeters,footprintWKT,identifiedBy,dateIdentified,typeStatus,scientificNameID,scientificName,kingdom,phylum,class,order_,family,genus,subgenus,specificEpithet,infraspecificEpithet,scientificNameAuthorship,taxonRemarks,FID<br />",
+      "url": "https://catalogue.data.govt.nz/dataset/vulnerable-marine-ecosystems-vme-invertebrates-sprfmo1"
+    },
+    {
+      "id": "e66c6440-e6e1-4f4d-9b4b-e3c404ef2913",
+      "title": "Coastal Explorer App",
+      "name": "coastal-explorer-app1",
+      "organization": "National Institute of Water and Atmospheric Research Limited",
+      "notes": "<div><span style='font-weight:bold;'>Application contains services from NIWA's GIS Server.</span></div><div><br /></div><div>Use this application to explore coastal services: <br /></div><div><span style='text-decoration:underline;'>Coastal Sensitivity, Coastal Classification, Beach Type, Estuary Type etc.</span></div><div><br /></div><div>Information about the <span style='font-style:italic;'>Coastal Sensitivity Index </span>can be found here:</div><div><br /></div><div><span style='font-weight:bold;'>Client Report</span><br /></div><div><a href='https://niwa.co.nz/sites/niwa.co.nz/files/HAM2013-011%20-%20NZ%20Coastal%20Sensitivity%20Index.pdf' target='_blank' rel='nofollow ugc noopener noreferrer'>https://niwa.co.nz/sites/niwa.co.nz/files/HAM2013-011%20-%20NZ%20Coastal%20Sensitivity%20Index.pdf</a></div><br /><div><span style='font-size:13.4px; font-family:sans-serif;'> </span><br /><span style='font-size:30px; font-family:sans-serif;'>Coastal Adaptation to Climate Change: </span><br /><span style='font-size:30px; font-family:sans-serif;'>Mapping a New Zealand Coastal Sensitivity Index </span><br /><span style='font-size:26.6px; font-family:sans-serif;'> </span><div><br /></div><span style='font-size:18.4px; font-family:sans-serif;'>September 2012</span><br /><span style='font-size:26.6px; font-family:sans-serif;'> </span><span style='font-size:15px; font-family:sans-serif;'>NIWA Client Report No: </span><span style='font-size:15px; font-family:sans-serif;'>HAM2013-011 </span><br /><span style='font-size:15px; font-family:sans-serif;'>Report date: </span><span style='font-size:15px; font-family:sans-serif;'> </span><span style='font-size:15px; font-family:sans-serif;'> </span><span style='font-size:15px; font-family:sans-serif;'>September 2012 </span><br /><span style='font-size:15px; font-family:sans-serif;'>NIWA Project:  </span><span style='font-size:15px; font-family:sans-serif;'> </span><span style='font-size:15px; font-family:sans-serif;'>CACC135 </span><br /><span style='font-size:15px; font-family:sans-serif;'> </span><br /><span style='font-size:15px; font-family:sans-serif;'> </span><br /><span style='font-size:15px; font-family:sans-serif;'> </span><br /><span style='font-size:15px; font-family:sans-serif;'> </span><br /><span style='font-size:15px; font-family:sans-serif;'> </span><br /><span style='font-size:15px; font-family:sans-serif;'> </span><br /><span style='font-size:15px; font-family:sans-serif;'> </span><br /><span style='font-size:18.4px; font-family:sans-serif;'> </span><br /><span style='font-size:26.6px; font-family:sans-serif;'> </span><br /><span style='font-size:26.6px; font-family:sans-serif;'>Prepared for MBIE contract C01X0802 </span></div>_________________________________________________________________________________________________________________<br /><br /><font size='3'><b>Item Page Created:</b> 2018-11-13 03:50  <br /><b>Item Page Last Modified:</b> 2025-04-05 19:31<br />Owner: NIWA_OpenData</font><br />",
+      "url": "https://catalogue.data.govt.nz/dataset/coastal-explorer-app1"
+    },
+    {
+      "id": "bf4d70ac-46c4-4af4-8ee0-1108cdbd184b",
+      "title": "New Zealand Legislation",
+      "name": "new-zealand-legislation",
+      "organization": "Parliamentary Counsel Office",
+      "notes": "The authoritative source of Acts, Bills, and secondary legislation.\r\n\r\nDataset accessible as:\r\n\r\n - Directory structure containing all versions of New Zealand Acts, Bills, secondary legislation published by the Parliamentary Counsel Office, and Supplementary Order Papers, that have been published to the New Zealand Legislation website (the Subscriber website) and the DTDs used by the XML data.\r\n\r\n - Legislation RSS containing updates on Acts, Bills, and secondary legislation published by the Parliamentary Counsel Office, published on the New Zealand Legislation website.\r\n\r\n - Custom ATOM/RSS feed builder tool.\r\n\r\nNote that, in contrast to legislation, in which there is no copyright, the feeds are licensed on the terms of the copyright statement on the New Zealand Legislation website.",
+      "url": "https://catalogue.data.govt.nz/dataset/new-zealand-legislation"
+    },
+    {
+      "id": "ce106822-6b03-4d24-9372-98838744011e",
+      "title": "New Zealand Gazette",
+      "name": "new-zealand-gazette",
+      "organization": "Department of Internal Affairs",
+      "notes": "The New Zealand Gazette (https://gazette.govt.nz) is the official newspaper of the Government and is an authoritative journal of constitutional record containing notices that are required by legislation to be published. Notices are published online continuously from 9am-5pm on working days by the New Zealand Gazette Office at the Department of Internal Affairs. The New Zealand Gazette includes commercial and government notices, covering bankruptcies, business proceedings, land notices, and notifications from government departments and agencies. The metadata from the online New Zealand Gazette is available through the DigitalNZ API.",
+      "url": "https://catalogue.data.govt.nz/dataset/new-zealand-gazette"
+    },
+    {
+      "id": "30737378-025a-4910-954a-1ab9329d5baa",
+      "title": "New Zealand Walkways",
+      "name": "new-zealand-walkways",
+      "organization": "Gisborne District Council",
+      "notes": "Council maintained walkways, mountain-biking and fitness trails.  Also other popular walking tracks and cycling trails throught Gisborne district. This dataset references the LINZ walkways dataset.",
+      "url": "https://catalogue.data.govt.nz/dataset/new-zealand-walkways"
+    },
+    {
+      "id": "74957973-4c59-4d4e-b196-501ac6f5ee53",
+      "title": "New Zealand Walkways",
+      "name": "new-zealand-walkways5",
+      "organization": "Gisborne District Council",
+      "notes": "Council maintained walkways, mountain-biking and fitness trails.  Also other popular walking tracks and cycling trails throught Gisborne district. This dataset references the LINZ walkways dataset.",
+      "url": "https://catalogue.data.govt.nz/dataset/new-zealand-walkways5"
+    },
+    {
+      "id": "111bc09a-4b81-4df0-9978-690ce420675b",
+      "title": "New Zealand\u2019s native birds - reports",
+      "name": "new-zealand-native-land-birds",
+      "organization": "Manaaki Whenua \u2013 Landcare Research",
+      "notes": "###Project###\r\nThe Parliamentary Commissioner for the Environment is investigating what the future might hold for New Zealand\u2019s native birds, and contracted Landcare Research to use the occupancy data compiled for two bird atlases to give an overview of which New Zealand land birds are in trouble, which are safe, and where conservation effort is needed most.  \r\n\r\nThe only data sets that have recorded the spatial distributions of all bird species across the whole of New Zealand are the two national atlases of bird distribution compiled by the Ornithological Society of New Zealand (OSNZ; Bull et al. 1985; Robertson et al. 2007, also known as Birds New Zealand).  \r\n\r\nTwo non-standard aspects of the data complicate comparisons between the two atlas measurement periods: different spatial systems and locations of the sampling units in the atlases (imperial vs metric grid squares), and differences in the levels of effort applied across the nation between and within the two different surveys.  \r\n\r\nTo make robust comparisons between 1969\u20131979 and 1999\u20132004, we used Bayesian methods to created a standardised set of local occupancy data covering the native birds from the two atlases on a common 10 \u00d7 10 km grid. We provide these standardised data here, along with a description of our methods and the scripts used to create and interrogate them.  \r\n  \r\nFor access to the code and resulting occupancy estimates used in the reports please email Susan Walker (walkersATlandcareresearch.co.nz)\r\n\r\n###Reports & Data###\r\n* Two reports were written: one on land birds in general and one focusing on forest birds (here as PDFs)  \r\n* The occupancy models mapped and compared from the above reports\r\n* The standardised data set of occupancy used in the modelling\r\n* The list of bird species/taxa and their attributes used in the modelling\r\n* The locations of the 2155 10km x 10km grid squares used in the modelling   \r\n",
+      "url": "https://catalogue.data.govt.nz/dataset/new-zealand-native-land-birds"
+    },
+    {
+      "id": "7d5bfdfc-347f-46b3-bd9d-24443a30b71b",
+      "title": "New Zealand Tourism Forecasts",
+      "name": "new-zealand-tourism-forecasts",
+      "organization": "Ministry of Business, Innovation and Employment",
+      "notes": "Our tourism forecasts provide expectations on the future tourism demand in New Zealand, and inform and support planning and investment decisions in the tourism industry. The forecasts are based on econometric modelling, current trends and best available forecasts of international factors, and are developed with input from members of the tourism industry.",
+      "url": "https://catalogue.data.govt.nz/dataset/new-zealand-tourism-forecasts"
+    },
+    {
+      "id": "b51c18fb-fc21-48bf-9541-a095a01ad2d4",
+      "title": "New Zealand DSM Hillshade",
+      "name": "new-zealand-dsm-hillshade17",
+      "organization": "Land Information New Zealand",
+      "notes": "This layer contains the New Zealand DSM Hillshade, which is an amalgamation of the most current LiDAR surveys. It is current as at the most recent Published date found in the History tab. The style is suitable for cartographic purposes.\n\t\t\nFor information on datasets that make up the New Zealand DSM Hillshade layer, please visit this layer: [New Zealand 1m DSM Survey Index](https://data.linz.govt.nz/layer/122149-new-zealand-lidar-1m-dsm-survey-index/). \n\nThe most recent LiDAR DSM data can also be accessed from the NZ Elevation public S3 bucket via the link below, which is automatically updated when new elevation layers are added.\n\nData management and distribution is by Toit\u016b Te Whenua Land Information New Zealand. Management of this layer is ongoing and it will be updated with newer data as it becomes available. \n\nData comprises:\n\u2022 400+ GeoTIFF tiles in NZTM2000 projection, merged from a variety of source surveys and tiled into the LINZ [1:50,000 tile layout](https://data.linz.govt.nz/layer/104687-nz-150k-tile-index/).\n\nAlso available on:\n\u2022 [NZ Elevation - Registry of Open Data on AWS](https://registry.opendata.aws/nz-elevation/), specifically at s3://nz-elevation/new-zealand/new-zealand/dsm-hillshade/2193/. This is the data source and at this location it is LERC compressed and made available as Cloud Optimised GeoTIFFs.\n\nUse with the following attribution:  \"Sourced from the [LINZ Data Service](https://data.linz.govt.nz/layer/122138-new-zealand-dsm-hillshade/) and [licensed by Toit\u016b Te Whenua Land Information New Zealand, for re-use under CC BY 4.0](https://www.linz.govt.nz/data/licensing-and-using-data/attributing-elevation-or-aerial-imagery-data)\".\n\nFor details see: https://www.linz.govt.nz/data/licensing-and-using-data/attributing-elevation-or-aerial-imagery-data",
+      "url": "https://catalogue.data.govt.nz/dataset/new-zealand-dsm-hillshade17"
+    },
+    {
+      "id": "1325259b-f587-4c61-9e02-8b59fb6422da",
+      "title": "Erioscyphella in New Zealand",
+      "name": "erioscyphella-in-new-zealand",
+      "organization": "Manaaki Whenua \u2013 Landcare Research",
+      "notes": "Phylogenies and summary of diversity of Erioscyphella (Leotiomycetes, Helotiales, Lachnaceae) in New Zealand",
+      "url": "https://catalogue.data.govt.nz/dataset/erioscyphella-in-new-zealand"
+    },
+    {
+      "id": "881f404e-9f69-48e6-be49-153874828b13",
+      "title": "Energy in New Zealand",
+      "name": "energy-in-new-zealand",
+      "organization": "Ministry of Business, Innovation and Employment",
+      "notes": "Provides information on and analysis of New Zealand's energy sector including statistics on supply, transformation, and demand.",
+      "url": "https://catalogue.data.govt.nz/dataset/energy-in-new-zealand"
+    },
+    {
+      "id": "10302ceb-3c8f-4d27-ae4b-77090478d422",
+      "title": "New Zealand DEM Hillshade",
+      "name": "new-zealand-dem-hillshade20",
+      "organization": "Land Information New Zealand",
+      "notes": "This layer contains the New Zealand DEM Hillshade, which is an amalgamation of the most current LiDAR surveys, and the NZ 8m Digital Elevation Model (2012) where there is no LiDAR coverage. It is current as at the most recent Published date found in the History tab. The style is suitable for cartographic purposes.\n\t\t\nFor information on datasets that make up the New Zealand DEM Hillshade layer, please visit this layer: [New Zealand 1m DEM Survey Index](https://data.linz.govt.nz/layer/121943-new-zealand-lidar-1m-dem-survey-index/). \n\nGaps in the 1m LiDAR coverage are covered by the [NZ 8m Digital Elevation Model (2012)](https://data.linz.govt.nz/layer/51768-nz-8m-digital-elevation-model-2012/).\n\nThe most recent LiDAR DEM data can also be accessed from the NZ Elevation public S3 bucket via the link below, which is automatically updated when new elevation layers are added.\n\nData management and distribution is by Toit\u016b Te Whenua Land Information New Zealand. Management of this layer is ongoing and it will be updated with newer data as it becomes available. \n\nData comprises:\n\u2022 400+ GeoTIFF tiles in NZTM2000 projection, merged from a variety of source surveys and tiled into the LINZ [1:50,000 tile layout](https://data.linz.govt.nz/layer/104687-nz-150k-tile-index/).\n\nAlso available on:\n\u2022 [Basemaps](https://basemaps.linz.govt.nz/@-41.6530780,174.1161818,z5.25?i=hillshade)\n\u2022 [NZ Elevation - Registry of Open Data on AWS](https://registry.opendata.aws/nz-elevation/), specifically at s3://nz-elevation/new-zealand/new-zealand/dem-hillshade/2193/. This is the data source and at this location it is LERC compressed and made available as Cloud Optimised GeoTIFFs.\n\nAdditional metadata from the S3 source:\n\nUse with the following attribution:  \"Sourced from the [LINZ Data Service](https://data.linz.govt.nz/layer/121959-new-zealand-dem-hillshade/) and [licensed by Toit\u016b Te Whenua Land Information New Zealand, for re-use under CC BY 4.0](https://www.linz.govt.nz/data/licensing-and-using-data/attributing-elevation-or-aerial-imagery-data)\".\n\nFor details see: https://www.linz.govt.nz/data/licensing-and-using-data/attributing-elevation-or-aerial-imagery-data",
+      "url": "https://catalogue.data.govt.nz/dataset/new-zealand-dem-hillshade20"
+    },
+    {
+      "id": "c6dd07ee-274a-4332-8108-2683f69f993a",
+      "title": "New Zealand Continental Shelf",
+      "name": "new-zealand-continental-shelf1",
+      "organization": "Land Information New Zealand",
+      "notes": "This dataset provides the boundary of New Zealand\u2019s continental shelf, which is the area of seabed around a large land mass where the sea is relatively shallow compared with the open ocean.\r\n\r\nThe continental shelf is the seabed and subsoil of the submarine areas that extend beyond the territorial sea of a coastal state throughout the natural prolongation of its land territory to the outer edge of the continental margin. \r\n\r\nIn New Zealand\u2019s case, the continental margin extends beyond the Exclusive Economic Zone in many places and the outer limits have been established on the basis of the recommendations of the United Nations Commission on the Limits of the Continental Shelf. Under UNCLOS, New Zealand exercises sovereign rights over the continental shelf for the purpose of exploring it and exploiting its natural resources.\r\n\r\nNote: The boundary includes, where applicable, the delimitation of the boundaries of the continental shelf with Australia under the treaty of 25 July 2004. The delimitation of the maritime boundaries in the north with Fiji, Tonga and possibly France in respect of New Caledonia, have yet to be settled by treaty.\r\n\r\nMaritime Boundary Definitions:\r\nhttp://www.linz.govt.nz/hydro/nautical-info/maritime-boundaries/definitions#zones\r\n\r\nFurther References:\r\nhttp://www.linz.govt.nz/hydro/nautical-info/maritime-boundaries",
+      "url": "https://catalogue.data.govt.nz/dataset/new-zealand-continental-shelf1"
+    },
+    {
+      "id": "be25aa8f-7456-46c7-b46e-ac2abab4d1a8",
+      "title": "New Zealand Women Photographers",
+      "name": "new-zealand-women-photographers",
+      "organization": "Museum of New Zealand Te Papa Tongarewa",
+      "notes": "This data set was developed as part of the research for the publication Mitchell, L. \"Through Shaded Glass: Women and photography in Aotearoa New Zealand 1860-1960\". Wellington: Te Papa Press, 2023. \r\n\r\nIt covers biographical information of women photographers including: name(s), associated iwi, birth date, death date, spouse, location and associated studios. ",
+      "url": "https://catalogue.data.govt.nz/dataset/new-zealand-women-photographers"
+    },
+    {
+      "id": "d25b10a5-3696-41ea-8376-10b5b3b63b15",
+      "title": "New Zealand Foraminifera Manual",
+      "name": "new-zealand-foraminifera-manual",
+      "organization": "GNS Science",
+      "notes": "Written both for students and foraminiferal specialists, the New Zealand  Foraminifera Manual is a guide to identifying and using key foraminiferal genera and species to interpret New Zealand\u2019s biostratigraphy and paleoenvironments. It also summarises sampling procedures, curation, significant previous work, stratigraphic and biostratigraphic principles and the development New Zealand\u2019s Cenozoic Stages. Emphasis is on the critical features for recognising taxa, rather than lengthy formal taxonomic descriptions. High quality illustrations amplify the verbal descriptions.\n\nThe Manual\u2019s content closely reflects the nature of New Zealand\u2019s foraminiferal record, with about 10% of the fossil illustrations and associated text dealing with Paleozoic and Mesozoic foraminifers, the remaining 90% with the Cenozoic species. Although late Paleozoic and Mesozoic foraminifera are found in New Zealand, these are typically \u201cniche occurrences\u201d, of mainly local significance. In the latest Cretaceous foraminiferal faunas start to become more diverse and prevalent, and relevant to regional studies. This trend grows during the Cenozoic, giving NZ the world-class, mid-latitude fauna to which the majority of the Manual is devoted.\n\nIn a very real sense, the Manual is a taonga marking the end of an era in New Zealand foraminiferal micropaleontology; an era built on the ground-breaking work, especially of H.J. Finlay. The Manual was Dr Hornibrook\u2019s \u201cretirement project\u201d, and he could give it nearly undivided attention. Dr Hornibrook had a broad knowledge of New Zealand faunas, gained over many years both through his own research developing and refining the NZ Geological Timescale, and through collaboration with field geologists. Equally important were the fine foraminiferal drawings produced by Ron Brazier. It is very difficult to take useful photographs of foraminifera, especially benthic foraminifera, using either a conventional microscope or SEM. Key identification features are often poorly represented, whereas a paleontological artist could subtly emphasise them so that a user could look for them when examining a specimen.\n\nIllustrations of over 550 individual species have been scanned to enable convenient access alongside related descriptive text. Some of the descriptions include minor revisions or editorial changes\n\nAccess is available online from the GNS Science web site.\n\nDOI:https://doi.org/10.21420/7QM0-KN83\n\nCite as:\nStrong, C. P., Raine, J. I., & Terezow, M. (2018). Key species of New Zealand fossil foraminifera: descriptions from \"Manual of New Zealand Permian to Pleistocene Foraminiferal Biostratigraphy\" by Hornibrook, Brazier and Strong, 1989. GNS Science. https://doi.org/10.21420/7QM0-KN83",
+      "url": "https://catalogue.data.govt.nz/dataset/new-zealand-foraminifera-manual"
+    },
+    {
+      "id": "408dd8e9-95b5-4ab5-aded-8e7c5e14f8a4",
+      "title": "New Zealand Seamounts Points",
+      "name": "new-zealand-seamounts-points",
+      "organization": "Ministry for Primary Industries",
+      "notes": "Contains physical, geological, chemical, oceanographic and fisheries information on all New Zealand seamounts.",
+      "url": "https://catalogue.data.govt.nz/dataset/new-zealand-seamounts-points"
+    },
+    {
+      "id": "f40b2f6d-061e-43f5-bd82-541c3f49cba4",
+      "title": "New Zealand Seamounts Polygons",
+      "name": "new-zealand-seamounts-polygons",
+      "organization": "Ministry for Primary Industries",
+      "notes": "Contains polygon information on all New Zealand seamounts.",
+      "url": "https://catalogue.data.govt.nz/dataset/new-zealand-seamounts-polygons"
+    },
+    {
+      "id": "25b30ba9-3798-457a-8b4b-49e14e0d3b1f",
+      "title": "New Zealand Stratigraphic Lexicon",
+      "name": "new-zealand-stratigraphic-lexicon1",
+      "organization": "GNS Science",
+      "notes": "The New Zealand Stratigraphic Lexicon (StratLex) is one of the \u201cNationally Significant\u201d collections and databases recognised by the New Zealand government. It is a comprehensive database of formally named rock units from New Zealand and its offshore islands (including the Kermadec, Chatham and Subantarctic Island groups, but excluding the Ross Dependency, Antarctica). It includes biostratigraphic, chronostratigraphic, tectonostratigraphic, and miscellaneous informal names as well as conventional lithostratigraphic units. The database includes names of rock units with synonyms, hierarchical position, locality, geological age, and bibliography of significant articles.\n\nAccess is available online from the GNS Science web site.\n\nDOI: https://doi.org/10.21420/ENDG-H453\n\nCite as:\nGNS Science. (1996). New Zealand Stratigraphic Lexicon. GNS Science. https://doi.org/10.21420/ENDG-H453",
+      "url": "https://catalogue.data.govt.nz/dataset/new-zealand-stratigraphic-lexicon1"
+    },
+    {
+      "id": "5b3f084e-a5af-46dd-ab78-558d07794763",
+      "title": "New Zealand debt securities",
+      "name": "new-zealand-debt-securities",
+      "organization": "Reserve Bank of New Zealand",
+      "notes": "Collection of survey results on Government securities: ownership, maturity structure, sales and turnover. ",
+      "url": "https://catalogue.data.govt.nz/dataset/new-zealand-debt-securities"
+    },
+    {
+      "id": "2d0d84a3-1e22-4535-9076-372c306f0c9e",
+      "title": "New Zealand Volcano Database",
+      "name": "new-zealand-volcano-database",
+      "organization": "GNS Science",
+      "notes": "An inter-related database covering New Zealand's active and dormant volcanoes. It spans a large variety of datasets ranging from geophysical, geodetic, and geochemical time-series data (e.g. micro-seismicity, magnetics, gas flux, levelling) to geological analyses, photographs and videos, and historical and bibliographic collections of field observations.\n\nMost frequently updated datasets are openly available through GeoNet or GNS Science. Others are available upon request (see link below for details).\n\nDOI: https://doi.org/10.21420/MWRY-R636\n\nCite as:\nGNS Science. (2016). New Zealand Volcano Database [Data set]. GNS Science. https://doi.org/10.21420/MWRY-R636",
+      "url": "https://catalogue.data.govt.nz/dataset/new-zealand-volcano-database"
+    },
+    {
+      "id": "7e666566-4ecb-4d75-8ae5-29cca6259177",
+      "title": "New Zealand Rabbit Proneness",
+      "name": "new-zealand-rabbit-proneness",
+      "organization": "Manaaki Whenua \u2013 Landcare Research",
+      "notes": "Rabbit numbers counted by pest destruction boards to measure the affect of control operations are used to assess the relationship between recorded elements of land resources (parent material, soils, vegetation, slope, erosion) and rabbit populations. The results of the study clearly con\ufb01rm the often observed concentration of high rabbit populations on the brown-grey earth soils and a corresponding reduction in rabbit numbers with increased rainfall and pasture improvement.\r\n\r\nThis analysis uses the NZLRI/FSL soils data to assign rabbit proneness.\r\nThis analysis precedes the illegal release of rabbit haemorragic disease (RHD) in 1997 and does not factor in any interactions between environment and RHD in terms of assigning rabbit proneness.",
+      "url": "https://catalogue.data.govt.nz/dataset/new-zealand-rabbit-proneness"
+    },
+    {
+      "id": "4c88c09d-5444-457d-ada4-7dd3b8eed455",
+      "title": "New Zealand Geoscience Bibliography",
+      "name": "new-zealand-geoscience-bibliography",
+      "organization": "GNS Science",
+      "notes": "This database contains references and abstracts of geoscience publications relevant to New Zealand geoscience, including all GNS staff scientific papers and books, and all GNS publications.\n\nThe Bibliography is produced by GNS Information Services, updated weekly,  and is available as a live database search. These references and abstracts are provided free of charge to assist geoscience research in New Zealand.\n\nFor more refined searching, subscribe to GeoRef or Knowledge Basket, both of which also contain New Zealand geoscience records. For access to the full article if your organisation does not have a subscription, you may use your local library to interloan the item, or GNS publications may be purchased from us.",
+      "url": "https://catalogue.data.govt.nz/dataset/new-zealand-geoscience-bibliography"
+    },
+    {
+      "id": "588a3963-1e99-4465-9567-9766d9fc1537",
+      "title": "New Zealand Geological Timescale",
+      "name": "new-zealand-geological-timescale1",
+      "organization": "GNS Science",
+      "notes": "Geological timescales are the frameworks that geologists use to assign ages to units of rock. This is probably one of the most fundamental concepts in geology and its allied fields, including paleontology and evolutionary studies. It is a basic requirement for many things, such as:\n\u2022\tassigning geological age to rocks, fossils and economic minerals;\n\u2022\tcalibrating the rates of geological processes such as fault displacement and plate rotation, submergence, uplift and erosion of the land, earthquake frequency and volcanic activity;\n\u2022\tmeasuring rates of climate change, sea-level change, biodiversity change and organic evolution;\n\u2022\tthe search for natural resources.\nAge indicators used to develop timescales are various, but the oldest and still most frequently used approach is to recognise rocks of similar age by the fossils they contain. The first geological timescales were developed in Europe, and these are gradually being consolidated into an international geological timescale which is expanded and updated every few years. Many areas of the world, however, have highly endemic fossils \u2013 just as countries like New Zealand have highly endemic plant and animal biotas today \u2013 and it is hard to relate the geology of these places to the international framework.\n\nLike many of these places, New Zealand uses the international scheme for the major units (Jurassic, Cretaceous, and so on) and for rocks which are not well represented in our own country, but adopts a more convenient local scheme, based on our own endemic fossils, for the smaller time divisions. Our New Zealand geological timescale has been under development since the earliest days of geological research in the country, in the late nineteenth century, although perhaps the greatest advances occurred through the 1940s to 1960s. A huge amount of related knowledge was collected together and published in 2004, in a monograph edited by Roger Cooper and published by GNS Science.\nAccess is available online from the GNS Science web site.\n\nLike all scientific endeavours, timescales are continually revised as new knowledge comes to hand. Most commonly, these revisions apply to the absolute age calibrations of the time units. Although fossils are a useful way to quickly tell that two different bodies of rock are of similar age, they cannot \u2013 on their own \u2013 tell us exactly how old that is. Various events, such as the \u201cfirst\u201d (oldest) occurrence of a particular fossil shell, have to be calibrated using some technique, such as radiometric dating, to find out how many years ago the event took place. Unfortunately, calibration usually requires that numerous factors happen to be \u201cjust right\u201d in order to be accurate. Consequently, new data comes to hand slowly, over many years.\n\nDOI: https://doi.org/10.21420/F49B-4G37\nCite data as:\nGNS Science. (2004). New Zealand Geological Timescale [Data set]. GNS Science. https://doi.org/10.21420/F49B-4G37",
+      "url": "https://catalogue.data.govt.nz/dataset/new-zealand-geological-timescale1"
+    },
+    {
+      "id": "c7f859a8-f627-43ed-870f-229a20a969d3",
+      "title": "New Zealand Infrastructure Pipeline",
+      "name": "new-zealand-infrastructure-pipeline",
+      "organization": "New Zealand Infrastructure Commission",
+      "notes": "Project data from contributing organisations.",
+      "url": "https://catalogue.data.govt.nz/dataset/new-zealand-infrastructure-pipeline"
+    },
+    {
+      "id": "af43a59e-53c4-4011-b78e-1189234482a6",
+      "title": "New Zealand Hydrogeological Systems",
+      "name": "new-zealand-hydrogeological-systems",
+      "organization": "GNS Science",
+      "notes": "This hydrogeological system GIS dataset provide a nationally-consistent basis for hydrogeological mapping in New Zealand. Hydrogeological systems are defined here as geographical areas with broadly-consistent hydrogeological properties, and similar resource pressures and management issues.\nThe \u2018NZ_hydrogeologicalsystem_polygon.shp\u2019 provides seven hydrogeological attributes as follows: unique name (HS_name), unique identification (HS_id), system type (HS_type), coastal information (HS_coast), aquifer overview (HS_overview), geology and age group (HS_geo_gr) and geology and age descriptor (HS_geo_age). Nine system types are identified (see figure below). The \u2018NZ_hydrogeologicalsystem_boundary.shp\u2019 attribute table identifies, the source and methods of boundary delineation.\n\nAttribute names, descriptions and values for both datasets are detailed in Moreau et al. 2019. \n\n\nDOI: https://doi.org/10.21420/HTZ8-Z141\n\nCite as:\nGNS Science. (2018). New Zealand Hydrogeological Systems [Data set]. GNS Science. https://doi.org/10.21420/HTZ8-Z141",
+      "url": "https://catalogue.data.govt.nz/dataset/new-zealand-hydrogeological-systems"
+    },
+    {
+      "id": "oai-figshare-com-article-8072423",
+      "title": "New Zealand grayling data",
+      "name": "oai-figshare-com-article-8072423",
+      "organization": "The University of Auckland",
+      "notes": "Data associated with Lee, F. & Perry, G.L.W. (2019). <p>Assessing the role of\noff-take and source-sink dynamics in the extinction of the amphidromous New\nZealand grayling (<i>Prototroctes oxyrhynchus</i>).</p>",
+      "url": "https://catalogue.data.govt.nz/dataset/oai-figshare-com-article-8072423"
+    },
+    {
+      "id": "cbf3a30b-68a9-443e-8497-6b60ec3c29e9",
+      "title": "New Zealand Energy Quarterly",
+      "name": "energy-quarterly",
+      "organization": "Ministry of Business, Innovation and Employment",
+      "notes": "The New Zealand Energy Quarterly provides quarterly data and analysis on energy supply, demand, prices and associated greenhouse gas emissions.\r\n\r\n",
+      "url": "https://catalogue.data.govt.nz/dataset/energy-quarterly"
+    },
+    {
+      "id": "9eede32a-2785-4e44-9b53-540a714c95b2",
+      "title": "New Zealand Geomagnetic Database",
+      "name": "new-zealand-geomagnetic-database",
+      "organization": "GNS Science",
+      "notes": "This database documents the short-term and long-term fluctuations in the Earth's regional (New Zealand) magnetic field captured by magnetic observatories.\n\nMagnetic Observatories record variations with time of the earth\u2019s magnetic field at a fixed point. A magnetic field is completely described by three components, these are usually HDZ or XYZ, where H is the horizontal magnetic field strength, D is the declination or angle between the direction of the  magnetic field and true north, Z is the vertical magnetic strength, and X and Y are the magnetic field strengths in the true north and east directions. It is also common to record F, the total magnetic field strength, on a separate instrument, although that can be calculated from HDZ or XYZ.\n\nNew Zealand operates magnetic observatories in Canterbury (the Eyrewell Geomagnetic Observatory that succeeded the Christchurch and Amberley observatories and is now located at West Melton) and Scott Base in Antarctica, and supports the Apia observatory in Samoa.\n\nEyrewell (EYR), Scott Base (SBA) and Apia (API) geomagnetic observatories are important contributors to the ~120 station INTERMAGNET global network that monitors the Earth\u2019s magnetic field. All observatories follow INTERMAGNET requirements and standards. \n\nThe continuous part of the data collection is run by an automated system that is recording data every second. Manual measurements are conducted by a local observer for 1 hour once every week. EYR also relies on data recorded at a joined GeoNet site located at Summerhill (Canterbury).\n\nRaw 1-second data in miniseed format is archived for all three observatories plus for the Summerhill site.\n\nPreliminary 1-second and 1-minute data are submitted to INTERMAGNET in a standardized file format every hour.\n\nDefinitive 1-minute data for EYR, SBA and API is being submitted to INTERMAGNET annually. Before INTERMAGNET definitive data are being published an international multi-step reviewing process is being applied to ensure international standards are being met.\n\nK-index values are calculated from data recorded at EYR and its predecessor Amberley (AML).\n\nHistoric paper records are being stored, with some of them being scanned into digital images.",
+      "url": "https://catalogue.data.govt.nz/dataset/new-zealand-geomagnetic-database"
+    },
+    {
+      "id": "39e14e01-533b-4b4a-a412-94ad01b34464",
+      "title": "New Zealand\u2019s marine economy (2007\u20132013)",
+      "name": "new-zealands-marine-economy-20072013",
+      "organization": "Ministry for the Environment",
+      "notes": "The marine economy shows the contribution marine-based economic activities make to the New Zealand economy as measured by gross domestic product (GDP). Measuring the marine economy shows how New Zealand\u2019s marine environment is used to generate economic activity and how this changes over time. However, these activities can also be a source of pressure on New Zealand\u2019s marine environment.",
+      "url": "https://catalogue.data.govt.nz/dataset/new-zealands-marine-economy-20072013"
+    },
+    {
+      "id": "7f3bc0c6-4d2b-46ea-8060-f3a939b61487",
+      "title": "New Zealand\u2019s Greenhouse Gas Inventory 1990\u20132009",
+      "name": "new-zealands-greenhouse-gas-inventory-19902009",
+      "organization": "Ministry for the Environment",
+      "notes": "Inventory of New Zealand\u2019s greenhouse gas emissions and removals. The inventory reports the emissions and removals of greenhouse gases from six sectors: energy; industrial processes; solvents; agriculture; land use, land-use change and forestry; and waste.  \r\n\r\nSee \"Inventory reporting and background tables\".  ",
+      "url": "https://catalogue.data.govt.nz/dataset/new-zealands-greenhouse-gas-inventory-19902009"
+    },
+    {
+      "id": "f00db90f-a424-44a9-ad93-3ad5fd717bda",
+      "title": "New Zealand\u2019s greenhouse gas emissions 1990\u20132016",
+      "name": "new-zealands-greenhouse-gas-emissions-19902016",
+      "organization": "Ministry for the Environment",
+      "notes": "We measure gases that are added to the atmosphere through human activities. This does not include natural sources such as biological processes or volcanic emissions. \r\n\r\nWe report greenhouse gas (GHG) emissions in carbon dioxide equivalent (CO2-e) units, which is a measure for how much global warming a given type and amount of greenhouse gas causes, using the equivalent amount of carbon dioxide as the reference. CO2-e is used for describing different greenhouse gases in a common unit, which allows them to be reported consistently. \r\n\r\nData may not include the latest emissions data, which can be found on the Ministry for the Environment\u2019s website.\r\n\r\nMore information on this dataset and how it relates to our environmental reporting indicators and topics can be found in the attached data quality pdf.",
+      "url": "https://catalogue.data.govt.nz/dataset/new-zealands-greenhouse-gas-emissions-19902016"
+    },
+    {
+      "id": "cac9dcda-b4bf-4230-8dab-12d9156fad24",
+      "title": "Lachnaceae in New Zealand - Aotearoa",
+      "name": "lachnaceae-in-new-zealand-aotearoa",
+      "organization": "Manaaki Whenua \u2013 Landcare Research",
+      "notes": "A brief informal outline of the diversity of Lachnaceae (Leotiomycetes, Helotiales) known for New Zealand, based on PDD and ICMP specimens with DNA sequences. The phylogenetic diversity of the New Zealand taxa is compared with that globally. Asperopilum entry updated 2024. ",
+      "url": "https://catalogue.data.govt.nz/dataset/lachnaceae-in-new-zealand-aotearoa"
+    },
+    {
+      "id": "f74bc73c-c0a1-470b-bb59-acadd3e05ea6",
+      "title": "Approaches to New Zealand Charts",
+      "name": "approaches-to-new-zealand-charts20",
+      "organization": "Land Information New Zealand",
+      "notes": "This dataset is a collection of individual hydrographic charts for the approaches to New Zealand, and has been designed to provide a quick way to group, view and/or download charts within this region.\n\nNote: This set contains charts at a variety of scales. Use of LDS web map tile services for this set is not recommended as the scaled charts overlap.<br>\n\nAll charts are available for individual download through the LINZ Data Service, and will be updated as new data becomes available.\n\nThese charts are based on the official Raster Navigational Chart series produced by the New Zealand Hydrographic Authority, available on the [LINZ website.](http://www.linz.govt.nz/sea/charts/nzmariner-official-raster-navigational-charts-rncs)\n\nTHIS DATA DOES NOT REPLACE NAUTICAL CHARTS AND MUST NOT BE USED FOR NAVIGATION.<br>\n\nThe online New Zealand Chart Catalogue provides more detailed and the most up to date information about New Zealand charts: [New Zealand Chart Catalogue](http://www.linz.govt.nz/sea/charts/paper-charts/nz202-chart-catalogue).<br>\n\nInformation on symbols and abbreviations used on nautical charts: [Symbols and Abbreviations](http://www.linz.govt.nz/sea/charts/paper-charts/symbols-terms-abbreviations-used-charts).<br>\n\nHydrographic standards and specifications for nautical charts and publications: [Standards and Specifications](http://www.linz.govt.nz/sea/charts/hydrographic-standards-technical-specifications).",
+      "url": "https://catalogue.data.govt.nz/dataset/approaches-to-new-zealand-charts20"
+    },
+    {
+      "id": "3e616c3f-d72c-406b-91ed-376e37900e38",
+      "title": "International Students in New Zealand",
+      "name": "international-students-in-new-zealand",
+      "organization": "Ministry of Education",
+      "notes": "Statistics about the numbers of international students studying in New Zealand, international students\u00e2\u20ac\u2122 progression through the New Zealand education system, their academic achievement, support provided for international students and international students\u00e2\u20ac\u2122 experiences in New Zealand, their employment outcomes, and ongoing links to New Zealand as alumni.",
+      "url": "https://catalogue.data.govt.nz/dataset/international-students-in-new-zealand"
+    },
+    {
+      "id": "cb1e9423-f891-452e-9ce2-4c49daa029e7",
+      "title": "New Zealand Coastal DSM Hillshade",
+      "name": "new-zealand-coastal-dsm-hillshade",
+      "organization": "Land Information New Zealand",
+      "notes": "This layer contains the New Zealand Coastal DSM Hillshade, which is a hillshade generated from the [New Zealand Coastal LiDAR 1m DSM](https://data.linz.govt.nz/layer/123048). It is current as at the most recent Published date found in the History tab. The style is suitable for cartographic purposes. This data was captured as part of the 3D Coastal Mapping Project.\n\t\t\nFor information on datasets that make up the New Zealand Coastal DSM Hillshade layer, please visit this layer: [New Zealand Coastal LiDAR 1m DSM Survey Index](https://data.linz.govt.nz/layer/123050). \n\nThe most recent Coastal Hillshade DSM data can also be accessed from the NZ Coastal public S3 bucket via the link below, which is automatically updated when new coastal elevation layers are added.\n\nData management and distribution is by Toit\u016b Te Whenua Land Information New Zealand. Management of this layer is ongoing and it will be updated with newer data as it becomes available. \n\nData comprises:\n\u2022 GeoTIFF tiles in NZTM2000 projection, merged from a variety of source surveys and tiled into the LINZ [1:50,000 tile layout](https://data.linz.govt.nz/layer/104687-nz-150k-tile-index/).\n\nAlso available on:\n\u2022 [NZ Coastal - Registry of Open Data on AWS](https://registry.opendata.aws/nz-coastal/), specifically at s3://nz-coastal/new-zealand/new-zealand/dsm-hillshade/2193/. This is the data source and at this location it is LERC compressed and made available as Cloud Optimised GeoTIFFs.\n\nAn alternative hillshade style is also available:\n\u2022 [New Zealand Coastal DSM Hillshade - Igor](https://data.linz.govt.nz/layer/123065)\n\nUse with the following attribution:  \"Sourced from the [LINZ Data Service](https://data.linz.govt.nz/layer/123064) and licensed by Toit\u016b Te Whenua Land Information New Zealand, for re-use under CC BY 4.0\".",
+      "url": "https://catalogue.data.govt.nz/dataset/new-zealand-coastal-dsm-hillshade"
+    },
+    {
+      "id": "82d42e07-6ec9-4ac6-9dd8-73593a8e510a",
+      "title": "New Zealand DSM Hillshade - Igor",
+      "name": "new-zealand-dsm-hillshade-igor15",
+      "organization": "Land Information New Zealand",
+      "notes": "This layer contains the New Zealand DSM Hillshade - Igor, which is an amalgamation of the most current LiDAR surveys. It is current as at the most recent Published date found in the History tab. The style is suitable for cartographic purposes.\n\t\t\nFor information on datasets that make up the New Zealand DSM Hillshade - Igor layer, please visit this layer: [New Zealand 1m DSM Survey Index](https://data.linz.govt.nz/layer/122149-new-zealand-lidar-1m-dsm-survey-index/). \n\nThe most recent LiDAR DSM data can also be accessed from the NZ Elevation public S3 bucket via the link below, which is automatically updated when new elevation layers are added.\n\nData management and distribution is by Toit\u016b Te Whenua Land Information New Zealand. Management of this layer is ongoing and it will be updated with newer data as it becomes available. \n\nData comprises:\n\u2022 400+ GeoTIFF tiles in NZTM2000 projection, merged from a variety of source surveys and tiled into the LINZ [1:50,000 tile layout](https://data.linz.govt.nz/layer/104687-nz-150k-tile-index/).\n\nAlso available on:\n\u2022 [NZ Elevation - Registry of Open Data on AWS](https://registry.opendata.aws/nz-elevation/), specifically at s3://nz-elevation/new-zealand/new-zealand/dsm-hillshade-igor/2193/. This is the data source and at this location it is LERC compressed and made available as Cloud Optimised GeoTIFFs.\n\nUse with the following attribution:  \"Sourced from the [LINZ Data Service](https://data.linz.govt.nz/layer/122140-new-zealand-dsm-hillshade-igor/) and [licensed by Toit\u016b Te Whenua Land Information New Zealand, for re-use under CC BY 4.0](https://www.linz.govt.nz/data/licensing-and-using-data/attributing-elevation-or-aerial-imagery-data)\".\n\nFor details see: https://www.linz.govt.nz/data/licensing-and-using-data/attributing-elevation-or-aerial-imagery-data",
+      "url": "https://catalogue.data.govt.nz/dataset/new-zealand-dsm-hillshade-igor15"
+    },
+    {
+      "id": "f0e50828-f6c1-4d1e-8ffa-d3df085a2342",
+      "title": "New Zealand Coastal DEM Hillshade",
+      "name": "new-zealand-coastal-dem-hillshade9",
+      "organization": "Land Information New Zealand",
+      "notes": "This layer contains the New Zealand Coastal DEM Hillshade, which is a hillshade generated from the [New Zealand Coastal LiDAR 1m DEM](https://data.linz.govt.nz/layer/122508). It is current as at the most recent Published date found in the History tab. The style is suitable for cartographic purposes. This data was captured as part of the 3D Coastal Mapping Project.\n\t\t\nFor information on datasets that make up the New Zealand Coastal DEM Hillshade layer, please visit this layer: [New Zealand Coastal LiDAR 1m DEM Survey Index](https://data.linz.govt.nz/layer/122509). \n\nThe most recent Coastal Hillshade DEM data can also be accessed from the NZ Coastal public S3 bucket via the link below, which is automatically updated when new coastal elevation layers are added.\n\nData management and distribution is by Toit\u016b Te Whenua Land Information New Zealand. Management of this layer is ongoing and it will be updated with newer data as it becomes available. \n\nData comprises:\n\u2022 GeoTIFF tiles in NZTM2000 projection, merged from a variety of source surveys and tiled into the LINZ [1:50,000 tile layout](https://data.linz.govt.nz/layer/104687-nz-150k-tile-index/).\n\nAlso available on:\n\u2022 [NZ Coastal - Registry of Open Data on AWS](https://registry.opendata.aws/nz-coastal/), specifically at s3://nz-coastal/new-zealand/new-zealand/dem-hillshade/2193/. This is the data source and at this location it is LERC compressed and made available as Cloud Optimised GeoTIFFs.\n\nAn alternative hillshade style is also available:\n\u2022 [New Zealand Coastal DEM Hillshade - Igor](https://data.linz.govt.nz/layer/122519)\n\nUse with the following attribution:  \"Sourced from the [LINZ Data Service](https://data.linz.govt.nz/layer/122520) and licensed by Toit\u016b Te Whenua Land Information New Zealand, for re-use under CC BY 4.0\".",
+      "url": "https://catalogue.data.govt.nz/dataset/new-zealand-coastal-dem-hillshade9"
+    },
+    {
+      "id": "48116bef-9b5e-48fb-be09-bf667fd862ff",
+      "title": "New Zealand Region Bathymetry (2008)",
+      "name": "new-zealand-region-bathymetry-2008",
+      "organization": "National Institute of Water and Atmospheric Research Limited",
+      "notes": "\n<p>Published Chart: Charting Around New Zealand (CANZ) Group (2008), 'New Zealand Region Bathymetry',<br>\n1:4,000,000 scale at 46\u00b0S on Mercator projection, NIWA Chart, Miscellaneous Series No. 85, National Institute of Water and Atmospheric Research, Wellington, New Zealand  </p>\n<p>Geographic Coverage: In the edgematching of this sheet with GEBCO sheet G.08, the bathymetry was taken from sheet G.08 for the following areas:<br>\n24\u00b0-31\u00b0S,157\u00b0-158.5\u00b0E; 47\u00b0-54\u00b0S,157\u00b0-165\u00b0E; 54\u00b0-57.5\u00b0S,157\u00b0-163.5\u00b0E  </p>\n<p>The bathymetry was compiled by NIWA at a scale of 1:1 million using a series of 18 separate Ocean Plotting Sheets on which the soundings were plotted. Each author (as listed above) worked on the interpretation and contouring of 3-4 sheets each and gravity data were used to assist in the interpretation. The resulting contours (at intervals of 250m) were then digitized and used in the production of the 1:4 million scale chart.  </p>\n<p>The bathymetry was compiled from data held at:<br>\nNational Institute of Water and Atmosphere (NIWA)<br>\nHydrographic Office of the Royal New Zealand Navy<br>\nUS National Geophysical Data Centre<br>\nSouth Pacific Applied Geoscience Commission (Fiji);<br>\nfrom published scientific papers; and from recent swath bathymetric surveys funded by Institut Francais de Recherche pour'Exploitation de la Mer (IFREMER), France, NIWA, LINZ and Seabed Mapping New Zealand Ltd.  </p>\n<p>The shallow water contours (50m, 100m, 150m and 200m) were compiled from a<br>\ndatabase made up of the digitized contours from the NIWA coastal (1:200,000)<br>\nchart series.</p>\n",
+      "url": "https://catalogue.data.govt.nz/dataset/new-zealand-region-bathymetry-2008"
+    },
+    {
+      "id": "721047da-e605-457d-b818-143d8fb2707a",
+      "title": "International students in New Zealand",
+      "name": "international-students-studying-in-new-zealand",
+      "organization": "Ministry of Education",
+      "notes": "Statistics on the numbers of international students studying in New Zealand, international students\u2019 progression through the New Zealand education system, their academic achievement, support provided for international students and international students\u2019 experiences in New Zealand, their employment outcomes, and ongoing links to New Zealand as alumni.",
+      "url": "https://catalogue.data.govt.nz/dataset/international-students-studying-in-new-zealand"
+    },
+    {
+      "id": "19109bf6-d4a2-4eaa-9f45-dddcd4986594",
+      "title": "Sarcosoma orientale in New Zealand",
+      "name": "sarcosoma-orientale-in-new-zealand",
+      "organization": "Manaaki Whenua \u2013 Landcare Research",
+      "notes": "A phylogeny based on ITS and LSU sequences suggests a New Zealand specimen morphologically typical of Sarcosoma orientale is phylogenetically distinct from the types of the genus, S. glabrum. Whether this specimen truly represents S. orientale is doubtful. The New Zealand fungus may be an unnamed species. ",
+      "url": "https://catalogue.data.govt.nz/dataset/sarcosoma-orientale-in-new-zealand"
+    },
+    {
+      "id": "9080fb56-34eb-4d88-a1f3-cee8a329967a",
+      "title": "Hyphodiscaceae in Aotearoa New Zealand",
+      "name": "hyphodiscaceae-in-aotearoa-new-zealand",
+      "organization": "Manaaki Whenua \u2013 Landcare Research",
+      "notes": "ITS gene tree showing diversity of unnamed Leotiomycetes species within Hyphodiscaeae in New Zealand",
+      "url": "https://catalogue.data.govt.nz/dataset/hyphodiscaceae-in-aotearoa-new-zealand"
+    },
+    {
+      "id": "35f6367f-1f8a-4d4d-a4fc-cd504280599e",
+      "title": "New Zealand DEM Hillshade - Igor",
+      "name": "new-zealand-dem-hillshade-igor19",
+      "organization": "Land Information New Zealand",
+      "notes": "This layer contains the New Zealand DEM Hillshade - Igor, which is an amalgamation of the most current LiDAR surveys, and the NZ 8m Digital Elevation Model (2012) where there is no LiDAR coverage. It is current as at the most recent Published date found in the History tab. The style is suitable for cartographic purposes.\n\t\t\nFor information on datasets that make up the New Zealand DEM Hillshade - Igor layer, please visit this layer: [New Zealand 1m DEM Survey Index](https://data.linz.govt.nz/layer/121943-new-zealand-lidar-1m-dem-survey-index/). \n\nGaps in the 1m LiDAR coverage are covered by the [NZ 8m Digital Elevation Model (2012)](https://data.linz.govt.nz/layer/51768-nz-8m-digital-elevation-model-2012/).\n\nThe most recent LiDAR DEM data can also be accessed from the NZ Elevation public S3 bucket via the link below, which is automatically updated when new elevation layers are added.\n\nData management and distribution is by Toit\u016b Te Whenua Land Information New Zealand. Management of this layer is ongoing and it will be updated with newer data as it becomes available. \n\nData comprises:\n\u2022 400+ GeoTIFF tiles in NZTM2000 projection, merged from a variety of source surveys and tiled into the LINZ [1:50,000 tile layout](https://data.linz.govt.nz/layer/104687-nz-150k-tile-index/).\n\nAlso available on:\n\u2022 [Basemaps](https://basemaps.linz.govt.nz/@-41.6530780,174.1161818,z5.25?i=hillshade-igor)\n\u2022 [NZ Elevation - Registry of Open Data on AWS](https://registry.opendata.aws/nz-elevation/), specifically at s3://nz-elevation/new-zealand/new-zealand/dem-hillshade-igor/2193/. This is the data source and at this location it is LERC compressed and made available as Cloud Optimised GeoTIFFs.\n\nUse with the following attribution:  \"Sourced from the [LINZ Data Service](https://data.linz.govt.nz/layer/121958-new-zealand-dem-hillshade-igor/) and [licensed by Toit\u016b Te Whenua Land Information New Zealand, for re-use under CC BY 4.0](https://www.linz.govt.nz/data/licensing-and-using-data/attributing-elevation-or-aerial-imagery-data)\".\n\nFor details see: https://www.linz.govt.nz/data/licensing-and-using-data/attributing-elevation-or-aerial-imagery-data",
+      "url": "https://catalogue.data.govt.nz/dataset/new-zealand-dem-hillshade-igor19"
+    },
+    {
+      "id": "6243c931-feb9-4a77-a10f-faeb944b0668",
+      "title": "Publications New Zealand Metadata Dataset",
+      "name": "publications-new-zealand-metadata-dataset",
+      "organization": "Department of Internal Affairs",
+      "notes": "Publications New Zealand is New Zealand's national bibliography. The Publications New Zealand dataset contains bibliographic records of books, periodicals, films, music and other material published in New Zealand, or with a significant New Zealand content The records in the dataset were created by the National Library and other New Zealand libraries, with a small number of bibliographic records coming from OCLC's WorldCat. The National Library acknowledges the support of OCLC in permitting the inclusion of WorldCat derived records in the dataset. Records are provided in 2 formats: MARC and MARCXML - both being library catalogue record standards.",
+      "url": "https://catalogue.data.govt.nz/dataset/publications-new-zealand-metadata-dataset"
+    },
+    {
+      "id": "daf09b04-f3e6-48af-b88d-ea69a0f696a4",
+      "title": "New Zealand Active Fault Model",
+      "name": "new-zealand-active-fault-model",
+      "organization": "GNS Science",
+      "notes": "Active fault traces are a surface expression of permanent deformation that accommodates the motion within and between adjacent tectonic plates. We present an updated national-scale model for active faulting in New Zealand, summarise the present understanding of fault kinematics in 15 tectonic domains, and undertake some brief kinematic analysis including comparison of fault slip rates with GPS velocities. The model contains 635 simplified faults with tabulated parameters of their attitude (dip and dip-direction) and kinematics (sense of movement and rake of slip vector); net slip rate; and a quality code. Fault density and slip rates are, as expected, highest along the central plate boundary zone, but the model is undoubtedly incomplete, particularly in rapidly eroding mountainous areas and submarine areas with limited data. The active fault data presented are of value to a range of kinematic, active fault and seismic hazard studies.\n\nDOI:\nhttps://doi.org/10.21420/W08T-TY11\n\nCite as:\nLitchfield, N.J., Van Dissen, R., Sutherland, R., Barnes, P.M., Cox, S.C., Norris, R., Beavan, J., Langridge, R., Villamor, P., Berryman, K., Stirling, M., Nicol, A., Nodder, S., Lamarche, G., Barrell, D.J.A., Pettinga, J.R., Little, T., Pondard, N., Mountjoy, J.J., Clark, K., 2014, A model of active faulting in New Zealand. New Zealand Journal of Geology and Geophysics 57 (1): 32-56. doi: 10.1080/00288306.2013.854256. (with data set available at DOI: https://doi.org/10.21420/W08T-TY11).",
+      "url": "https://catalogue.data.govt.nz/dataset/new-zealand-active-fault-model"
+    },
+    {
+      "id": "7d0dd22c-09ef-42b5-9671-723ee3356f27",
+      "title": "Phylogeny of New Zealand ascomycetes",
+      "name": "phylogeny-of-new-zealand-ascomycetes",
+      "organization": "Manaaki Whenua \u2013 Landcare Research",
+      "notes": "Miscellaneous notes based on DNA sequence data from ascomycete specimens in the New Zealand Fungarium (PDD) and the International Collection of Microorganisms from Plants (ICMP)",
+      "url": "https://catalogue.data.govt.nz/dataset/phylogeny-of-new-zealand-ascomycetes"
+    },
+    {
+      "id": "aa9496d0-cdf1-4934-b448-9913c93159ea",
+      "title": "The New Zealand Tourism Dashboard",
+      "name": "the-new-zealand-tourism-dashboard",
+      "organization": "Ministry of Business, Innovation and Employment",
+      "notes": "The New Zealand Tourism Dashboard is a one-stop shop for all information about tourism. It brings together a range of tourism datasets produced by MBIE and Statistics New Zealand into one easy-to-use tool. Information is presented using dynamic graphs and data tables.",
+      "url": "https://catalogue.data.govt.nz/dataset/the-new-zealand-tourism-dashboard"
+    },
+    {
+      "id": "97e01545-2d63-4f22-bea4-f4f2848ad0f4",
+      "title": "Index New Zealand Metadata Dataset",
+      "name": "index-new-zealand-metadata-dataset",
+      "organization": "Department of Internal Affairs",
+      "notes": "Index New Zealand (INNZ) is a searchable database that contains abstracts and descriptions of articles from about 1000 New Zealand periodicals and newspapers published from the early 1900s to the present day. The periodicals range from academic research journals to magazines and concentrate on New Zealand and South Pacific topics. The index records are created by staff at the National Library of New Zealand.",
+      "url": "https://catalogue.data.govt.nz/dataset/index-new-zealand-metadata-dataset"
+    },
+    {
+      "id": "oai-figshare-com-article-23734197",
+      "title": "SurveyOnChineseNewZealanders",
+      "name": "oai-figshare-com-article-23734197",
+      "organization": "The University of Auckland",
+      "notes": "<p dir=\"ltr\">A survey conducted among ethnic Chinese voters in New Zealand_ 2021</p>",
+      "url": "https://catalogue.data.govt.nz/dataset/oai-figshare-com-article-23734197"
+    },
+    {
+      "id": "adfd5527-be85-48bd-9526-7ecf834f2484",
+      "title": "New Zealand Household Travel Survey",
+      "name": "new-zealand-household-travel-survey",
+      "organization": "Ministry of Transport",
+      "notes": "An ongoing survey of household travel in New Zealand",
+      "url": "https://catalogue.data.govt.nz/dataset/new-zealand-household-travel-survey"
+    },
+    {
+      "id": "64af7e98-7d75-4394-8b4e-0d13f9fea395",
+      "title": "New Zealand Historical Tsunami Database",
+      "name": "new-zealand-historical-tsunami-database",
+      "organization": "GNS Science",
+      "notes": "New Zealand Tsunami Database includes information about tsunamis that have reached the coastline of New Zealand since humans arrived in this land until the present day. The database is primarily the work of historical seismologist Gaye Downes working for GNS Science who collected reports of tsunamis around New Zealand and, in many cases, carried out research to determine parameters of the source, travel time and impact associated with each event. Reports of tsunamis that make up the core of this database come from tide gauges, newspaper articles, harbour masters, records from ships, personal diary entries and M\u0101ori oral records. This primary source material is summarised in the database and complete transcriptions are held by the database custodian.\n\nDOI:  https://doi.org/10.21420/D6W9-0G74\n\nCite as:\nGNS Science. (2020). New Zealand Tsunami Database: Historical and Modern Records [Data set]. GNS Science. https://doi.org/10.21420/D6W9-0G74",
+      "url": "https://catalogue.data.govt.nz/dataset/new-zealand-historical-tsunami-database"
+    }
+  ]
+}
