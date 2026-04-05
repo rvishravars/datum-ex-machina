@@ -254,6 +254,12 @@ function Stage({ tier, dataset, onComplete, onBack }) {
           justify-content: space-between;
           margin-top: 1rem;
           filter: var(--wobble-filter);
+          position: sticky;
+          bottom: 0;
+          background: var(--paper);
+          padding: 1rem 0;
+          z-index: 10001; /* Ensure floating above term panels and other content */
+          border-top: 1px dashed var(--ink); /* Subtle separation when sticky */
         }
 
         .btn-nav {
