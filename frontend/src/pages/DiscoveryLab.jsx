@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import DiscoveryBubbleChart from '../components/Discovery/DiscoveryBubbleChart';
 import { motion } from 'framer-motion';
 
-const DiscoveryLab = () => {
+const DiscoveryLab = ({ onBack }) => {
     const [discoveryData, setDiscoveryData] = useState(null);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
@@ -23,6 +23,18 @@ const DiscoveryLab = () => {
 
         fetchDiscoveryStats();
     }, []);
+
+    const formatSyncDate = (dateStr) => {
+        if (!dateStr) return "NEVER";
+        try {
+            // Clean up microseconds precision for strict browsers
+            const cleanDate = dateStr.split('.')[0] + 'Z'; 
+            const date = new Date(cleanDate);
+            return isNaN(date.getTime()) ? "CLOCK ERROR" : date.toLocaleString();
+        } catch (e) {
+            return "SYNC ERROR";
+        }
+    };
 
     const handleBubbleClick = (bubble) => {
         console.log("Zooming into:", bubble.label);
@@ -51,16 +63,22 @@ const DiscoveryLab = () => {
     return (
         <div className="discovery-lab-container min-h-screen bg-slate-50 p-6 md:p-12 font-mono">
             {/* Header / HUD */}
-            <header className="mb-12 border-b-4 border-slate-900 pb-6 flex flex-col md:flex-row justify-between items-start md:items-end">
+            <header className="mb-12 border-b-4 border-slate-900 pb-6 flex flex-col md:flex-row justify-between items-start md:items-end relative">
+                <button 
+                    onClick={onBack}
+                    className="absolute -top-4 -left-4 bg-slate-900 text-white p-2 text-xs font-bold hover:bg-blue-600 transition-colors"
+                >
+                    ← BACK TO ARCHIVE
+                </button>
                 <div>
-                    <h1 className="text-4xl md:text-6xl font-black mb-2 tracking-tighter italic">NEXUS DISCOVERY LAB</h1>
+                    <h1 className="text-4xl md:text-6xl font-black mb-2 tracking-tighter italic mt-8 md:mt-0">NEXUS DISCOVERY LAB</h1>
                     <p className="text-sm border-l-4 border-slate-900 pl-4 py-1">
                         Analyzing <span className="font-bold underline decoration-blue-500">{discoveryData?.total_datasets}</span> Potential Narrative Pathways
                     </p>
                 </div>
                 <div className="mt-4 md:mt-0 text-right">
                     <p className="text-xs font-bold uppercase tracking-widest text-slate-500">Last System Sync</p>
-                    <p className="font-bold">{new Date(discoveryData?.last_updated).toLocaleString()}</p>
+                    <p className="font-bold">{formatSyncDate(discoveryData?.last_updated)}</p>
                 </div>
             </header>
 
