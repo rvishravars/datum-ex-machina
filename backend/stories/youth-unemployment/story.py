@@ -18,6 +18,7 @@ class YouthUnemploymentStory(BaseStory):
         self.y_label = "Unemployment Rate (15-24 Years)"
         self.description = "A statistical tracking of the challenges facing young workers in New Zealand. From the stability of the early 2000s to the volatility of the pandemic era."
         self.source = "Stats NZ / HLFS"
+        self.source_url = "https://www.stats.govt.nz/information-releases/labour-market-statistics-march-2024-quarter/"
         self.citation = "Household Labour Force Survey (2024)"
 
         self.data_fallback = [

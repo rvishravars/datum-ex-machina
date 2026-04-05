@@ -18,6 +18,7 @@ class CO2EmissionsStory(BaseStory):
         self.y_label = "Gt CO2 per Year"
         self.description = "A statistical tracking of global carbon emissions since 1990. Identifying the moments where the industrial curve bent—and where it paused."
         self.source = "Global Carbon Project / IEA"
+        self.source_url = "https://www.icos-cp.eu/science-and-impact/global-carbon-budget/2023"
         self.citation = "Global Carbon Budget 2023"
 
         self.data_fallback = [

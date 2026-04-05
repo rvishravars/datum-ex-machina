@@ -18,6 +18,7 @@ class IncomeInequalityStory(BaseStory):
         self.y_label = "Gini Index (0 to 1)"
         self.description = "A historical lens on New Zealand's wealth distribution from 1985 to today. Tracking the 'Gini Index'—where 0 is total equality and 1 is total inequality."
         self.source = "OECD Income Distribution Database / Stats NZ"
+        self.source_url = "https://www.msd.govt.nz/about-msd-and-our-work/publications-resources/monitoring/household-incomes/"
         self.citation = "NZ Household Incomes Report (Perry, 2023)"
 
         self.data_fallback = [

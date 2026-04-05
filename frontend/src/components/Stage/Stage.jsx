@@ -88,10 +88,22 @@ function Stage({ tier, dataset, onComplete, onBack }) {
           </button>
         </div>
         <div className="stage-meta">
-          <span className={`tier-tag ${tier === 'R' ? 'tag-r' : 'tag-m'}`}>
-            Stage Rating: {tier === 'R' ? 'R — Evidence Stage' : 'M — Pre-Stats Stage'}
-          </span>
-          <h2 className="dataset-title">{storyboard.title}</h2>
+          <div className="meta-left">
+            <span className={`tier-tag ${tier === 'R' ? 'tag-r' : 'tag-m'}`}>
+              Stage Rating: {tier === 'R' ? 'R — Evidence Stage' : 'M — Pre-Stats Stage'}
+            </span>
+            <h2 className="dataset-title">{storyboard.title}</h2>
+          </div>
+          {dataset.source_url && (
+            <a 
+              href={dataset.source_url} 
+              target="_blank" 
+              rel="noopener noreferrer" 
+              className="source-link"
+            >
+              Verify Source Resource ↗
+            </a>
+          )}
         </div>
         <div className="progress-bar">
           <div 
@@ -221,6 +233,27 @@ function Stage({ tier, dataset, onComplete, onBack }) {
           font-size: 2.5rem;
           margin: 0;
           color: var(--ink);
+        }
+
+        .source-link {
+          font-family: var(--font-hand);
+          font-size: 1.2rem;
+          color: var(--ink);
+          text-decoration: underline;
+          text-decoration-style: dashed;
+          opacity: 0.8;
+          filter: var(--wobble-filter);
+        }
+
+        .source-link:hover {
+          opacity: 1;
+          color: #2563eb;
+        }
+
+        .meta-left {
+          display: flex;
+          align-items: center;
+          gap: 2rem;
         }
 
         .progress-bar {
