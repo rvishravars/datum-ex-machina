@@ -8,7 +8,7 @@ from fastapi import FastAPI
 from fastapi.staticfiles import StaticFiles
 from fastapi.responses import FileResponse
 from fastapi.middleware.cors import CORSMiddleware
-from routers import analyze, quiz, auth
+from routers import analyze, quiz, auth, discovery
 from starlette.middleware.sessions import SessionMiddleware
 
 app = FastAPI(
@@ -37,6 +37,7 @@ app.add_middleware(
 app.include_router(analyze.router, prefix="/api")
 app.include_router(quiz.router, prefix="/api")
 app.include_router(auth.router, prefix="/api")
+app.include_router(discovery.router, prefix="/api")
 
 # Static Files (Frontend)
 # We look for a 'static' folder which will contain the React build

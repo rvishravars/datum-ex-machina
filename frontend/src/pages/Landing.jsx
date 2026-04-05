@@ -4,7 +4,7 @@ import { useAuth } from '../components/AuthContext';
 import PacificDiscovery from '../components/Discovery/PacificDiscovery';
 import StoryCard from '../components/Discovery/StoryCard';
 
-function Landing({ onStart, onLogin }) {
+function Landing({ onStart, onLogin, onDiscovery }) {
   const { user, logout } = useAuth();
   const [datasets, setDatasets] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -61,6 +61,10 @@ function Landing({ onStart, onLogin }) {
     return matchesSearch && strictRegionMatch && matchesTier;
   });
 
+  const scrollToStories = () => {
+    document.querySelector('.archive-grid')?.scrollIntoView({ behavior: 'smooth' });
+  };
+
   return (
     <div className="landing-page animate-pop">
       <nav className="top-nav">
@@ -80,6 +84,15 @@ function Landing({ onStart, onLogin }) {
       <header className="landing-hero">
         <h1 className="main-title">Datum Ex Machina</h1>
         <p className="sub-tagline">{"\"The Pacific Research Archive\""}</p>
+        
+        <div className="discovery-cta mt-4">
+          <button 
+            className="btn-discovery"
+            onClick={() => onDiscovery()}
+          >
+            <span className="sparkle">✨</span> EXPLORE THE EVIDENCE HORIZON <span className="sparkle">✨</span>
+          </button>
+        </div>
       </header>
 
       <PacificDiscovery 
