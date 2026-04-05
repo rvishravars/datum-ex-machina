@@ -63,91 +63,70 @@ const DiscoveryDataGrid = ({ rootData, onLeafClick }) => {
     if (!rootData) return null;
 
     return (
-        <div className="w-full h-[80vh] min-h-[700px] flex flex-col bg-slate-950 rounded-2xl border border-slate-800 shadow-[0_20px_50px_rgba(0,0,0,0.5)] overflow-hidden font-sans text-slate-200 mt-4">
+        <div className="w-full flex flex-col bg-white rounded-lg border border-slate-200 shadow-sm overflow-hidden font-sans text-slate-800 mt-4 h-[80vh] min-h-[700px]">
             
             {/* Control Bar (Search & Metrics) */}
-            <div className="p-6 bg-slate-900 border-b border-slate-800 flex flex-col md:flex-row gap-4 justify-between items-center z-10 relative shadow-sm">
-                <div className="relative w-full md:w-1/2 lg:w-1/3 group">
-                    <span className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-500 group-focus-within:text-blue-500 transition-colors">
-                        <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
-                        </svg>
-                    </span>
+            <div className="p-4 bg-slate-50 border-b border-slate-200 flex flex-col md:flex-row gap-4 justify-between items-center">
+                <div className="w-full md:w-1/2 lg:w-1/3">
                     <input 
                         type="text" 
-                        placeholder="Search evidence titles, IDs, or themes..." 
+                        placeholder="Search evidence titles or themes..." 
                         value={searchTerm}
                         onChange={handleSearchChange}
-                        className="w-full bg-slate-950 border border-slate-700 text-white rounded-xl py-3 pl-12 pr-4 focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 transition-colors placeholder:text-slate-600"
+                        className="w-full bg-white border border-slate-300 text-slate-900 rounded-md py-2 px-4 focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 transition-colors shadow-sm text-sm"
                     />
                 </div>
                 
-                <div className="flex gap-4 items-center text-sm font-medium tracking-wide w-full md:w-auto justify-between md:justify-end">
-                    <div className="bg-slate-800/50 px-4 py-2 rounded-lg border border-slate-700/50 flex flex-col md:flex-row md:items-center gap-1 md:gap-2">
-                        <span className="text-slate-400 text-xs md:text-sm">Total Register:</span> 
-                        <span className="text-blue-400 font-bold text-lg md:text-sm leading-none">{flatData.length.toLocaleString()}</span>
-                    </div>
+                <div className="flex gap-4 flex-wrap items-center text-sm">
                     {searchTerm && (
-                        <div className="bg-blue-900/20 px-4 py-2 rounded-lg border border-blue-500/20 text-blue-400 animate-pulse flex flex-col md:flex-row md:items-center gap-1 md:gap-2">
-                            <span className="text-xs md:text-sm text-blue-300">Matches:</span>
-                            <span className="font-bold text-lg md:text-sm leading-none">{filteredData.length.toLocaleString()}</span>
+                        <div className="bg-blue-50 text-blue-700 px-3 py-1.5 rounded border border-blue-200">
+                            <strong>{filteredData.length.toLocaleString()}</strong> matches found
                         </div>
                     )}
+                    <div className="text-slate-500">
+                        Total Archive: <strong>{flatData.length.toLocaleString()}</strong>
+                    </div>
                 </div>
             </div>
 
             {/* Table Area */}
-            <div className="flex-1 overflow-auto bg-slate-950 relative" style={{ scrollbarWidth: 'thin', scrollbarColor: '#334155 transparent' }}>
-                <table className="w-full text-left border-collapse whitespace-nowrap md:whitespace-normal">
-                    <thead className="bg-slate-900/90 backdrop-blur-md sticky top-0 z-10 border-b border-slate-800">
+            <div className="flex-1 overflow-auto bg-white relative">
+                <table className="w-full text-left border-collapse text-sm">
+                    <thead className="bg-slate-50 sticky top-0 z-10 border-b border-slate-200 shadow-sm">
                         <tr>
-                            <th className="p-4 pl-6 text-xs font-black uppercase tracking-widest text-slate-400">Dataset Identification</th>
-                            <th className="p-4 text-xs font-black uppercase tracking-widest text-slate-400 w-48 hidden md:table-cell">Thematic Group</th>
-                            <th className="p-4 text-xs font-black uppercase tracking-widest text-slate-400 w-40 hidden lg:table-cell">Origin Branch</th>
-                            <th className="p-4 pr-6 text-xs font-black uppercase tracking-widest text-slate-400 w-32 text-right">Action</th>
+                            <th className="p-3 pl-6 font-semibold text-slate-600 border-r border-slate-100">Dataset Title</th>
+                            <th className="p-3 w-48 hidden md:table-cell font-semibold text-slate-600 border-r border-slate-100">Thematic Group</th>
+                            <th className="p-3 pr-6 w-40 hidden lg:table-cell font-semibold text-slate-600">Origin Branch</th>
                         </tr>
                     </thead>
-                    <tbody className="divide-y divide-slate-800/50">
+                    <tbody className="divide-y divide-slate-100">
                         {currentData.length > 0 ? currentData.map((item, idx) => (
-                            <tr key={item.id + idx} className="hover:bg-slate-800/50 transition-colors group">
-                                <td className="p-4 pl-6">
-                                    <p className="font-semibold text-slate-200 group-hover:text-blue-300 transition-colors leading-relaxed whitespace-normal pr-4">
+                            <tr 
+                                key={item.id + idx} 
+                                onClick={() => onLeafClick && onLeafClick(item.rawNode)}
+                                className="hover:bg-blue-50/50 transition-colors cursor-pointer group"
+                            >
+                                <td className="p-3 pl-6 align-middle border-r border-slate-50/50">
+                                    <p className="font-medium text-slate-700 group-hover:text-blue-700 transition-colors leading-relaxed">
                                         {item.title}
                                     </p>
-                                    <p className="text-xs text-slate-500 font-mono mt-1.5 flex items-center gap-2">
-                                        <span className="px-1.5 py-0.5 bg-slate-900 border border-slate-700 rounded text-[9px] uppercase tracking-widest text-amber-500/80">ID</span> 
-                                        {item.id}
-                                    </p>
                                 </td>
-                                <td className="p-4 hidden md:table-cell align-top pt-5">
-                                    <span className="inline-flex items-center px-3 py-1 rounded-full text-[11px] font-bold uppercase tracking-wider bg-slate-800 text-slate-300 border border-slate-700">
+                                <td className="p-3 hidden md:table-cell align-middle border-r border-slate-50/50">
+                                    <span className="text-slate-600 bg-slate-100 px-2 py-1 rounded text-xs">
                                         {item.theme}
                                     </span>
                                 </td>
-                                <td className="p-4 hidden lg:table-cell align-top pt-5">
-                                    <span className={`text-[11px] font-black uppercase tracking-widest flex items-center gap-2
-                                        ${item.origin === 'Stats NZ' ? 'text-green-400' : 'text-blue-400'}`}>
-                                        <span className={`w-2 h-2 rounded-full ${item.origin === 'Stats NZ' ? 'bg-green-500 shadow-[0_0_8px_rgba(34,197,94,0.6)]' : 'bg-blue-500 shadow-[0_0_8px_rgba(59,130,246,0.6)]'}`}></span>
+                                <td className="p-3 pr-6 hidden lg:table-cell align-middle">
+                                    <span className="text-slate-600 font-medium">
                                         {item.origin}
                                     </span>
-                                </td>
-                                <td className="p-4 pr-6 text-right align-middle">
-                                    <button 
-                                        onClick={() => onLeafClick(item.rawNode)}
-                                        className="bg-blue-600/10 hover:bg-blue-600 text-blue-400 hover:text-white border border-blue-500/30 hover:border-blue-500 px-4 py-2.5 rounded-lg text-xs font-bold uppercase tracking-widest transition-all shadow-[0_0_10px_rgba(37,99,235,0)] hover:shadow-[0_0_20px_rgba(37,99,235,0.4)] hover:-translate-y-0.5"
-                                    >
-                                        Synthesize
-                                    </button>
                                 </td>
                             </tr>
                         )) : (
                             <tr>
-                                <td colSpan="4" className="p-20 text-center text-slate-500">
-                                    <svg xmlns="http://www.w3.org/2000/svg" className="h-12 w-12 mx-auto mb-4 opacity-50" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1} d="M9.172 16.172a4 4 0 015.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-                                    </svg>
-                                    <p className="text-xl font-bold mb-2 uppercase tracking-widest">ZERO MATCHES FOUND</p>
-                                    <p className="text-sm border-t border-slate-800 pt-4 mt-4 inline-block">Adjust your search parameters to continue scanning the historical record.</p>
+                                <td colSpan="3" className="p-16 text-center text-slate-500">
+                                    <p className="text-lg font-medium mb-1">No datasets found.</p>
+                                    <p className="text-sm">Please try a different search term.</p>
                                 </td>
                             </tr>
                         )}
@@ -157,27 +136,27 @@ const DiscoveryDataGrid = ({ rootData, onLeafClick }) => {
 
             {/* Pagination footer */}
             {totalPages > 0 && (
-                <div className="p-4 bg-slate-900 border-t border-slate-800 flex flex-col sm:flex-row justify-between items-center text-sm gap-4 z-10 relative">
-                    <p className="text-slate-400">
-                        Showing <span className="font-bold text-white">{(page - 1) * ITEMS_PER_PAGE + (filteredData.length > 0 ? 1 : 0)}</span> to <span className="font-bold text-white">{Math.min(page * ITEMS_PER_PAGE, filteredData.length)}</span> of <span className="font-bold text-blue-400">{filteredData.length}</span> records
+                <div className="p-4 bg-slate-50 border-t border-slate-200 flex flex-col sm:flex-row justify-between items-center text-sm gap-4">
+                    <p className="text-slate-600">
+                        Showing <strong>{(page - 1) * ITEMS_PER_PAGE + (filteredData.length > 0 ? 1 : 0)}</strong> to <strong>{Math.min(page * ITEMS_PER_PAGE, filteredData.length)}</strong> of <strong>{filteredData.length}</strong>
                     </p>
                     
                     {totalPages > 1 && (
-                        <div className="flex gap-2">
+                        <div className="flex gap-1">
                             <button 
                                 onClick={() => setPage(p => Math.max(1, p - 1))}
                                 disabled={page === 1}
-                                className="px-4 py-2 rounded-lg bg-slate-800 text-slate-300 disabled:opacity-30 disabled:cursor-not-allowed hover:bg-slate-700 transition-colors font-medium border border-slate-700 shadow-sm"
+                                className="px-3 py-1.5 rounded bg-white text-slate-700 disabled:opacity-50 disabled:cursor-not-allowed hover:bg-slate-100 transition-colors border border-slate-300 shadow-sm"
                             >
                                 Previous
                             </button>
-                            <div className="flex items-center px-4 bg-slate-950 border border-slate-800 rounded-lg text-slate-400 font-mono shadow-inner select-none">
+                            <div className="flex items-center px-4 bg-white border-y border-slate-300 text-slate-700">
                                 {page} / {totalPages}
                             </div>
                             <button 
                                 onClick={() => setPage(p => Math.min(totalPages, p + 1))}
                                 disabled={page === totalPages}
-                                className="px-4 py-2 rounded-lg bg-slate-800 text-slate-300 disabled:opacity-30 disabled:cursor-not-allowed hover:bg-slate-700 transition-colors font-medium border border-slate-700 shadow-sm"
+                                className="px-3 py-1.5 rounded bg-white text-slate-700 disabled:opacity-50 disabled:cursor-not-allowed hover:bg-slate-100 transition-colors border border-slate-300 shadow-sm"
                             >
                                 Next
                             </button>
