@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import MillerColumnExplorer from '../components/Discovery/MillerColumnExplorer';
+import DiscoveryDataGrid from '../components/Discovery/DiscoveryDataGrid';
 import { motion } from 'framer-motion';
 
 const DiscoveryLab = ({ onBack }) => {
@@ -72,10 +72,10 @@ const DiscoveryLab = ({ onBack }) => {
             </header>
 
             <main className="w-full flex-grow flex flex-col">
-                {/* Full Width Miller Column Explorer */}
+                {/* Full Width Searchable Data Grid */}
                 <section className="w-full rounded-none flex flex-col flex-grow">
                     {discoveryData?.root && (
-                        <MillerColumnExplorer 
+                        <DiscoveryDataGrid 
                             rootData={discoveryData.root} 
                             onLeafClick={handleLeafClick} 
                         />
