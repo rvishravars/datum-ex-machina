@@ -12,6 +12,7 @@ class BaseStory:
         self.title = "Untitled Story"
         self.description = ""
         self.source = ""
+        self.source_url = ""
         self.citation = ""
         self.unit = ""
         self.x_label = ""
@@ -153,6 +154,7 @@ class BaseStory:
             "tier": self.tier,
             "description": self.description,
             "source": self.source,
+            "source_url": getattr(self, "source_url", ""),
             "citation": self.citation,
             "unit": self.unit,
             "x_label": self.x_label,
@@ -161,7 +163,7 @@ class BaseStory:
             "tags": getattr(self, "tags", []),
             "python_version": getattr(self, "python_version", "3.10"),
             "dependencies": getattr(self, "dependencies", []),
-            "terms": self.get_terms({"summary": {"mean": 0}}), # Safe fallback
+            "terms": self.get_terms({"summary": {"mean": 0}}),  # Safe fallback
             "data": self.load_data(),
         }
 

@@ -18,6 +18,7 @@ class ScreenTimeStory(BaseStory):
         self.y_label = "Screen time (hours/day)"
         self.description = "Average daily screen hours versus sleep hours for NZ secondary school students, 2015–2023. Sourced from Census at School NZ survey patterns."
         self.source = "Census at School NZ (censusatschool.org.nz)"
+        self.source_url = "https://new.censusatschool.org.nz/"
         self.citation = "Census at School NZ, 2015–2023 cohort data"
         self.data_fallback = [
             {"x": 2015, "label": "2015", "y": 3.1, "y2": 7.8},

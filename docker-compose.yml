@@ -11,7 +11,6 @@ services:
       - "8000:8080"
     volumes:
       - ./backend:/app # Mount local code for live-reload
-      - quiz-data:/app/data
     environment:
       - PYTHONUNBUFFERED=1
       - ENV=development
@@ -20,11 +19,18 @@ services:
     # Override the default CMD for live-reloading dev mode
     command: python3 -m uvicorn main:app --host 0.0.0.0 --port 8080 --reload
     restart: always
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8080/"]
+      interval: 1h
+      timeout: 5s
+      retries: 5
+      start_period: 10s
 
   # 🏆 THE FRONTEND: Instant Live-Reload UI
   frontend:
     depends_on:
-      - backend
+      backend:
+        condition: service_healthy
     build:
       context: ./frontend
       dockerfile: Dockerfile
@@ -42,6 +48,7 @@ services:
     command: npm run dev -- --host 0.0.0.0
     restart: always
 
-volumes:
-  quiz-data:
-    driver: local
+
+# volumes:
+#   quiz-data:
+#     driver: local

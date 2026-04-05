@@ -4,6 +4,11 @@ POST /api/datasets — list built-in datasets
 GET  /api/datasets/{id} — fetch a specific built-in dataset
 """
 
+from pipeline.gist_builder import deploy_to_gist
+from fastapi.responses import StreamingResponse
+import io
+import csv
+import sys
 from fastapi import APIRouter, HTTPException
 from pydantic import BaseModel
 from typing import List, Literal, Optional
@@ -52,16 +57,10 @@ def analyze(req: AnalyzeRequest):
     return storyboard
 
 
-import os
-import sys
-import csv
-import io
-from fastapi.responses import FileResponse, StreamingResponse
-from pipeline.gist_builder import deploy_to_gist
-
 @router.get("/datasets")
 def list_datasets():
     return DATASETS
+
 
 @router.get("/datasets/{dataset_id}")
 def get_dataset(dataset_id: str):
@@ -76,42 +75,43 @@ def download_csv(dataset_id: str):
     story = get_story(dataset_id)
     if not story:
         raise HTTPException(status_code=404, detail="Story not found")
-        
+
     data = story.load_data()
     if not data:
         raise HTTPException(status_code=404, detail="No data available")
-        
+
     output = io.StringIO()
     # Assume regular structure with standard keys
     keys = set()
     for row in data:
         keys.update(row.keys())
-    
+
     writer = csv.DictWriter(output, fieldnames=list(keys))
     writer.writeheader()
     writer.writerows(data)
-    
+
     output.seek(0)
     return StreamingResponse(
-        iter([output.getvalue()]), 
-        media_type="text/csv", 
+        iter([output.getvalue()]),
+        media_type="text/csv",
         headers={"Content-Disposition": f"attachment; filename={dataset_id}.csv"}
     )
+
 
 @router.post("/datasets/{dataset_id}/gist")
 async def create_notebook_gist(dataset_id: str):
     story = get_story(dataset_id)
     if not hasattr(story, "__class__"):
         raise HTTPException(status_code=404, detail="Story logic not found")
-        
+
     module_name = story.__class__.__module__
     module = sys.modules.get(module_name)
     if not module or not hasattr(module, "__file__"):
         raise HTTPException(status_code=500, detail="Could not locate story source file")
-        
+
     with open(module.__file__, "r") as f:
         source_code = f.read()
-        
+
     try:
         filename = f"{dataset_id}_notebook.py"
         dependencies = getattr(story, "dependencies", [])

@@ -61,6 +61,8 @@ function Landing({ onStart, onLogin }) {
     return matchesSearch && strictRegionMatch && matchesTier;
   });
 
+
+
   return (
     <div className="landing-page animate-pop">
       <nav className="top-nav">

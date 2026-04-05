@@ -91,7 +91,10 @@ function AppContent() {
       </svg>
 
       {view === 'landing' && (
-        <Landing onStart={startStage} onLogin={() => setView('login')} />
+        <Landing 
+          onStart={startStage} 
+          onLogin={() => setView('login')} 
+        />
       )}
       
       {view === 'stage' && (

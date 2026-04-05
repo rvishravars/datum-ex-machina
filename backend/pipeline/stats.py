@@ -3,17 +3,17 @@ Statistical processing layer.
 Computes all numeric features from the raw dataset that the narrative layer needs.
 """
 
+from typing import List, Dict, Any
+from scipy.stats import iqr
+from scipy import stats as scipy_stats
+import base64
+import io
+from matplotlib.backends.backend_agg import FigureCanvasAgg
+from matplotlib.figure import Figure
 import numpy as np
 import matplotlib
 
 matplotlib.use("Agg")  # Explicitly use non-interactive Agg backend
-from matplotlib.figure import Figure
-from matplotlib.backends.backend_agg import FigureCanvasAgg
-import io
-import base64
-from scipy import stats as scipy_stats
-from scipy.stats import iqr
-from typing import List, Dict, Any
 
 
 def compute_stats(data: List[Dict], tier: str) -> Dict[str, Any]:
@@ -118,7 +118,7 @@ def _classify_trend(slope, ys):
         return "flat"
 
     early = np.mean(ys[: max(1, n // 3)])
-    late = np.mean(ys[-(n // 3) :]) if n > 2 else ys[-1]
+    late = np.mean(ys[-(n // 3):]) if n > 2 else ys[-1]
     total_range = np.max(ys) - np.min(ys)
 
     if total_range < 1e-9:
