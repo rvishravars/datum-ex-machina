@@ -133,7 +133,13 @@ const DiscoveryTreemap = ({ rootData, onLeafClick }) => {
                     transition={{ duration: 0.3 }}
                     onClick={(e) => {
                       e.stopPropagation();
-                      handleNodeClick(node.data.name, isLeaf, node.data);
+                      if (isLeaf) {
+                        handleNodeClick(node.data.name, isLeaf, node.data);
+                      } else {
+                        // Calculate full relative path from current view
+                        const pathNames = node.ancestors().reverse().slice(1).map(d => d.data.name);
+                        setCurrentPath(prev => [...prev, ...pathNames]);
+                      }
                     }}
                     style={{ cursor: 'pointer' }}
                   >
