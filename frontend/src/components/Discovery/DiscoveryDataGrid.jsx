@@ -7,13 +7,22 @@ const DiscoveryDataGrid = ({ rootData, onLeafClick }) => {
         const datasets = [];
         const traverse = (node, pathArr) => {
             if (!node.children || node.children.length === 0) {
+                const origin = pathArr[0] || 'Unknown Origin';
+                let sourceUrl = node.url;
+                if (!sourceUrl) {
+                    if (origin === 'Stats NZ') sourceUrl = 'https://www.stats.govt.nz/tools/aotearoa-data-explorer/';
+                    else if (origin === 'Government Catalog') sourceUrl = `https://data.govt.nz/dataset?q=${encodeURIComponent(node.name)}`;
+                    else sourceUrl = '#';
+                }
+
                 datasets.push({
                     id: node.id || `sys-${Math.random().toString(36).substr(2, 9)}`,
                     title: node.name,
-                    origin: pathArr[0] || 'Unknown Origin',
+                    origin: origin,
                     theme: pathArr[1] || 'Uncategorized',
                     fullPath: pathArr.join(' > '),
-                    rawNode: node
+                    rawNode: node,
+                    url: sourceUrl
                 });
             } else {
                 node.children.forEach(child => traverse(child, [...pathArr, child.name]));
@@ -41,9 +50,7 @@ const DiscoveryDataGrid = ({ rootData, onLeafClick }) => {
         if (searchTerm) {
             filtered = filtered.filter(item => 
                 item.title.toLowerCase().includes(lowerSearch) || 
-                item.theme.toLowerCase().includes(lowerSearch) ||
-                item.origin.toLowerCase().includes(lowerSearch) ||
-                (item.id && item.id.toLowerCase().includes(lowerSearch))
+                item.theme.toLowerCase().includes(lowerSearch)
             );
         }
         return filtered;
@@ -95,8 +102,7 @@ const DiscoveryDataGrid = ({ rootData, onLeafClick }) => {
                     <thead className="bg-slate-50 sticky top-0 z-10 border-b border-slate-200 shadow-sm">
                         <tr>
                             <th className="p-3 pl-6 font-semibold text-slate-600 border-r border-slate-100">Dataset Title</th>
-                            <th className="p-3 w-48 hidden md:table-cell font-semibold text-slate-600 border-r border-slate-100">Thematic Group</th>
-                            <th className="p-3 pr-6 w-40 hidden lg:table-cell font-semibold text-slate-600">Origin Branch</th>
+                            <th className="p-3 w-64 hidden md:table-cell font-semibold text-slate-600">Thematic Group / Source</th>
                         </tr>
                     </thead>
                     <tbody className="divide-y divide-slate-100">
@@ -111,20 +117,22 @@ const DiscoveryDataGrid = ({ rootData, onLeafClick }) => {
                                         {item.title}
                                     </p>
                                 </td>
-                                <td className="p-3 hidden md:table-cell align-middle border-r border-slate-50/50">
-                                    <span className="text-slate-600 bg-slate-100 px-2 py-1 rounded text-xs">
+                                <td className="p-3 hidden md:table-cell align-middle">
+                                    <a 
+                                        href={item.url} 
+                                        target="_blank" 
+                                        rel="noopener noreferrer"
+                                        onClick={(e) => e.stopPropagation()}
+                                        className="inline-flex items-center gap-1.5 text-blue-600 bg-blue-50 hover:bg-blue-100 transition-colors px-2.5 py-1 rounded text-xs font-medium border border-blue-100 hover:border-blue-300"
+                                    >
                                         {item.theme}
-                                    </span>
-                                </td>
-                                <td className="p-3 pr-6 hidden lg:table-cell align-middle">
-                                    <span className="text-slate-600 font-medium">
-                                        {item.origin}
-                                    </span>
+                                        <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>
+                                    </a>
                                 </td>
                             </tr>
                         )) : (
                             <tr>
-                                <td colSpan="3" className="p-16 text-center text-slate-500">
+                                <td colSpan="2" className="p-16 text-center text-slate-500">
                                     <p className="text-lg font-medium mb-1">No datasets found.</p>
                                     <p className="text-sm">Please try a different search term.</p>
                                 </td>
