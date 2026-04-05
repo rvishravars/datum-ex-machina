@@ -27,10 +27,10 @@ class NZHomeschoolingStory(BaseStory):
             {"x": 2019, "label": "2019", "y": 6573},
             {"x": 2020, "label": "2020", "y": 7192},  # The initial shock
             {"x": 2021, "label": "2021", "y": 7749},
-            {"x": 2022, "label": "2022", "y": 10899}, # The peak surge
+            {"x": 2022, "label": "2022", "y": 10899},  # The peak surge
             {"x": 2023, "label": "2023", "y": 10777},
             {"x": 2024, "label": "2024", "y": 10757},
-            {"x": 2025, "label": "2025", "y": 11010}, # New paradigm
+            {"x": 2025, "label": "2025", "y": 11010},  # New paradigm
         ]
 
     def get_characters(self, stats: Dict) -> List[Dict]:
@@ -39,7 +39,7 @@ class NZHomeschoolingStory(BaseStory):
                 "id": "Trend",
                 "name": "The Predictor",
                 "archetype": "The baseline tracker",
-                "description": f"Has calculated a very flat, gentle baseline. Before 2020, the average was hovering around 6,000 students. Nothing indicated the surge ahead.",
+                "description": "Has calculated a very flat, gentle baseline. Before 2020, the average was hovering around 6,000 students. Nothing indicated the surge ahead.",
                 "color": "#3B82F6",
             },
             {

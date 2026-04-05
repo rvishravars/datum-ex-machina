@@ -3,13 +3,15 @@ import json
 import httpx
 import asyncio
 from datetime import datetime, timezone
-from typing import List, Dict, Any, Counter
+from typing import Counter
+
 
 # Configurations
 STATS_NZ_API_KEY = os.getenv("STATS_NZ_API_KEY")
 STATS_NZ_BASE_URL = "https://api.stats.govt.nz/adventure/v1"
 DATA_GOVT_API_URL = "https://catalogue.data.govt.nz/api/3/action/package_search"
 INDEX_PATH = os.path.join(os.path.dirname(__file__), "..", "data", "index", "metadata_index.json")
+
 
 class MetadataIndexer:
     def __init__(self):
@@ -18,7 +20,7 @@ class MetadataIndexer:
             "last_updated": None,
             "stats_nz_tables": [],
             "data_govt_packages": [],
-            "clusters": {} # For the Bubble Chart: {Theme: Count}
+            "clusters": {}  # For the Bubble Chart: {Theme: Count}
         }
 
     async def index_stats_nz(self):
@@ -55,20 +57,20 @@ class MetadataIndexer:
         """
         params = {
             "q": query,
-            "rows": 200 # Grab 200 for a more impressive bubble chart
+            "rows": 200  # Grab 200 for a more impressive bubble chart
         }
         try:
             response = await self.client.get(DATA_GOVT_API_URL, params=params)
             if response.status_code == 200:
                 data = response.json()
                 results = data.get("result", {}).get("results", [])
-                
+
                 packages = []
                 org_counts = Counter()
                 for pkg in results:
                     org = pkg.get("organization", {}).get("title", "Unknown Dept")
                     org_counts[org] += 1
-                    
+
                     packages.append({
                         "id": pkg.get("id"),
                         "title": pkg.get("title"),
@@ -100,6 +102,7 @@ class MetadataIndexer:
         )
         self.save_index()
         await self.client.aclose()
+
 
 if __name__ == "__main__":
     indexer = MetadataIndexer()

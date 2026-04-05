@@ -94,7 +94,6 @@ function AppContent() {
         <Landing 
           onStart={startStage} 
           onLogin={() => setView('login')} 
-          onDiscovery={() => setView('discovery')}
         />
       )}
       

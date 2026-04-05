@@ -4,7 +4,7 @@ import { useAuth } from '../components/AuthContext';
 import PacificDiscovery from '../components/Discovery/PacificDiscovery';
 import StoryCard from '../components/Discovery/StoryCard';
 
-function Landing({ onStart, onLogin, onDiscovery }) {
+function Landing({ onStart, onLogin }) {
   const { user, logout } = useAuth();
   const [datasets, setDatasets] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -61,9 +61,7 @@ function Landing({ onStart, onLogin, onDiscovery }) {
     return matchesSearch && strictRegionMatch && matchesTier;
   });
 
-  const scrollToStories = () => {
-    document.querySelector('.archive-grid')?.scrollIntoView({ behavior: 'smooth' });
-  };
+
 
   return (
     <div className="landing-page animate-pop">

@@ -163,7 +163,7 @@ class BaseStory:
             "tags": getattr(self, "tags", []),
             "python_version": getattr(self, "python_version", "3.10"),
             "dependencies": getattr(self, "dependencies", []),
-            "terms": self.get_terms({"summary": {"mean": 0}}), # Safe fallback
+            "terms": self.get_terms({"summary": {"mean": 0}}),  # Safe fallback
             "data": self.load_data(),
         }
 
