@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import DiscoveryTree from '../components/Discovery/DiscoveryTree';
+import DiscoveryTreemap from '../components/Discovery/DiscoveryTreemap';
 import { motion } from 'framer-motion';
 
 const DiscoveryLab = ({ onBack }) => {
@@ -110,10 +110,10 @@ const DiscoveryLab = ({ onBack }) => {
                     </section>
                 </aside>
 
-                {/* Center: The Big Picture (Zoomable Tree) */}
-                <section className="lg:col-span-3 bg-white border-4 border-slate-900 p-4 min-h-[600px] shadow-[12px_12px_0px_0px_rgba(0,0,0,1)] order-1 lg:order-2 flex flex-col justify-center overflow-hidden">
+                {/* Center: The Big Picture (Interactive Treemap) */}
+                <section className="lg:col-span-3 bg-white border-4 border-slate-900 p-4 min-h-[600px] shadow-[12px_12px_0px_0px_rgba(0,0,0,1)] order-1 lg:order-2 flex flex-col overflow-hidden">
                     {discoveryData?.root && (
-                        <DiscoveryTree 
+                        <DiscoveryTreemap 
                             rootData={discoveryData.root} 
                             onLeafClick={handleLeafClick} 
                         />
