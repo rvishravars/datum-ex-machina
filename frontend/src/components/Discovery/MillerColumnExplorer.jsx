@@ -50,23 +50,27 @@ const MillerColumnExplorer = ({ rootData, onLeafClick }) => {
     if (!rootData) return null;
 
     return (
-        <div className="miller-column-container flex w-full flex-grow bg-slate-50 border-4 border-slate-900 shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] overflow-hidden font-mono mt-4">
+        <div className="miller-column-container flex w-full h-[80vh] min-h-[700px] bg-slate-950 rounded-2xl border border-slate-800 shadow-[0_20px_50px_rgba(0,0,0,0.5)] overflow-hidden font-sans mt-4 text-slate-200">
             
             {/* Scrollable Column Area */}
             <div 
                 ref={containerRef}
                 className="flex flex-1 overflow-x-auto overflow-y-hidden snap-x"
-                style={{ scrollbarWidth: 'thin' }}
+                style={{ scrollbarWidth: 'thin', scrollbarColor: '#334155 transparent' }}
             >
                 {columns.map((colItems, depth) => (
                     <div 
                         key={depth} 
-                        className="w-72 min-w-[18rem] bg-white border-r-4 border-slate-900 flex flex-col snap-start shrink-0 relative"
+                        className="w-80 min-w-[20rem] bg-slate-900/60 flex flex-col snap-start shrink-0 relative border-r border-slate-800/50"
                     >
-                        <div className="bg-slate-900 text-white font-bold p-3 text-xs uppercase tracking-widest sticky top-0 z-10">
-                            {depth === 0 ? "Evidence Horizon" : selectedPath[depth-1]}
+                        {/* High-Tech Column Header */}
+                        <div className="p-5 bg-slate-950/80 backdrop-blur-md sticky top-0 z-10 border-b border-slate-800/80">
+                            <h4 className="text-xs font-black uppercase tracking-[0.2em] text-blue-400">
+                                {depth === 0 ? "Evidence Horizon" : selectedPath[depth-1]}
+                            </h4>
                         </div>
-                        <ul className="overflow-y-auto flex-1 pb-4">
+                        
+                        <ul className="overflow-y-auto flex-1 p-2 space-y-1">
                             {colItems.map((item, idx) => {
                                 const isSelected = selectedPath[depth] === item.name;
                                 const isLeaf = !item.children;
@@ -74,16 +78,21 @@ const MillerColumnExplorer = ({ rootData, onLeafClick }) => {
                                     <li 
                                         key={item.name + idx}
                                         onClick={() => handleSelect(depth, item)}
-                                        className={`p-3 border-b border-slate-200 cursor-pointer transition-colors flex justify-between items-center text-sm
-                                            ${isSelected ? 'bg-blue-100 font-bold border-l-4 border-blue-600' : 'hover:bg-slate-50'}
+                                        className={`p-4 rounded-xl cursor-pointer transition-all duration-200 flex justify-between items-center text-base group
+                                            ${isSelected 
+                                                ? 'bg-blue-600/20 text-white font-bold shadow-[inset_4px_0_0_0_rgb(59,130,246)]' 
+                                                : 'hover:bg-slate-800 hover:text-white text-slate-400'
+                                            }
                                         `}
                                     >
-                                        <span className="truncate pr-2" title={item.name}>{item.name}</span>
+                                        <span className="truncate pr-3 leading-snug" title={item.name}>{item.name}</span>
                                         {!isLeaf && (
-                                            <span className="text-slate-400 font-bold text-xs">▶</span>
+                                            <span className={`text-xs transition-colors ${isSelected ? 'text-blue-400' : 'text-slate-600 group-hover:text-slate-400'}`}>
+                                                ▶
+                                            </span>
                                         )}
                                         {isLeaf && (
-                                            <span className="w-2 h-2 rounded-full bg-green-500 shadow-[0_0_5px_rgba(34,197,94,0.8)]"></span>
+                                            <span className="w-2.5 h-2.5 rounded-full bg-emerald-400 shadow-[0_0_8px_rgba(52,211,153,0.6)] animate-pulse"></span>
                                         )}
                                     </li>
                                 );
@@ -93,49 +102,62 @@ const MillerColumnExplorer = ({ rootData, onLeafClick }) => {
                 ))}
             </div>
 
-            {/* Detail Pane (Displays if Leaf is selected) */}
+            {/* Premium Detail Pane */}
             <AnimatePresence>
                 {activeLeaf && (
                     <motion.div 
                         initial={{ opacity: 0, x: 50, width: 0 }}
                         animate={{ opacity: 1, x: 0, width: 'auto' }}
                         exit={{ opacity: 0, x: 50, width: 0 }}
-                        className="w-80 min-w-[20rem] bg-white border-l-4 border-slate-900 flex flex-col shrink-0"
+                        className="w-96 min-w-[24rem] bg-gradient-to-b from-slate-900 to-slate-950 border-l border-slate-800 flex flex-col shrink-0 shadow-2xl z-20 relative"
                     >
-                        <div className="bg-blue-600 text-white font-bold p-3 text-xs uppercase tracking-widest">
-                            Dataset Metadata
+                        {/* Detail Header */}
+                        <div className="p-6 bg-blue-900/20 border-b border-blue-500/20 backdrop-blur-sm">
+                            <h2 className="text-xs font-black text-blue-400 uppercase tracking-[0.2em] flex items-center gap-2">
+                                <span className="w-2 h-2 rounded-full bg-blue-500 inline-block animate-ping"></span>
+                                Selected Dataset
+                            </h2>
                         </div>
-                        <div className="p-6 flex flex-col gap-6 overflow-y-auto h-full">
+                        
+                        <div className="p-8 flex flex-col gap-8 overflow-y-auto h-full">
+                            {/* Title Block */}
                             <div>
-                                <h3 className="font-bold text-slate-500 text-[10px] uppercase tracking-widest mb-1">Title</h3>
-                                <p className="font-bold text-slate-900 leading-tight">{activeLeaf.name}</p>
+                                <p className="font-bold text-slate-500 text-[10px] uppercase tracking-widest mb-2">Dataset Title</p>
+                                <h3 className="text-2xl font-black text-white leading-tight">{activeLeaf.name}</h3>
                             </div>
 
+                            {/* ID Block */}
                             {activeLeaf.id && (
                                 <div>
-                                    <h3 className="font-bold text-slate-500 text-[10px] uppercase tracking-widest mb-1">System ID</h3>
-                                    <p className="font-mono text-xs bg-slate-100 p-2 border border-slate-300 break-all">{activeLeaf.id}</p>
+                                    <p className="font-bold text-slate-500 text-[10px] uppercase tracking-widest mb-2">System identifier</p>
+                                    <p className="font-mono text-sm text-amber-300 bg-slate-950 p-3 rounded-lg border border-slate-800 break-all select-all">
+                                        {activeLeaf.id}
+                                    </p>
                                 </div>
                             )}
 
+                            {/* Path Block */}
                             <div>
-                                <h3 className="font-bold text-slate-500 text-[10px] uppercase tracking-widest mb-1">Origin Path</h3>
-                                <div className="text-xs text-slate-600 flex flex-wrap gap-1">
+                                <p className="font-bold text-slate-500 text-[10px] uppercase tracking-widest mb-2">Information Path</p>
+                                <div className="text-xs text-slate-300 flex flex-wrap gap-2">
                                     {selectedPath.slice(0, -1).map((p, i) => (
-                                        <span key={i} className="bg-slate-200 px-2 py-1 rounded-sm border border-slate-300">{p}</span>
+                                        <span key={i} className="bg-slate-800/80 px-3 py-1.5 rounded-md border border-slate-700 shadow-sm">
+                                            {p}
+                                        </span>
                                     ))}
                                 </div>
                             </div>
 
-                            <div className="mt-auto pt-6 border-t border-slate-200">
-                                <p className="text-xs text-slate-500 italic mb-4">
-                                    This dataset is ready for narrative synthesis. Proceed to generate a storyboard module.
+                            {/* Action Block */}
+                            <div className="mt-auto pt-8 border-t border-slate-800">
+                                <p className="text-sm text-slate-400 mb-6 leading-relaxed">
+                                    This data node has sufficient density for narrative extraction. Synthesize a storyboard module to analyze trends.
                                 </p>
                                 <button 
                                     onClick={() => onLeafClick(activeLeaf)}
-                                    className="w-full bg-slate-900 text-white font-bold py-3 uppercase tracking-widest text-sm hover:bg-green-600 transition-all shadow-[4px_4px_0px_0px_rgba(74,158,255,1)] hover:shadow-[0px_0px_0px_0px_rgba(74,158,255,1)] hover:translate-x-1 hover:translate-y-1 border-2 border-slate-900"
+                                    className="w-full bg-blue-600 hover:bg-blue-500 text-white font-bold py-4 rounded-xl uppercase tracking-widest text-sm transition-all shadow-[0_0_20px_rgba(37,99,235,0.4)] hover:shadow-[0_0_30px_rgba(37,99,235,0.6)] hover:-translate-y-1 active:translate-y-0"
                                 >
-                                    Initiate Story
+                                    Initiate Synthesis
                                 </button>
                             </div>
                         </div>
