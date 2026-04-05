@@ -84,15 +84,6 @@ function Landing({ onStart, onLogin, onDiscovery }) {
       <header className="landing-hero">
         <h1 className="main-title">Datum Ex Machina</h1>
         <p className="sub-tagline">{"\"The Pacific Research Archive\""}</p>
-        
-        <div className="discovery-cta mt-4">
-          <button 
-            className="btn-discovery"
-            onClick={() => onDiscovery()}
-          >
-            <span className="sparkle">✨</span> EXPLORE THE EVIDENCE HORIZON <span className="sparkle">✨</span>
-          </button>
-        </div>
       </header>
 
       <PacificDiscovery 

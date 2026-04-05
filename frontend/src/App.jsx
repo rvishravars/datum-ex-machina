@@ -5,10 +5,8 @@ import Quiz from './components/Quiz/Quiz';
 import Login from './pages/Login';
 import { AuthProvider, useAuth } from './components/AuthContext';
 
-import DiscoveryLab from './pages/DiscoveryLab';
-
 function AppContent() {
-  const [view, setView] = useState('landing'); // landing, stage, quiz, login, discovery
+  const [view, setView] = useState('landing'); // landing, stage, quiz, login
   const { user, loading, login } = useAuth();
   const [tier, setTier] = useState(null);
   const [dataset, setDataset] = useState(null);
@@ -114,10 +112,6 @@ function AppContent() {
           storyboard={storyboard} 
           onReset={resetApp} 
         />
-      )}
-
-      {view === 'discovery' && (
-        <DiscoveryLab onBack={resetApp} />
       )}
     </div>
   );
