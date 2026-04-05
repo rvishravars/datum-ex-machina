@@ -20,11 +20,18 @@ services:
     # Override the default CMD for live-reloading dev mode
     command: python3 -m uvicorn main:app --host 0.0.0.0 --port 8080 --reload
     restart: always
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8080/"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 2s
 
   # 🏆 THE FRONTEND: Instant Live-Reload UI
   frontend:
     depends_on:
-      - backend
+      backend:
+        condition: service_healthy
     build:
       context: ./frontend
       dockerfile: Dockerfile
