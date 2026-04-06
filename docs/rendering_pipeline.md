@@ -14,7 +14,9 @@ classDiagram
         +region: str
         +dependencies: List[str]
         +python_version: str
+        +python_version: str
         +get_voice_line(point, beat, stats) str
+        +get_knowledge_relations() List[WikiRelation]
         +to_notebook() Path
     }
 
@@ -46,7 +48,10 @@ sequenceDiagram
     A->>R: load_story(id)
     R-->>A: Self-Contained Story Instance
     
-    A->>SM: stats.compute() + story.narrate()
+    A->>SM: stats.compute() + story.narrate() 
+    A->>SM: story.get_knowledge_relations()
+    SM-->>A: Knowledge Mesh (Wiki Links)
+    
     SM-->>A: Storyboard JSON
     
     alt Jupyter Export
@@ -55,7 +60,7 @@ sequenceDiagram
         A-->>U: Ported .ipynb file
     end
 
-    A-->>U: Render 4-Stage Stage
+    A-->>U: Render 4-Stage Stage (with Discovery Layer)
 ```
 
 ## 🛠️ Key Components

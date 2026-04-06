@@ -9,6 +9,8 @@ function Stage({ tier, dataset, onComplete, onBack, onJump }) {
   const [currentPanelIndex, setCurrentPanelIndex] = useState(0);
   const [isExpanded, setIsExpanded] = useState(false);
   const [activeTerm, setActiveTerm] = useState(null);
+  const [isDiscoveryMode, setIsDiscoveryMode] = useState(false);
+  const [activeDiscovery, setActiveDiscovery] = useState(null);
 
   useEffect(() => {
     async function loadStoryboard() {
@@ -110,6 +112,12 @@ function Stage({ tier, dataset, onComplete, onBack, onJump }) {
           <button className="btn-back btn-expand" onClick={() => setIsExpanded(!isExpanded)}>
             {isExpanded ? '⤓ Collapse Stage' : '⤢ Expand Stage'}
           </button>
+          <button 
+            className={`btn-back btn-discovery-toggle ${isDiscoveryMode ? 'active' : ''}`}
+            onClick={() => setIsDiscoveryMode(!isDiscoveryMode)}
+          >
+            {isDiscoveryMode ? '🔭 Discovery: ON' : '🔬 Discovery: OFF'}
+          </button>
         </div>
         <div className="stage-meta">
           <div className="meta-left">
@@ -163,6 +171,22 @@ function Stage({ tier, dataset, onComplete, onBack, onJump }) {
             {currentPanelIndex === storyboard.panels.length - 1 ? 'Start Quiz' : 'Next →'}
           </button>
         </nav>
+
+        {isDiscoveryMode && storyboard.knowledge_mesh && storyboard.knowledge_mesh.some(rel => rel.x_target === currentPanel.data_point?.x) && (
+          <div className="discovery-overlay animate-pop">
+            <h4 className="discovery-title">✨ Knowledge Relations Found</h4>
+            <div className="discovery-grid">
+              {storyboard.knowledge_mesh
+                .filter(rel => rel.x_target === currentPanel.data_point?.x)
+                .map(rel => (
+                  <div key={rel.id} className="discovery-card" onClick={() => setActiveDiscovery(rel)}>
+                    <span className="discovery-tag">{rel.type}</span>
+                    <span className="discovery-label">{rel.label}</span>
+                  </div>
+                ))}
+            </div>
+          </div>
+        )}
       </div>
 
       {activeTerm && storyboard.terms?.[activeTerm] && (
@@ -172,6 +196,26 @@ function Stage({ tier, dataset, onComplete, onBack, onJump }) {
             <button className="btn-close" onClick={() => setActiveTerm(null)}>✕</button>
           </div>
           <p className="term-definition">{storyboard.terms[activeTerm]}</p>
+        </aside>
+      )}
+
+      {activeDiscovery && (
+        <aside className="term-side-panel discovery-side-panel animate-pop">
+          <div className="term-side-header">
+            <h3>{activeDiscovery.label}</h3>
+            <button className="btn-close" onClick={() => setActiveDiscovery(null)}>✕</button>
+          </div>
+          <div className="discovery-content">
+            <span className="discovery-type-badge">{activeDiscovery.type}</span>
+            <p className="term-definition">{activeDiscovery.description}</p>
+            <div className="discovery-links">
+              {activeDiscovery.wikipedia && (
+                <a href={activeDiscovery.wikipedia} target="_blank" rel="noopener noreferrer" className="discovery-link wiki-link">
+                  📖 View Wikipedia Article
+                </a>
+              )}
+            </div>
+          </div>
         </aside>
       )}
 
@@ -402,6 +446,87 @@ function Stage({ tier, dataset, onComplete, onBack, onJump }) {
           line-height: 1.5;
           color: var(--ink);
         }
+
+        .btn-discovery-toggle {
+          background: #fef3c7 !important;
+          padding: 0.2rem 1rem !important;
+          border: 2px solid var(--ink) !important;
+          border-radius: 20px !important;
+          margin-left: 1rem;
+          opacity: 1 !important;
+          transition: all 0.2s;
+        }
+        .btn-discovery-toggle.active {
+          background: #fbbf24 !important;
+          box-shadow: 4px 4px 0px var(--ink);
+          transform: translate(-2px, -2px);
+        }
+
+        .discovery-overlay {
+          margin-top: 1rem;
+          padding: 1.5rem;
+          background: #fffbeb;
+          border: 2px dashed #fbbf24;
+          border-radius: 8px;
+        }
+        .discovery-title {
+          font-family: var(--font-title);
+          margin-bottom: 1rem;
+          color: #92400e;
+        }
+        .discovery-grid {
+          display: flex;
+          gap: 1rem;
+          flex-wrap: wrap;
+        }
+        .discovery-card {
+          background: white;
+          border: 2px solid var(--ink);
+          padding: 0.5rem 1rem;
+          cursor: pointer;
+          display: flex;
+          flex-direction: column;
+          gap: 0.2rem;
+          transition: transform 0.1s;
+        }
+        .discovery-card:hover { transform: scale(1.05); }
+        .discovery-tag { font-size: 0.7rem; text-transform: uppercase; opacity: 0.6; }
+        .discovery-label { font-family: var(--font-title); font-weight: bold; }
+
+        .discovery-side-panel {
+          border-left-color: #fbbf24 !important;
+          background: #fffbeb !important;
+        }
+        .discovery-type-badge {
+          display: inline-block;
+          background: #fbbf24;
+          padding: 0.2rem 0.5rem;
+          font-size: 0.8rem;
+          font-family: var(--font-title);
+          margin-bottom: 1rem;
+        }
+        .discovery-links {
+          margin-top: 2rem;
+          display: flex;
+          flex-direction: column;
+          gap: 1rem;
+        }
+        .discovery-link {
+          font-family: var(--font-title);
+          text-decoration: none;
+          color: var(--ink);
+          padding: 0.8rem;
+          border: 2px solid var(--ink);
+          background: white;
+          text-align: center;
+          transition: all 0.1s;
+        }
+        .discovery-link:hover {
+          transform: translate(-2px, -2px);
+          box-shadow: 4px 4px 0px var(--ink);
+        }
+        .wiki-link { border-color: #4A9EFF; }
+        .research-link { border-color: #10B981; }
       `}</style>
     </div>
   );

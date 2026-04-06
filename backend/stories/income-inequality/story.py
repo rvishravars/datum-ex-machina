@@ -84,6 +84,36 @@ class IncomeInequalityStory(BaseStory):
             f"Year {year}: Staticians recorded a distribution coefficient of {value}."
         )
 
+    def get_terms(self, stats: Dict) -> Dict[str, str]:
+        terms = super().get_terms(stats)
+        terms.update({
+            "Gini Coefficient": "A statistical measure of distribution representing the income or wealth inequality within a nation or any other group of people.",
+            "Decile": "A quantitative method of splitting up a set of ranked data into 10 equally sized subsections.",
+            "Baseline": "The initial level of income distribution (in this case, 1985) used as a comparative starting point.",
+            "Wealth Gap": "The disparity between the financial assets of different groups of people within a population.",
+        })
+        return terms
+
+    def get_knowledge_relations(self) -> List[Dict]:
+        return [
+            {
+                "id": "rogernomics_context",
+                "label": "Rogernomics Era",
+                "x_target": 1985,
+                "type": "Event",
+                "description": "1985 marks a pivotal year in the 'Rogernomics' era, a period of radical neoliberal economic reforms that fundamentally reshaped New Zealand's wealth distribution.",
+                "wikipedia": "https://en.wikipedia.org/wiki/Rogernomics"
+            },
+            {
+                "id": "welfare_reform_impact",
+                "label": "Social Welfare Context",
+                "x_target": 1994,
+                "type": "Concept",
+                "description": "The 1994 peak in inequality reflects the cumulative statistical impact of the benefit cuts and labor market deregulation of the early 1990s.",
+                "wikipedia": "https://en.wikipedia.org/wiki/Social_welfare_in_New_Zealand"
+            }
+        ]
+
     def get_quiz_questions(self) -> List[Dict]:
         return [
             {

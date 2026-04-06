@@ -81,6 +81,36 @@ class RugbyStory(BaseStory):
 
         return f"Match {label}: {scored} Scored vs {conceded} Conceded ({outcome} by {abs(margin)})."
 
+    def get_terms(self, stats: Dict) -> Dict[str, str]:
+        terms = super().get_terms(stats)
+        terms.update({
+            "Win-Loss Margin": "The difference between the points scored by the winning team and the points scored by the losing team.",
+            "Defensive Pressure": "The statistical ability of a team to prevent the opposition from scoring points during a match.",
+            "Attacking Dominance": "Sustained periods of play where a team's scoring significantly exceeds the opposition's defensive capabilities.",
+            "Forsyth Barr Stadium": "Known as 'The Glasshouse', the home ground of the Highlanders in Dunedin, New Zealand.",
+        })
+        return terms
+
+    def get_knowledge_relations(self) -> List[Dict]:
+        return [
+            {
+                "id": "forsyth_barr_context",
+                "label": "The Glasshouse",
+                "x_target": 1,
+                "type": "Location",
+                "description": "Forsyth Barr Stadium is New Zealand's only fully enclosed natural grass stadium, providing a unique statistical environment where weather is never a factor.",
+                "wikipedia": "https://en.wikipedia.org/wiki/Forsyth_Barr_Stadium"
+            },
+            {
+                "id": "crusaders_rivalry",
+                "label": "The Southern Derby",
+                "x_target": 10,
+                "type": "Event",
+                "description": "The match against the Crusaders represents the 'Southern Derby', one of the most storied and statistically intense rivalries in Super Rugby history.",
+                "wikipedia": "https://en.wikipedia.org/wiki/Crusaders_(rugby_union)"
+            }
+        ]
+
     def get_quiz_questions(self) -> List[Dict]:
         return [
             {

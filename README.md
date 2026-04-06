@@ -14,6 +14,9 @@ graph TD
     B --> C[3. Story]
     C --> D[4. Feedback]
     
+    C --> G[5. Knowledge Mesh]
+    G --> H[Wikipedia Discovery]
+    
     D -.->|Synthesis Loop| B
     
     subgraph "The Platform for Understanding"
@@ -68,10 +71,40 @@ docker compose up --build
 - **API Health**: [http://localhost:8000/api](http://localhost:8000/api)
 
 ## 📊 Feature Highlights
-- **Bivariate Conflict**: Stories like the Highlanders track two metrics simultaneously (e.g., Scored vs Conceded) to show the "Winning Gap."
+- **Knowledge Discovery Mode**: An interactive "Discovery" layer that reveals Wikipedia context for critical data points (e.g., Rogernomics, Paris Agreement).
 - **Statistical Personas**: Concept-driven characters (The High Performance Coach, The Match Official) narrate the data using real-world terminology.
 - **PyTorch Diagrams**: High-fidelity charts with OLS Regression lines rendered directly from the analytical core.
 - **Verified Quizzes**: Every story ends with a mental-model check to ensure the data's "lesson" was understood.
+
+## ✍️ Developer Guide: Linking Wikipedia
+
+To preserve the archive's scholarly focus, we strictly limit Knowledge Relations to **Wikipedia**.
+
+### 1. Identify "Era" Data Points
+Find the canonical year or match where a major shift occurs (e.g., the 2008 GFC impact on employment).
+
+### 2. Implement the Mesh
+In your `story.py`, override `get_knowledge_relations()`:
+
+```python
+def get_knowledge_relations(self) -> List[Dict]:
+    return [
+        {
+            "id": "gfc_impact",
+            "label": "Great Recession",
+            "x_target": 2008, 
+            "type": "Event",
+            "description": "The 2008 GFC triggered a multi-year surge in jobless trends.",
+            "wikipedia": "https://en.wikipedia.org/wiki/Great_Recession"
+        }
+    ]
+```
+
+### 3. Verification
+Run the registry audit script to ensure your mesh is correctly serialized:
+```bash
+PYTHONPATH=./backend python3 -c "from stories.registry import get_story; print(get_story('your-id').get_knowledge_relations())"
+```
 
 ## 🛠️ Technical Stack
 - **Frontend**: React, Vite, CSS Modules.

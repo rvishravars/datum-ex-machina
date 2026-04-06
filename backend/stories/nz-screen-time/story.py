@@ -47,6 +47,36 @@ class ScreenTimeStory(BaseStory):
 
         return line
 
+    def get_terms(self, stats: Dict) -> Dict[str, str]:
+        terms = super().get_terms(stats)
+        terms.update({
+            "Digital Saturation": "The point at which digital interaction consumes most waking hours, often at the expense of biological needs like sleep.",
+            "Blue Light": "A color in the visible light spectrum that can be seen by the human eye. Its short wavelength means it produces a higher amount of energy.",
+            "Cognitive Load": "The used amount of working memory resources. High screen time can lead to cognitive overload and decreased focus.",
+            "Habit Formation": "The process by which a behavior, through regular repetition, becomes automatic or habitual.",
+        })
+        return terms
+
+    def get_knowledge_relations(self) -> List[Dict]:
+        return [
+            {
+                "id": "social_media_health_context",
+                "label": "Digital Well-being",
+                "x_target": 2019,
+                "type": "Concept",
+                "description": "Before the 2020 shift, the steady rise in screen time reflected the global saturation of mobile social media and its studied impact on adolescent mental health.",
+                "wikipedia": "https://en.wikipedia.org/wiki/Social_media_and_youth_mental_health"
+            },
+            {
+                "id": "covid_social_media_spike",
+                "label": "The Zoom Era",
+                "x_target": 2020,
+                "type": "Event",
+                "description": "The 2020 statistical spike represents the 'Zoom Era', where physical distancing forced all social and educational interactions into the digital sphere.",
+                "wikipedia": "https://en.wikipedia.org/wiki/Impact_of_the_COVID-19_pandemic_on_social_media"
+            }
+        ]
+
     def get_quiz_questions(self) -> List[Dict]:
         questions = super().get_quiz_questions()
         questions.append(

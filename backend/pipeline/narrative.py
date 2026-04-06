@@ -63,6 +63,7 @@ def map_to_storyboard(
         "unit": unit,
         "characters": characters,
         "terms": terms,
+        "knowledge_mesh": active_story.get_knowledge_relations(),
         "summary_stats": {
             "mean": summary["mean"],
             "median": summary["median"],

@@ -38,11 +38,13 @@ function parseContent(text, terms, links, onTermClick, onLinkClick) {
         </span>
       );
     } else {
+      // Find the original key in the terms object that matches this term
+      const originalTermKey = termKeys.find(k => k.toLowerCase() === lowerMatch);
       parts.push(
         <span 
           key={`${offset}-${lowerMatch}`} 
           className="interactive-term" 
-          onClick={() => onTermClick && onTermClick(lowerMatch)}
+          onClick={() => onTermClick && onTermClick(originalTermKey || lowerMatch)}
         >
           {match}
         </span>

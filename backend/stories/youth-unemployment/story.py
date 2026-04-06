@@ -84,6 +84,36 @@ class YouthUnemploymentStory(BaseStory):
 
         return f"Year {year}: Record shows a {value}% unemployment rate for the youth cohort."
 
+    def get_terms(self, stats: Dict) -> Dict[str, str]:
+        terms = super().get_terms(stats)
+        terms.update({
+            "NEET": "Stands for 'Not in Education, Employment, or Training'. A key indicator of youth disengagement from from the labor market.",
+            "Unemployment Rate": "The percentage of the total labor force that is jobless and actively seeking employment.",
+            "Labor Force": "The total number of people who are either currently employed or are unemployed but looking for work.",
+            "Under-utilization": "A broader measure of labor market slack that includes people who are employed but want more hours, and those wanting a job but not currently looking.",
+        })
+        return terms
+
+    def get_knowledge_relations(self) -> List[Dict]:
+        return [
+            {
+                "id": "gfc_impact_context",
+                "label": "The Great Recession",
+                "x_target": 2008,
+                "type": "Event",
+                "description": "The 2008 Global Financial Crisis triggered a multi-year surge in youth unemployment, as entry-level positions were the first to be cut during the recession.",
+                "wikipedia": "https://en.wikipedia.org/wiki/Great_Recession"
+            },
+            {
+                "id": "covid_labor_shock",
+                "label": "Pandemic Labor Shock",
+                "x_target": 2020,
+                "type": "Event",
+                "description": "The 2020 pandemic caused a unique 'labor shock', specifically hitting industries like hospitality and tourism where young workers are statistically overrepresented.",
+                "wikipedia": "https://en.wikipedia.org/wiki/Economic_impact_of_the_COVID-19_pandemic"
+            }
+        ]
+
     def get_quiz_questions(self) -> List[Dict]:
         return [
             {
