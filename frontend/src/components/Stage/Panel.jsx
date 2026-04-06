@@ -1,11 +1,18 @@
 import React from 'react';
 
-function parseTerms(text, terms, onTermClick) {
-  if (!text || !terms || Object.keys(terms).length === 0) return text;
+/**
+ * Parses text and replaces keywords with pulsed chronicle links or interactive terms.
+ */
+function parseContent(text, terms, links, onTermClick, onLinkClick) {
+  if (!text) return text;
   
-  // Sort terms by length descending to match longest phrases first
-  const keys = Object.keys(terms).sort((a, b) => b.length - a.length);
-  const escapedKeys = keys.map(k => k.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'));
+  const termKeys = terms ? Object.keys(terms) : [];
+  const linkLabels = links ? links.map(l => l.label) : [];
+  
+  const allKeys = [...termKeys, ...linkLabels].sort((a, b) => b.length - a.length);
+  if (allKeys.length === 0) return text;
+
+  const escapedKeys = allKeys.map(k => k.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'));
   const regex = new RegExp(`\\b(${escapedKeys.join('|')})\\b`, 'gi');
 
   const parts = [];
@@ -15,17 +22,32 @@ function parseTerms(text, terms, onTermClick) {
     if (offset > lastIndex) {
       parts.push(text.substring(lastIndex, offset));
     }
-    const termKey = match.toLowerCase();
-    parts.push(
-      <span 
-        key={`${offset}-${termKey}`} 
-        className="interactive-term" 
-        onClick={() => onTermClick && onTermClick(termKey)}
-        title="Click for meaning"
-      >
-        {match}
-      </span>
-    );
+    
+    const lowerMatch = match.toLowerCase();
+    const isLink = linkLabels.some(l => l.toLowerCase() === lowerMatch);
+    
+    if (isLink) {
+      const link = links.find(l => l.label.toLowerCase() === lowerMatch);
+      parts.push(
+        <span 
+          key={`${offset}-${lowerMatch}`} 
+          className="chronicle-link pulse-link" 
+          onClick={() => onLinkClick && onLinkClick(link)}
+        >
+          {match}
+        </span>
+      );
+    } else {
+      parts.push(
+        <span 
+          key={`${offset}-${lowerMatch}`} 
+          className="interactive-term" 
+          onClick={() => onTermClick && onTermClick(lowerMatch)}
+        >
+          {match}
+        </span>
+      );
+    }
     lastIndex = offset + match.length;
   });
 
@@ -33,23 +55,29 @@ function parseTerms(text, terms, onTermClick) {
     parts.push(text.substring(lastIndex));
   }
 
-  return parts.length > 0 ? parts : text;
+  return parts;
 }
 
-function Panel({ panel, index, terms, onTermClick }) {
+function Panel({ panel, index, terms, onTermClick, onJump }) {
   const { 
     beat, 
-    // data_point, 
     dialogue, 
     visual_cues = [],
-    // micro_chart,
-    // ci_info,
-    title_card,
     beat_description,
-    stats_chart
+    stats_chart,
+    title_card,
+    chronicle_links = []
   } = panel;
 
-  // Title Panel (Intro)
+  const [activeLink, setActiveLink] = React.useState(null);
+
+  const handleLinkClick = (link) => {
+    setActiveLink(link);
+  };
+
+  const isOutlier = visual_cues.includes('spotlight');
+
+  // handled Title Panel (Intro) separately
   if (beat === 'title_card' && title_card) {
     return (
       <div className="panel panel-title animate-pop">
@@ -79,15 +107,10 @@ function Panel({ panel, index, terms, onTermClick }) {
           }
           .vol-title { font-size: 4rem; margin-bottom: 0.5rem; line-height: 1.1; }
           .vol-tag { font-family: var(--font-hand); font-size: 2rem; opacity: 0.8; }
-          .title-chars { display: flex; gap: 2rem; margin-top: 2rem; }
         `}</style>
       </div>
     );
   }
-
-  // Data Panel (Main loop)
-  const isOutlier = visual_cues.includes('spotlight');
-  // const hasFog = visual_cues.includes('fog_overlay');
 
   return (
     <div className={`panel ${isOutlier ? 'effect-spotlight' : ''} animate-pop`}>
@@ -98,8 +121,8 @@ function Panel({ panel, index, terms, onTermClick }) {
         </div>
       </header>
 
-      <div className="full-width-layout">
-        <div className="chart-area-primary">
+      <div className="side-by-side-layout">
+        <div className="chart-area-main">
           {stats_chart && (
             <div className="stats-diagram-container">
               <img 
@@ -112,100 +135,171 @@ function Panel({ panel, index, terms, onTermClick }) {
           )}
         </div>
 
-        <div className="narration-container">
-          <h3 className="narration-title">ANALysis P.{index + 1}: {beat.replace('_', ' ').toUpperCase()}</h3>
-          <p className="narration-text">
-            {parseTerms(dialogue || beat_description, terms, onTermClick)}
-          </p>
+        <div className="narrative-section">
+          <div className="speech-bubble">
+            {parseContent(dialogue, terms, chronicle_links, onTermClick, handleLinkClick)}
+            {chronicle_links.length > 0 && !dialogue.toLowerCase().includes(chronicle_links[0].label.toLowerCase()) && (
+              <div className="related-jump">
+                * Related Chronicle: <span className="chronicle-link pulse-link" onClick={() => handleLinkClick(chronicle_links[0])}>{chronicle_links[0].label}</span>
+              </div>
+            )}
+          </div>
+          <div className="beat-desc">
+            {parseContent(beat_description, terms, chronicle_links, onTermClick, handleLinkClick)}
+          </div>
         </div>
       </div>
 
+      {activeLink && (
+        <div className="jump-modal-overlay" onClick={() => setActiveLink(null)}>
+          <div className="jump-modal animate-pop" onClick={e => e.stopPropagation()}>
+            <header className="jump-header">
+              <h3>CHRONICLE JUMP DISCOVERED</h3>
+              <button className="btn-close" onClick={() => setActiveLink(null)}>✕</button>
+            </header>
+            <div className="jump-body">
+              <p className="jump-reasoning">{activeLink.reasoning}</p>
+              <button className="btn-discovery jump-btn" onClick={() => {
+                setActiveLink(null);
+                onJump && onJump(activeLink.target_id);
+              }}>
+                JUMP TO {activeLink.label.toUpperCase()} →
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+
       <style jsx>{`
         .panel {
-          background: white;
-          border: 1px solid #ccc;
-          padding: 2rem;
-          min-height: 500px;
+          background: var(--paper);
+          border: var(--panel-border);
+          padding: 1.5rem;
+          min-height: 400px;
           display: flex;
           flex-direction: column;
+          filter: var(--wobble-filter);
         }
 
-        .full-width-layout {
-          flex: 1;
+        .side-by-side-layout {
           display: flex;
-          flex-direction: row;
           gap: 2rem;
-          align-items: center;
+          flex: 1;
         }
 
-        .chart-area-primary {
+        .chart-area-main {
           flex: 2;
           display: flex;
+          flex-direction: column;
           justify-content: center;
-          align-items: center;
         }
 
         .stats-diagram-container {
           position: relative;
-          background: white;
-          padding: 5px;
-          border: 1px solid #eee;
-          width: 100%;
         }
 
         .stats-diagram {
           width: 100%;
-          max-height: 55vh;
+          max-height: 50vh;
           object-fit: contain;
-          display: block;
         }
 
         .diagram-stamp {
           position: absolute;
           top: 10px;
-          right: 20px;
+          right: 10px;
+          font-size: 0.6rem;
+          opacity: 0.3;
           font-family: var(--font-title);
-          font-size: 0.8rem;
-          color: rgba(0,0,0,0.2);
-          letter-spacing: 2px;
         }
 
-        .narration-container {
+        .narrative-section {
           flex: 1;
-          background: #fdfdfd;
-          border-left: 4px solid var(--ink);
-          padding: 1.5rem 2rem;
           display: flex;
           flex-direction: column;
           justify-content: center;
+          padding-left: 1.5rem;
+          border-left: 2px dashed var(--ink);
         }
 
-        .narration-title {
+        .beat-desc {
           font-family: var(--font-title);
           font-size: 0.9rem;
-          letter-spacing: 0.1em;
-          margin-bottom: 0.5rem;
-          color: #666;
+          opacity: 0.7;
+          margin-top: 1rem;
         }
 
-        .narration-text {
+        .chronicle-link {
+          color: #2563eb;
+          font-weight: 800;
+          text-decoration: underline;
+          text-decoration-style: wavy;
+          cursor: pointer;
+          transition: all 0.2s;
+        }
+
+        .pulse-link {
+          animation: pulse-jump 2s infinite ease-in-out;
+        }
+
+        @keyframes pulse-jump {
+          0%, 100% { opacity: 0.8; transform: scale(1); }
+          50% { opacity: 1; transform: scale(1.05); color: #ef4444; }
+        }
+
+        .related-jump {
+          margin-top: 1rem;
+          font-size: 0.8rem;
+          opacity: 0.8;
+          border-top: 1px dashed var(--ink);
+          padding-top: 0.5rem;
+        }
+
+        .jump-modal-overlay {
+          position: fixed;
+          top: 0;
+          left: 0;
+          right: 0;
+          bottom: 0;
+          background: rgba(0,0,0,0.4);
+          z-index: 10000;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+        }
+
+        .jump-modal {
+          background: var(--paper);
+          border: 4px solid var(--ink);
+          padding: 2rem;
+          max-width: 500px;
+          box-shadow: 15px 15px 0px var(--ink);
+          filter: var(--wobble-filter);
+        }
+
+        .jump-header {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          margin-bottom: 1rem;
+          border-bottom: 2px solid var(--ink);
+        }
+
+        .jump-reasoning {
           font-family: var(--font-hand);
-          font-size: 1.5rem;
+          font-size: 1.4rem;
           line-height: 1.4;
-          color: var(--ink);
+          margin-bottom: 2rem;
+        }
+
+        .jump-btn {
+          width: 100%;
         }
 
         .interactive-term {
           border-bottom: 2px dashed #4A9EFF;
           color: #2563eb;
           cursor: pointer;
-          transition: all 0.2s;
-          padding: 0 0.1rem;
-        }
-
-        .interactive-term:hover {
-          background: #eff6ff;
-          border-radius: 4px;
         }
       `}</style>
     </div>

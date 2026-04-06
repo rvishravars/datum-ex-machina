@@ -164,6 +164,7 @@ def _build_panel(
         "primary_character": primary_char,
         "dialogue": dialogue,
         "ci_info": ci_info,
+        "chronicle_links": story.get_chronicle_links(data_point["x"]),
         "micro_chart": _build_micro_chart(data_point, stats),
         "visual_cues": _get_visual_cues(beat, data_point, tier, ci_info),
         "stats_chart": stats_chart,

@@ -78,6 +78,15 @@ class NZHomeschoolingStory(BaseStory):
 
         return f"Year {year}: Recorded total of {value} homeschooled students."
 
+    def get_chronicle_links(self, x_val: float) -> List[Dict]:
+        if int(x_val) == 2020:
+            return [{
+                "target_id": "nz-screen-time",
+                "label": "Digital Habit Spikes",
+                "reasoning": "THE DIGITAL SHIFT: As students moved to home-based learning in 2020, their daily screen time surged to an average of 6.9 hours. The kitchen table became the new digital classroom."
+            }]
+        return []
+
     def get_quiz_questions(self) -> List[Dict]:
         return [
             {

@@ -121,6 +121,10 @@ class BaseStory:
         }
         return terms
 
+    def get_chronicle_links(self, x_val: float) -> List[Dict]:
+        """Provides a list of 'Jump' links for a specific timeline point."""
+        return []
+
     def get_quiz_questions(self) -> List[Dict]:
         """Returns custom quiz questions for this story."""
         return [
