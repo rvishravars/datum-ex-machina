@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { analyzeDataset, getDataset } from '../../api/storyboard';
 import Panel from './Panel';
 
-function Stage({ tier, dataset, onComplete, onBack, onJump }) {
+function Stage({ tier, dataset, onComplete, onBack, onJump, customStoryboard }) {
   const [storyboard, setStoryboard] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -13,6 +13,12 @@ function Stage({ tier, dataset, onComplete, onBack, onJump }) {
   const [activeDiscovery, setActiveDiscovery] = useState(null);
 
   useEffect(() => {
+    if (customStoryboard) {
+      setStoryboard(customStoryboard);
+      setLoading(false);
+      return;
+    }
+
     async function loadStoryboard() {
       try {
         let fullData = dataset.data;
@@ -51,7 +57,7 @@ function Stage({ tier, dataset, onComplete, onBack, onJump }) {
       }
     }
     loadStoryboard();
-  }, [dataset, tier]);
+  }, [dataset, tier, customStoryboard]);
 
   const nextPanel = () => {
     if (currentPanelIndex < storyboard.panels.length - 1) {

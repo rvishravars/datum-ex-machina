@@ -1,1 +1,24 @@
-[]
+[
+    {
+        "timestamp": "2026-04-06T05:08:36.774948",
+        "storyboard_title": "The Great Shift: NZ Homeschooling Trends",
+        "tier": "R",
+        "answers": {
+            "trend_dir": "Reversing (Change of Heart)",
+            "greatest_change": "The Turning Point",
+            "outlier_nature": "It was a vital clue",
+            "next_panel": "Revert to the Mean",
+            "confidence": "Slightly"
+        },
+        "summary_stats": {
+            "mean": 8223,
+            "median": 7470.5,
+            "std": 2361.808,
+            "trend_direction": "rise",
+            "r_squared": 0.7433,
+            "outlier_count": 0,
+            "effect_size": 3.683,
+            "p_value": 0.0013
+        }
+    }
+]
