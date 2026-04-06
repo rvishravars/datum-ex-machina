@@ -57,7 +57,7 @@ function Stage({ tier, dataset, onComplete, onBack, onJump, customStoryboard }) 
       }
     }
     loadStoryboard();
-  }, [dataset, tier]);
+  }, [dataset, tier, customStoryboard]);
 
   const nextPanel = () => {
     if (currentPanelIndex < storyboard.panels.length - 1) {

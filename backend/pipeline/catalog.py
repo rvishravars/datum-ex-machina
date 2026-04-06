@@ -1,9 +1,8 @@
-import json
 import os
 import time
 import requests
 from pathlib import Path
-from typing import List, Dict, Any, Optional
+from typing import List, Dict, Any
 
 # Manual .env Loader (since python-dotenv might be missing)
 def load_env_manual(path: str = ".env"):

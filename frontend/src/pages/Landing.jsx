@@ -3,7 +3,7 @@ import { getDatasets } from '../api/storyboard';
 import { useAuth } from '../components/AuthContext';
 import PacificDiscovery from '../components/Discovery/PacificDiscovery';
 import StoryCard from '../components/Discovery/StoryCard';
-import { useRef } from 'react';
+
 
 function Landing({ onStart, onLogin, onGoExplorer }) {
   const { user, logout } = useAuth();
@@ -82,13 +82,7 @@ function Landing({ onStart, onLogin, onGoExplorer }) {
     setCurrentPage(0);
   }, [searchQuery, selectedRegion, selectedTier]);
 
-  const scroll = (direction) => {
-    if (scrollRef.current) {
-      const { scrollLeft, clientWidth } = scrollRef.current;
-      const scrollTo = direction === 'left' ? scrollLeft - clientWidth : scrollLeft + clientWidth;
-      scrollRef.current.scrollTo({ left: scrollTo, behavior: 'smooth' });
-    }
-  };
+
 
 
 

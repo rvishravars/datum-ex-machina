@@ -1,7 +1,6 @@
 import pandas as pd
-import numpy as np
 import io
-from typing import List, Dict, Any, Optional
+from typing import Dict, Any, Optional
 import requests
 
 class StatsNZScout:
@@ -67,8 +66,10 @@ class StatsNZScout:
         
         # Frequency Guess
         freq = "Annual"
-        if 'Q' in start_date: freq = "Quarterly"
-        elif 'M' in start_date or '-' in start_date: freq = "Monthly"
+        if 'Q' in start_date:
+            freq = "Quarterly"
+        elif 'M' in start_date or '-' in start_date:
+            freq = "Monthly"
 
         return {
             "range": f"{start_date} – {end_date}",

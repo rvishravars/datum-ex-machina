@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import MagnifyingGlassIcon from '@heroicons/react/24/outline/MagnifyingGlassIcon';
 import ArrowDownTrayIcon from '@heroicons/react/24/outline/ArrowDownTrayIcon';
-import InformationCircleIcon from '@heroicons/react/24/outline/InformationCircleIcon';
+
 import TagIcon from '@heroicons/react/24/outline/TagIcon';
 import CalendarDaysIcon from '@heroicons/react/24/outline/CalendarDaysIcon';
 import ChartBarIcon from '@heroicons/react/24/outline/ChartBarIcon';
