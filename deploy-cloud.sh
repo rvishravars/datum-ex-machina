@@ -10,6 +10,10 @@ PROJECT_NAME="datum-ex-machina"
 REGION="us-central1"
 REPO_NAME="datum-registry"
 APP_SERVICE="datum-app"
+# Load STATSNZ_API_KEY from local .env if present
+if [ -f .env ]; then
+    STATSNZ_API_KEY=$(grep '^STATSNZ_API_KEY=' .env | cut -d '=' -f 2)
+fi
 
 echo "🚀 Starting UNIFIED deployment of $PROJECT_NAME to Google Cloud Run..."
 
@@ -66,7 +70,7 @@ gcloud run deploy "$APP_SERVICE" \
     --cpu 1 \
     --timeout 300 \
     --port 8080 \
-    --set-env-vars "ENV=production" \
+    --set-env-vars "ENV=production,STATSNZ_API_KEY=$STATSNZ_API_KEY" \
     --quiet
 
 # Final URL
