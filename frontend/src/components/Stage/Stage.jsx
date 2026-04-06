@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { analyzeDataset, getDataset } from '../../api/storyboard';
 import Panel from './Panel';
 
-function Stage({ tier, dataset, onComplete, onBack }) {
+function Stage({ tier, dataset, onComplete, onBack, onJump }) {
   const [storyboard, setStoryboard] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -34,6 +34,14 @@ function Stage({ tier, dataset, onComplete, onBack }) {
         );
         setStoryboard(data);
         setLoading(false);
+
+        // SYNC: If we jumped here, find the panel matching the initialYear
+        if (dataset.initialYear) {
+          const matchIdx = data.panels.findIndex(p => p.data_point?.x === dataset.initialYear);
+          if (matchIdx !== -1) {
+            setCurrentPanelIndex(matchIdx);
+          }
+        }
       } catch (err) {
         console.error('Error analyzing dataset:', err);
         setError(`Analysis failed. ${err.message || 'Is the backend on?'}`);
@@ -63,8 +71,24 @@ function Stage({ tier, dataset, onComplete, onBack }) {
 
   if (loading) return (
     <div className="stage-loading">
-      <h1 className="animate-pop">Preparing the Stage...</h1>
-      <p>Curtains pulling back... numbers getting into costume...</p>
+      <div className="hourglass-container">
+        <span className="hourglass">⌛</span>
+      </div>
+      <h1 className="animate-pop">Developing Narrative...</h1>
+      <p>Consulting the archives... drawing the trend lines...</p>
+      <style jsx>{`
+        .hourglass-container {
+          font-size: 5rem;
+          margin-bottom: 2rem;
+          animation: flip 2s infinite ease-in-out;
+          display: inline-block;
+        }
+        @keyframes flip {
+          0% { transform: rotate(0deg); }
+          40% { transform: rotate(180deg); }
+          100% { transform: rotate(180deg); }
+        }
+      `}</style>
     </div>
   );
   
@@ -121,6 +145,7 @@ function Stage({ tier, dataset, onComplete, onBack }) {
           total={storyboard.panels.length} 
           terms={storyboard.terms}
           onTermClick={handleTermClick}
+          onJump={(targetId) => onJump && onJump(targetId, storyboard.panels[currentPanelIndex].data_point?.x)}
         />
         
         <nav className="panel-nav">

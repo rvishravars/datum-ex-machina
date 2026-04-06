@@ -30,15 +30,26 @@ function AppContent() {
   }, [user, view]);
 
   // Transition to the stage with a specific tier and dataset
-  const startStage = (selectedTier, selectedDataset) => {
+  const startStage = (selectedTier, selectedDataset, initialYear = null) => {
     if (!user) {
       setView("login");
       return;
     }
-    // const hasFog = true; // placeholder transition
     setTier(selectedTier);
-    setDataset(selectedDataset);
+    setDataset({ ...selectedDataset, initialYear });
     setView('stage');
+  };
+
+  const handleJump = async (targetId, currentYear) => {
+    try {
+      const response = await fetch(`/api/datasets/${targetId}`);
+      if (!response.ok) throw new Error("Target dataset not found");
+      const targetDataset = await response.json();
+      startStage(tier || 'M', targetDataset, currentYear);
+    } catch (err) {
+      console.error("Jump failed:", err);
+      alert("Could not find the linked chronicle: " + targetId);
+    }
   };
 
   // Transition to the quiz
@@ -103,6 +114,7 @@ function AppContent() {
           dataset={dataset} 
           onComplete={startQuiz} 
           onBack={resetApp} 
+          onJump={(targetId, year) => handleJump(targetId, year)}
         />
       )}
       
