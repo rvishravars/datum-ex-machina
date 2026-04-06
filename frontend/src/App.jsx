@@ -3,6 +3,7 @@ import Landing from './pages/Landing';
 import Stage from './components/Stage/Stage';
 import Quiz from './components/Quiz/Quiz';
 import Login from './pages/Login';
+import StatsExplorer from './pages/StatsExplorer';
 import { AuthProvider, useAuth } from './components/AuthContext';
 
 function AppContent() {
@@ -105,7 +106,12 @@ function AppContent() {
         <Landing 
           onStart={startStage} 
           onLogin={() => setView('login')} 
+          onGoExplorer={() => setView('explorer')}
         />
+      )}
+
+      {view === 'explorer' && (
+        <StatsExplorer onBack={resetApp} />
       )}
       
       {view === 'stage' && (

@@ -32,6 +32,18 @@ class User(Base):
     last_login = Column(DateTime, default=datetime.utcnow)
 
 
+class NewsroomArticle(Base):
+    __tablename__ = "newsroom_articles"
+
+    id = Column(String, primary_key=True, index=True)
+    title = Column(String, index=True)
+    byline = Column(String, nullable=True)
+    content = Column(String)  # Markdown narrative
+    storyboard_json = Column(String)  # Serialized panels/data
+    author_id = Column(Integer, index=True)
+    created_at = Column(DateTime, default=datetime.utcnow)
+
+
 # Create tables immediately for development
 Base.metadata.create_all(bind=engine)
 
