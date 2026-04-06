@@ -72,6 +72,36 @@ class LibraryVisitsStory(BaseStory):
 
         return f"Month {month}: Sensors recorded {value}k physical book loans across the region."
 
+    def get_terms(self, stats: Dict) -> Dict[str, str]:
+        terms = super().get_terms(stats)
+        terms.update({
+            "Gate Count": "The total number of persons who physically entered the library during the reporting period.",
+            "Lending Circulation": "The total number of items, such as books and media, that were borrowed or renewed by library users.",
+            "Tactile Literacy": "The relationship and engagement users have with physical, printed materials as opposed to digital screens.",
+            "Seasonal Trough": "A recurring low point in data that coincides with specific times of the year, such as summer holidays or winter breaks.",
+        })
+        return terms
+
+    def get_knowledge_relations(self) -> List[Dict]:
+        return [
+            {
+                "id": "public_library_role",
+                "label": "The Public Library",
+                "x_target": 2,
+                "type": "Concept",
+                "description": "Public libraries serve as critical hubs for community literacy. The March peak reflects the high seasonal demand for physical collections during the academic year.",
+                "wikipedia": "https://en.wikipedia.org/wiki/Public_library"
+            },
+            {
+                "id": "digital_shift_context",
+                "label": "The Digital Transition",
+                "x_target": 11,
+                "type": "Concept",
+                "description": "The decline in physical lending, particularly during holiday periods, reflects the global shift toward digital collections and e-book consumption.",
+                "wikipedia": "https://en.wikipedia.org/wiki/Digital_library"
+            }
+        ]
+
     def get_quiz_questions(self) -> List[Dict]:
         return [
             {

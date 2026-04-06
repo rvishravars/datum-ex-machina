@@ -78,6 +78,15 @@ class NZHomeschoolingStory(BaseStory):
 
         return f"Year {year}: Recorded total of {value} homeschooled students."
 
+    def get_terms(self, stats: Dict) -> Dict[str, str]:
+        terms = super().get_terms(stats)
+        terms.update({
+            "Baseline": "The calculated level of homeschooling students (approx. 6,000) that remained stable for nearly a decade before 2020.",
+            "Structural Shift": "A permanent change in the data's behavior, where the 'new normal' remains significantly higher than historical levels even after a crisis.",
+            "Exemption": "The legal permission granted by the Ministry of Education for a child to be educated at home instead of at a registered school.",
+        })
+        return terms
+
     def get_chronicle_links(self, x_val: float) -> List[Dict]:
         if int(x_val) == 2020:
             return [{
@@ -86,6 +95,26 @@ class NZHomeschoolingStory(BaseStory):
                 "reasoning": "THE DIGITAL SHIFT: As students moved to home-based learning in 2020, their daily screen time surged to an average of 6.9 hours. The kitchen table became the new digital classroom."
             }]
         return []
+
+    def get_knowledge_relations(self) -> List[Dict]:
+        return [
+            {
+                "id": "homeschooling_nz_context",
+                "label": "Homeschooling in NZ",
+                "x_target": 2010,
+                "type": "Concept",
+                "description": "Historical context on the legal framework for homeschooling in New Zealand following the Education Act 1989.",
+                "wikipedia": "https://en.wikipedia.org/wiki/Homeschooling_in_New_Zealand"
+            },
+            {
+                "id": "covid_education_shift",
+                "label": "2020 Pandemic Education",
+                "x_target": 2020,
+                "type": "Event",
+                "description": "The 2020 spike in homeschooling applications reflects the massive shift in parental perception during pandemic lockdowns.",
+                "wikipedia": "https://en.wikipedia.org/wiki/COVID-19_pandemic_in_New_Zealand"
+            }
+        ]
 
     def get_quiz_questions(self) -> List[Dict]:
         return [

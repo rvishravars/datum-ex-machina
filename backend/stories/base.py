@@ -125,6 +125,14 @@ class BaseStory:
         """Provides a list of 'Jump' links for a specific timeline point."""
         return []
 
+    def get_knowledge_relations(self) -> List[Dict]:
+        """
+        Provides a 'Knowledge Mesh' of relations between the data and external Wikipedia articles.
+        Each relation links a data point or era to a specific Wikipedia entry.
+        Override this to provide story-specific Wikipedia connections.
+        """
+        return []
+
     def get_quiz_questions(self) -> List[Dict]:
         """Returns custom quiz questions for this story."""
         return [

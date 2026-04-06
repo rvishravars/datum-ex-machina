@@ -83,6 +83,36 @@ class CO2EmissionsStory(BaseStory):
 
         return f"Year {year}: Global sensors recorded {value} Gt of carbon emissions."
 
+    def get_terms(self, stats: Dict) -> Dict[str, str]:
+        terms = super().get_terms(stats)
+        terms.update({
+            "Carbon Intensity": "The rate of greenhouse gas emissions (specifically CO2) per unit of activity or time.",
+            "Gigatonne (Gt)": "A unit of mass equal to one billion metric tonnes. Used to quantify global carbon cycles.",
+            "Baseline": "The reference point (in this case, 1990) used to measure the growth or reduction of emissions over time.",
+            "Net Zero": "The point where the amount of greenhouse gas produced is balanced by the amount removed from the atmosphere.",
+        })
+        return terms
+
+    def get_knowledge_relations(self) -> List[Dict]:
+        return [
+            {
+                "id": "kyoto_protocol_context",
+                "label": "The Kyoto Protocol",
+                "x_target": 1990,
+                "type": "Event",
+                "description": "1990 serves as the primary base year for the Kyoto Protocol, the first international treaty to set legally binding targets for greenhouse gas reductions.",
+                "wikipedia": "https://en.wikipedia.org/wiki/Kyoto_Protocol"
+            },
+            {
+                "id": "paris_agreement_era",
+                "label": "The Paris Agreement",
+                "x_target": 2016,
+                "type": "Event",
+                "description": "The 2016 data point coincides with the entry into force of the Paris Agreement, aiming to limit global warming to well below 2 degrees Celsius.",
+                "wikipedia": "https://en.wikipedia.org/wiki/Paris_Agreement"
+            }
+        ]
+
     def get_quiz_questions(self) -> List[Dict]:
         return [
             {
